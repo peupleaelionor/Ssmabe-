@@ -242,6 +242,11 @@ Voir la [roadmap détaillée](./docs/roadmap.md) (Phases 1 → 6).
 - [Déploiement (Vercel)](./docs/deployment.md)
 - [Production checklist](./docs/production-checklist.md)
 - [Brand assets](./docs/brand-assets.md)
+- [Design system](./docs/design-system.md)
+- [Mini-robots internes](./docs/internal-robots.md)
+- [Privacy & sécurité](./docs/privacy-security.md)
+- [Scaling plan (1k/10k/100k)](./docs/scaling-plan.md)
+- [Intégrations outils](./docs/integrations.md)
 
 ## Équipe
 

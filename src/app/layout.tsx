@@ -9,12 +9,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://songisongi.app"),
   title: {
-    default: "Songi Songi Mabé – Rencontres vocales du Congo",
+    default: "Songi Songi Mabé — Téléchat vocal né au Congo",
     template: "%s | Songi Songi Mabé",
   },
   description:
-    "La plateforme de rencontre vocale née au Congo. Parle, écoute, connecte – sans jamais partager ton numéro. Voix du Congo, cœur ouvert.",
+    "Appels anonymes, numéro protégé. Songi Songi Mabé connecte les voix du Congo, de la diaspora et du monde.",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/assets/songi/icons/app-icon.svg" }],
+  },
   keywords: [
     "rencontre vocale",
     "Congo",
@@ -37,15 +42,24 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://songisongi.app",
     siteName: "Songi Songi Mabé",
-    title: "Songi Songi Mabé – La voix qui connecte",
+    title: "Songi Songi Mabé — La voix d'abord. Le contact après.",
     description:
-      "Rencontre par la voix. Numéro protégé. La plateforme de rencontre vocale née au Congo.",
+      "Appels anonymes, numéro protégé. Le téléchat vocal né au Congo, pensé pour la diaspora, ouvert au monde.",
+    images: [
+      {
+        url: "/assets/songi/social/og-cover.svg",
+        width: 1200,
+        height: 630,
+        alt: "Songi Songi Mabé — Téléchat vocal né au Congo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Songi Songi Mabé",
     description: "Rencontre par la voix. Numéro protégé.",
     creator: "@SongiSongiApp",
+    images: ["/assets/songi/social/og-cover.svg"],
   },
   manifest: "/manifest.json",
 };

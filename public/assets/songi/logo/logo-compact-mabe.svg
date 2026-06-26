@@ -1,0 +1,13 @@
+<svg width="220" height="120" viewBox="0 0 220 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mabé">
+  <g transform="translate(6,14)">
+    <path d="M28 38 L20 8 L50 28 Z" fill="#0B0B0B"/>
+    <path d="M80 38 L88 8 L58 28 Z" fill="#0B0B0B"/>
+    <ellipse cx="54" cy="62" rx="40" ry="36" fill="#0B0B0B"/>
+    <ellipse cx="40" cy="56" rx="8" ry="11" fill="#1a5c4b"/>
+    <ellipse cx="68" cy="56" rx="8" ry="11" fill="#1a5c4b"/>
+    <ellipse cx="40" cy="58" rx="2.6" ry="7" fill="#0B0B0B"/>
+    <ellipse cx="68" cy="58" rx="2.6" ry="7" fill="#0B0B0B"/>
+    <path d="M54 71 l5 5 -5 4 -5 -4 Z" fill="#C76A2D"/>
+  </g>
+  <text x="110" y="76" font-family="Poppins, Inter, system-ui, sans-serif" font-size="40" font-weight="700" fill="#0F3D32">Mabé</text>
+</svg>

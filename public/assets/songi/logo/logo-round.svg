@@ -1,0 +1,12 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Songi Songi Mabé (rond)">
+  <circle cx="128" cy="128" r="128" fill="#0F3D32"/>
+  <circle cx="128" cy="128" r="104" fill="#F8F3EA"/>
+  <path d="M86 104 L72 50 L122 88 Z" fill="#0B0B0B"/>
+  <path d="M170 104 L184 50 L134 88 Z" fill="#0B0B0B"/>
+  <ellipse cx="128" cy="146" rx="62" ry="56" fill="#0B0B0B"/>
+  <ellipse cx="106" cy="138" rx="11" ry="15" fill="#3ad29f"/>
+  <ellipse cx="150" cy="138" rx="11" ry="15" fill="#3ad29f"/>
+  <ellipse cx="106" cy="140" rx="4" ry="10" fill="#0B0B0B"/>
+  <ellipse cx="150" cy="140" rx="4" ry="10" fill="#0B0B0B"/>
+  <path d="M128 158 l6 6 -6 5 -6 -5 Z" fill="#C76A2D"/>
+</svg>

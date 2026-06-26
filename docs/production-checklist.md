@@ -4,8 +4,26 @@
 
 ## Build & types
 - ✅ `npx tsc --noEmit` → 0 erreur (strict mode)
-- ✅ `npm run build` (`next build`) → 0 erreur, 14 routes générées
+- ✅ `npm run build` (`next build`) → 0 erreur
 - ✅ Aucune dépendance manquante (build sans `@supabase/supabase-js`, client fetch natif)
+
+## SEO / partage / PWA (phase production hardening)
+- ✅ `manifest.json` présent (référencé par `layout.tsx`, plus de 404)
+- ✅ Favicon (`/favicon.svg`) + apple/app icon + maskable icon
+- ✅ OpenGraph + Twitter card avec image OG (`/assets/songi/social/og-cover.svg`)
+- ✅ `metadataBase`, title, description alignés
+- ✅ `robots.ts` + `sitemap.ts` (App Router)
+- ⬜ Remplacer `og-cover.svg` par un PNG/WebP 1200×630 avant lancement
+
+## Design system & composants (phase production hardening)
+- ✅ Tokens TS dans `src/design/` (colors, typography, spacing, radius, shadows)
+- ✅ 15 composants premium dans `src/components/songi/`
+- ✅ `docs/design-system.md`
+
+## Robots internes & admin (phase production hardening)
+- ✅ 6 mini-robots dans `src/lib/robots/` + façade + `runAllRobots`
+- ✅ Onglet admin **Readiness** (Launch / Assets / Growth / Compliance / Safety)
+- ✅ `docs/internal-robots.md`
 
 ## Sécurité & privacy
 - ✅ **Aucun numéro de téléphone exposé** — `MockCandidate` / `MatchResult` ne
