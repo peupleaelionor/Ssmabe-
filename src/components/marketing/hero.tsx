@@ -1,14 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { VoiceWave } from "@/components/voice/voice-wave";
 import { Button } from "@/components/ui/button";
-import { Shield, Lock } from "lucide-react";
+
+const TRUST_POINTS = [
+  "18+ uniquement",
+  "Numéro protégé",
+  "Double consentement",
+  "Aucun contact forcé",
+];
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 text-center overflow-hidden">
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 text-center overflow-hidden"
+    >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-noir via-vert-congo/10 to-noir pointer-events-none" />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-vert-congo/20 rounded-full blur-3xl pointer-events-none" />
@@ -23,7 +31,7 @@ export function Hero() {
         >
           <span className="text-sm">🇨🇩</span>
           <span className="text-xs font-semibold text-vert-light tracking-wide uppercase">
-            Né au Congo. Pour l&apos;Afrique.
+            Téléchat vocal né au Congo
           </span>
         </motion.div>
 
@@ -42,7 +50,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl font-black text-blanc-chaud leading-tight mb-4 tracking-tight"
+          className="text-4xl font-black text-blanc-chaud leading-tight mb-5 tracking-tight"
         >
           Rencontre par la voix.
           <br />
@@ -54,18 +62,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-lg text-gris-texte mb-3 leading-relaxed"
+          className="text-base text-gris-texte mb-10 leading-relaxed"
         >
-          Parle. Écoute. Connecte.
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-sm text-gris-texte mb-10 leading-relaxed"
-        >
-          La première plateforme vocale pensée pour le Congo et sa diaspora.
-          Ton numéro reste invisible. Toujours.
+          Songi Songi Mabé est le téléchat vocal né au Congo. Appelle
+          anonymement, parle sans pression, et continue seulement si le feeling
+          passe.
         </motion.p>
 
         {/* CTAs */}
@@ -73,41 +74,33 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
-          className="flex flex-col gap-3 mb-10"
+          className="flex flex-col gap-3 mb-8"
         >
-          <Link href="/onboarding">
-            <Button size="xl" className="w-full text-base glow-pulse">
-              🎙 Commencer – c&apos;est gratuit
-            </Button>
-          </Link>
           <a href="#beta">
+            <Button size="xl" className="w-full text-base glow-pulse">
+              Rejoindre la bêta
+            </Button>
+          </a>
+          <a href="#how">
             <Button variant="outline" size="lg" className="w-full">
-              Rejoindre la bêta privée
+              Comment ça marche ?
             </Button>
           </a>
         </motion.div>
 
-        {/* Trust signals */}
+        {/* Trust line */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex items-center justify-center gap-6 text-xs text-gris-texte"
+          className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-gris-texte"
         >
-          <div className="flex items-center gap-1.5">
-            <Shield className="w-3.5 h-3.5 text-vert-light" />
-            <span>100% anonyme</span>
-          </div>
-          <div className="w-px h-3 bg-noir-border" />
-          <div className="flex items-center gap-1.5">
-            <Lock className="w-3.5 h-3.5 text-vert-light" />
-            <span>Numéro caché</span>
-          </div>
-          <div className="w-px h-3 bg-noir-border" />
-          <div className="flex items-center gap-1.5">
-            <span>🔞</span>
-            <span>18+ seulement</span>
-          </div>
+          {TRUST_POINTS.map((point, i) => (
+            <span key={point} className="flex items-center gap-2">
+              {i > 0 && <span className="text-gris-texte/40">·</span>}
+              <span>{point}</span>
+            </span>
+          ))}
         </motion.div>
       </div>
 

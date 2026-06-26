@@ -38,14 +38,16 @@ export function CongoFirst() {
             </span>
           </div>
           <h2 className="text-3xl font-black text-blanc-chaud mb-4 tracking-tight">
-            Fait pour nous.
+            Né au Congo.
             <br />
-            <span className="text-cuivre">Par nous.</span>
+            <span className="text-cuivre">
+              Pensé pour la diaspora. Ouvert au monde.
+            </span>
           </h2>
           <p className="text-gris-texte text-sm leading-relaxed">
-            Songi Songi Mabé est le seul produit de rencontre vocale qui parle
-            vraiment lingala – pas juste en traduction, mais dans l&apos;âme du
-            produit. M-Pesa natif. Villes congolaises. Diaspora connectée.
+            Songi Songi Mabé est le seul téléchat vocal qui parle vraiment
+            lingala – pas juste en traduction, mais dans l&apos;âme du produit.
+            M-Pesa natif. Villes congolaises. Diaspora connectée.
           </p>
         </motion.div>
 

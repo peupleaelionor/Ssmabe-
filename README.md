@@ -1,8 +1,10 @@
 # Songi Songi Mabé 🎙
 
-> **La voix qui connecte. Le numéro qui reste caché.**
+> **La voix d'abord. Le contact après.**
 
-Songi Songi Mabé ("Belle Rencontre Vocale" en lingala) est une plateforme de rencontre anonyme par la voix, née au Congo. Parle, écoute, connecte — sans jamais partager ton numéro de téléphone.
+Songi Songi Mabé est le **téléchat vocal né au Congo**. L'utilisateur choisit son pays, sa langue et son ambiance, puis trouve une voix : un appel vocal **anonyme**, **numéro protégé**. Le contact ne s'ouvre que si **les deux personnes acceptent** (double consentement).
+
+Ce n'est ni un clone WhatsApp, ni un clone Tinder, ni une messagerie classique : c'est une expérience **voice-first** et **privacy-first**, pensée pour le Congo, la diaspora, et ouverte au monde.
 
 ## Démo rapide
 
@@ -101,6 +103,14 @@ src/
 │   ├── wallet/          # CreditBalance, CreditPacks
 │   └── admin/           # StatsCard, DataTable
 └── lib/
+    ├── mabe/            # ★ Mabé Experience Engine (façade unique)
+    │   ├── countryBrain.ts
+    │   ├── languageBrain.ts
+    │   ├── voiceMatch.ts
+    │   ├── safetyShield.ts
+    │   ├── trustScore.ts
+    │   ├── creditEngine.ts
+    │   └── beta.ts      # Inscription bêta (local → Supabase-ready)
     ├── country-brain/   # Logique pays (8 pays)
     ├── language-brain/  # Logique langues (7 langues)
     ├── voice-match/     # Algorithme de matching
@@ -114,6 +124,10 @@ src/
     ├── utils/           # cn(), formatDuration()...
     └── store/           # Zustand global store
 ```
+
+> **Mabé Experience Engine** : tout le produit consomme les modules via
+> `@/lib/mabe`. Les modules internes (`country-brain`, `safety-shield`…) restent
+> l'implémentation ; `lib/mabe` est la façade stable et le point d'extension.
 
 ## 7 Modes d'Ambiance
 
@@ -163,6 +177,20 @@ npm run db:studio # Ouvrir Prisma Studio
 | Blanc chaud | `#FFFDF8` | Text principal |
 | Gris texte | `#6F6A63` | Subtitles, labels |
 
+## Prochaines étapes
+
+- **Supabase** : remplacer `persistSignup()` dans `lib/mabe/beta.ts` par un
+  insert Supabase (`beta_signups`), brancher Supabase Auth (OTP SMS / email) et
+  persister profils, sessions d'appel et signalements.
+- **Voice (WebRTC / LiveKit / Agora)** : brancher l'appel vocal anonyme réel
+  derrière `lib/mabe/voiceMatch.ts` ; le relais média ne doit jamais exposer de
+  numéro.
+- **Payments** : Stripe pour la diaspora, mobile money (Airtel / Orange /
+  M-Pesa / Wave / MTN) pour l'Afrique, via `lib/mabe/creditEngine.ts`.
+- **Redis** : file d'attente d'appels temps réel pour le matching.
+
+Voir la [roadmap détaillée](./docs/roadmap.md) (Phases 1 → 6).
+
 ## Documentation
 
 - [Product Vision](./docs/product.md)
@@ -179,4 +207,4 @@ Produit fait avec passion pour le Congo et sa diaspora.
 
 ---
 
-© 2025 Songi Songi Mabé · Né au Congo · Pour le Monde 🌍
+© 2025 Songi Songi Mabé · Né au Congo. Pensé pour la diaspora. Ouvert au monde. 🌍

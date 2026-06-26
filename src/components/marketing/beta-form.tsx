@@ -8,6 +8,7 @@ import { CountryCode, LanguageCode } from "@/lib/types";
 import { COUNTRIES_LIST } from "@/lib/country-brain/countries";
 import { LANGUAGES_LIST } from "@/lib/language-brain/languages";
 import { BETA_INTENTIONS } from "@/lib/constants/config";
+import { submitBetaSignup } from "@/lib/mabe/beta";
 import { cn } from "@/lib/utils";
 
 const intentions = BETA_INTENTIONS;
@@ -36,10 +37,23 @@ export function BetaForm() {
     setLoading(true);
     setError("");
 
-    // Mock API call
-    await new Promise((r) => setTimeout(r, 1200));
+    // Persist via the Mabé beta module (local mock today, Supabase tomorrow)
+    const result = await submitBetaSignup({
+      pseudo: form.pseudo,
+      country: form.country,
+      city: form.city,
+      language: form.language,
+      intention: form.intention,
+      contact: form.contact,
+    });
 
     setLoading(false);
+
+    if (!result.ok) {
+      setError(result.error ?? "Une erreur est survenue. Réessaie.");
+      return;
+    }
+
     setSubmitted(true);
   };
 
@@ -54,12 +68,11 @@ export function BetaForm() {
           >
             <div className="text-6xl mb-4">🎉</div>
             <h3 className="text-2xl font-black text-blanc-chaud mb-3">
-              Tu es dans la liste !
+              Inscription reçue.
             </h3>
             <p className="text-gris-texte text-sm leading-relaxed mb-4">
-              <strong className="text-blanc-chaud">{form.pseudo}</strong>,
-              on te contacte dès que la bêta ouvre dans ton pays.
-              Merci de croire au projet.
+              <strong className="text-blanc-chaud">{form.pseudo}</strong>, Mabé
+              te préviendra quand la bêta ouvre. Merci de croire au projet.
             </p>
             <div className="text-2xl">🇨🇩 🇨🇬 🎙</div>
           </motion.div>
@@ -84,11 +97,10 @@ export function BetaForm() {
             </span>
           </div>
           <h2 className="text-3xl font-black text-blanc-chaud mb-3 tracking-tight">
-            Rejoins la bêta.
+            Entre dans la première vague.
           </h2>
           <p className="text-gris-texte text-sm leading-relaxed">
-            On sélectionne les premiers testeurs avec soin. Laisse ton profil.
-            On te contacte dès que c&apos;est prêt dans ton pays.
+            Teste Songi Songi Mabé avant l&apos;ouverture publique.
           </p>
         </motion.div>
 
@@ -201,7 +213,7 @@ export function BetaForm() {
             className="w-full"
             disabled={loading}
           >
-            {loading ? "Inscription en cours…" : "Rejoindre la bêta privée →"}
+            {loading ? "Inscription en cours…" : "Je veux tester →"}
           </Button>
 
           <p className="text-xs text-gris-texte text-center">

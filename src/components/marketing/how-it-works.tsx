@@ -6,36 +6,36 @@ const STEPS = [
   {
     number: "01",
     icon: "🌍",
-    title: "Choisis ton pays & ta langue",
+    title: "Choisis ton pays",
     description:
-      "RDC, Congo-Brazza, France, Belgique, Canada, Côte d'Ivoire, Cameroun ou Sénégal. En lingala, swahili, français ou anglais.",
+      "RDC, Congo-Brazzaville, France, Belgique, Canada… ta région te ressemble.",
   },
   {
     number: "02",
-    icon: "🎯",
-    title: "Sélectionne ton ambiance",
+    icon: "🗣️",
+    title: "Choisis ta langue",
     description:
-      "Mboka (local), Lingala (musique), Sérieux (rencontre), Diaspora (pont patrie), Monde, Nuit ou Respect. Tu choisis le feeling.",
+      "Français, Lingala, Kikongo, Swahili, Tshiluba, Wolof, Créole.",
   },
   {
     number: "03",
-    icon: "🔒",
-    title: "Lance l'appel. Ton numéro reste caché.",
+    icon: "🎙",
+    title: "Trouve une voix",
     description:
-      "Songi Songi Mabé connecte deux voix via un canal sécurisé. Aucun numéro n'est partagé, ni pendant, ni après.",
+      "Une voix anonyme. Aucun numéro révélé. Tu parles, tu ressens, tu choisis.",
   },
   {
     number: "04",
-    icon: "✨",
-    title: "Le feeling passe ? Continuez.",
+    icon: "🤝",
+    title: "Si les deux acceptent",
     description:
-      "Si les deux personnes donnent leur accord, la connexion peut continuer. Sinon, c'est une fin propre. Aucun contact partagé.",
+      "Le contact ne s'ouvre que si vous le voulez tous les deux.",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section className="py-20 px-4">
+    <section id="how" className="py-20 px-4 bg-noir-light">
       <div className="max-w-md mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,9 +47,7 @@ export function HowItWorks() {
           <h2 className="text-3xl font-black text-blanc-chaud mb-3 tracking-tight">
             Comment ça marche ?
           </h2>
-          <p className="text-gris-texte">
-            Simple, sécurisé, pensé pour toi.
-          </p>
+          <p className="text-gris-texte">Simple, sécurisé, pensé pour toi.</p>
         </motion.div>
 
         <div className="relative">

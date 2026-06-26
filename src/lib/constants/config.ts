@@ -58,11 +58,10 @@ export const ONBOARDING_STEPS = [
 ];
 
 export const BETA_INTENTIONS = [
-  { value: "friendship", label: "Amitié" },
-  { value: "love", label: "Amour" },
-  { value: "networking", label: "Réseau" },
-  { value: "culture", label: "Culture" },
-  { value: "fun", label: "Fun" },
+  { value: "chill", label: "Chill" },
+  { value: "serieux", label: "Sérieux" },
+  { value: "diaspora", label: "Diaspora" },
+  { value: "decouverte", label: "Découverte" },
 ];
 
 export const REPORT_REASONS = [
@@ -78,39 +77,51 @@ export const REPORT_REASONS = [
 
 export const SAFETY_RULES = [
   {
+    icon: "🔞",
+    title: "18+ uniquement",
+    description:
+      "Vérification d'âge obligatoire. Les mineurs sont immédiatement bannis.",
+  },
+  {
     icon: "🔒",
-    title: "Numéro toujours caché",
+    title: "Numéro jamais affiché",
     description:
       "Ton numéro de téléphone n'est jamais partagé, ni pendant, ni après l'appel.",
   },
   {
-    icon: "✂️",
-    title: "Fin propre garantie",
+    icon: "🤝",
+    title: "Double consentement",
     description:
-      "Si les deux parties ne donnent pas leur accord, aucun contact n'est échangé.",
-  },
-  {
-    icon: "🛡️",
-    title: "Signalement facile",
-    description:
-      "Un bouton de signalement disponible à tout moment pendant et après l'appel.",
-  },
-  {
-    icon: "⚡",
-    title: "Modération rapide",
-    description:
-      "Notre équipe traite chaque signalement sous 24h. Tolérance zéro pour le harcèlement.",
+      "Aucun contact n'est échangé sans l'accord des deux personnes. Aucun contact forcé.",
   },
   {
     icon: "🚫",
-    title: "Blocage immédiat",
+    title: "Blocage instantané",
     description:
       "Bloque quelqu'un en un tap. Cette personne ne pourra plus jamais te contacter.",
   },
   {
-    icon: "🔞",
-    title: "18+ strictement",
+    icon: "⚡",
+    title: "Signalement rapide",
     description:
-      "Vérification d'âge obligatoire. Les mineurs sont immédiatement bannis.",
+      "Un bouton de signalement disponible à tout moment, traité en priorité par notre équipe.",
+  },
+  {
+    icon: "🛡️",
+    title: "Anti-harcèlement",
+    description:
+      "Tolérance zéro pour le harcèlement, les insultes et les comportements abusifs.",
+  },
+  {
+    icon: "🎣",
+    title: "Anti-arnaque",
+    description:
+      "Détection des demandes d'argent, codes de recharge et transferts suspects.",
+  },
+  {
+    icon: "💳",
+    title: "Aucun paiement caché",
+    description:
+      "Les coûts sont toujours affichés clairement. Aucun prélèvement surprise.",
   },
 ];

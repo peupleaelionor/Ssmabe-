@@ -308,13 +308,15 @@ export interface Transaction {
 
 // ── Onboarding & Beta ──────────────────────────────────────
 
+export type BetaIntention = "chill" | "serieux" | "diaspora" | "decouverte";
+
 export interface BetaSignup {
   id: string;
   pseudo: string;
   countryCode: CountryCode;
   city?: string;
   languageCode: LanguageCode;
-  intention: "friendship" | "love" | "networking" | "culture" | "fun";
+  intention: BetaIntention;
   contact?: string; // email or phone (optional)
   createdAt: Date;
   converted: boolean;

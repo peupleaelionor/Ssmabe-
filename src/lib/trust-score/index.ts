@@ -16,7 +16,7 @@ export function calculateTrustScore(userId: string, events: SafetyEvent[]): numb
 }
 
 export function getTrustLevel(score: number): TrustLevel {
-  const { thresholds } = TRUST_SCORE_DEFAULTS;
+  const { THRESHOLDS: thresholds } = TRUST_SCORE_DEFAULTS;
   if (score >= thresholds.vip) return TrustLevel.VIP;
   if (score >= thresholds.verified) return TrustLevel.VERIFIED;
   if (score >= thresholds.trusted) return TrustLevel.TRUSTED;

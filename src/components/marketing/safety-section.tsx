@@ -6,7 +6,10 @@ import { SAFETY_RULES } from "@/lib/constants/config";
 
 export function SafetySection() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-vert-congo/5 to-transparent">
+    <section
+      id="safety"
+      className="py-20 px-4 bg-gradient-to-b from-vert-congo/5 to-transparent"
+    >
       <div className="max-w-md mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,13 +57,32 @@ export function SafetySection() {
           ))}
         </div>
 
+        {/* Double consent mini-section */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-8 p-6 rounded-2xl border border-cuivre/30 bg-cuivre/5 text-center"
+        >
+          <div className="text-2xl mb-2">🤝</div>
+          <h3 className="font-bold text-blanc-chaud mb-1.5">
+            Le contact seulement si les deux acceptent.
+          </h3>
+          <p className="text-sm text-gris-texte leading-relaxed">
+            Aucune information n&apos;est échangée sans accord mutuel. Si une
+            personne dit non, c&apos;est une fin propre — et aucun contact
+            n&apos;est partagé.
+          </p>
+        </motion.div>
+
         {/* Promise box */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-8 p-6 rounded-2xl border border-vert-congo bg-vert-congo/10 text-center"
+          className="mt-4 p-6 rounded-2xl border border-vert-congo bg-vert-congo/10 text-center"
         >
           <p className="text-sm font-medium text-blanc-chaud leading-relaxed">
             &ldquo;Aucun numéro de téléphone ne quitte nos serveurs.

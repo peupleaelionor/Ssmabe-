@@ -1,131 +1,61 @@
-# Songi Songi Mabé – Roadmap Produit
+# Roadmap — Songi Songi Mabé
 
-## V1 – MVP (Bêta Privée) · T1 2025
+> « La voix d'abord. Le contact après. »
 
-**Objectif** : Valider le concept avec 500 utilisateurs sélectionnés
-
-### Features
-- [x] Onboarding 5 étapes (pays, langue, mode, âge, pseudo)
-- [x] 7 modes d'ambiance
-- [x] Matching vocal mock → WebRTC réel
-- [x] Double consentement en fin d'appel
-- [x] Numéro toujours caché
-- [x] Signalement et blocage
-- [x] Wallet crédits (packs Afrique et Diaspora)
-- [x] 8 pays (CD, CG, FR, BE, CA, CI, CM, SN)
-- [x] 5 langues (fr, ln, sw, kg, lu)
-- [x] Admin dashboard basique
-- [x] Score de confiance
-
-### Paiements V1
-- M-Pesa (Vodacom Congo)
-- Airtel Money
-- Stripe (diaspora)
-
-### Cible
-- 🇨🇩 Kinshasa-centrique
-- Focus 18-35 ans
-- 500 bêta-testeurs sélectionnés
+Roadmap produit, de la landing bêta jusqu'à la plateforme vocale temps réel.
 
 ---
 
-## V2 – Lancement Public · T2-T3 2025
+## Phase 1 — Landing + bêta ✅ (en cours)
 
-**Objectif** : 10 000 utilisateurs actifs, premières revenues
+- Landing page premium, mobile-first, identité africaine moderne.
+- Hero orienté conversion : « Rencontre par la voix. Numéro protégé. »
+- Sections : Concept, Comment ça marche, Modes, Congo first, Sécurité, Bêta.
+- Formulaire bêta fonctionnel (stockage local, architecture Supabase-ready).
+- Modules produit de base : `lib/mabe` (Country Brain, Language Brain, Voice
+  Match, Safety Shield, Trust Score, Credit Engine, Beta).
 
-### Features
-- [ ] Authentification téléphone + OTP (Twilio/Africa's Talking)
-- [ ] WebRTC réel (LiveKit ou Agora)
-- [ ] Filtre de voix (modulation légère pour anonymat accru)
-- [ ] Score de confiance public
-- [ ] Bons de parrainage (referral)
-- [ ] Mode Nuit avec restriction horaire automatique
-- [ ] Push notifications (match trouvé, bêta ouverte)
-- [ ] PWA installable (iOS + Android)
+## Phase 2 — Onboarding + compte utilisateur
 
-### Paiements V2
-- Orange Money
-- MTN Money
-- Wave (Sénégal)
-- PayPal
-- Interac (Canada)
+- Onboarding multi-étapes (pays → langue → ambiance → 18+ → pseudo).
+- Création de compte (Supabase Auth : OTP SMS / email).
+- Profil utilisateur, Trust Score initial, wallet crédits.
+- Persistance réelle des `BetaSignup` et profils en base.
 
-### Expansions géographiques
-- 🇰🇪 Kenya (Swahili, M-Pesa Safaricom)
-- 🇳🇬 Nigeria (Anglais, Yoruba, Hausa)
-- 🇹🇿 Tanzanie (Swahili)
-- 🇬🇧 Royaume-Uni (diaspora)
+## Phase 3 — Matching vocal simulé
 
-### Nouvelles langues
-- Yoruba
-- Hausa
-- Anglais élargi
+- File d'attente d'appels (mock puis Redis).
+- Écrans d'appel : waiting → live → end avec double consentement.
+- Voice Match scoring : même pays, même langue, mode compatible, trust min.
+- Création de `VoiceMatch` uniquement si double oui.
 
----
+## Phase 4 — WebRTC / LiveKit / Agora
 
-## V3 – Scale & Monétisation · T4 2025
+- Intégration de l'appel vocal anonyme réel.
+- Relais média sécurisé, aucun numéro échangé.
+- Enregistrement de modération (consentement requis), anti-abus temps réel.
+- Mode Nuit avec sécurité renforcée.
 
-**Objectif** : 100 000 utilisateurs, profitabilité
+## Phase 5 — Crédits + paiements
 
-### Features
-- [ ] Intelligence artificielle de matching (ML sur historique)
-- [ ] Songi Premium (abonnement mensuel)
-- [ ] Appels de groupe (3-5 personnes, mode "Lounge")
-- [ ] Événements vocaux live (concerts lingala, débats)
-- [ ] Vérification d'identité (optionnel, badge vérifié)
-- [ ] Mode "Séries" : Se retrouver avec la même voix sur plusieurs jours
-- [ ] Traduction en temps réel (lingala ↔ français)
-- [ ] API pour développeurs tiers
+- Stripe pour la diaspora (France, Belgique, Canada).
+- Mobile money pour l'Afrique (Airtel Money, Orange Money, M-Pesa, Wave, MTN).
+- Packs Afrique & Diaspora, abonnement Premium mensuel.
+- Transparence totale des coûts — aucun paiement caché.
 
-### Partenariats cibles
-- Médias musicaux lingala (Radio Okapi, etc.)
-- Apps de mobile money (Vodacom, Airtel)
-- ONG (connexion diaspora pour soutien aux familles)
+## Phase 6 — RDC + Congo-Brazzaville + diaspora (lancement)
 
-### Métriques V3 targets
-- MAU : 100 000
-- Revenus mensuels : $50 000+
-- Ratio femmes : 45%
-- NPS : 65+
-- Countries : 12+
+- Ouverture publique RDC et Congo-Brazzaville.
+- Activation des diasporas FR / BE / CA via le Mode Diaspora.
+- Country Brain par marché : langues, paiements, ton marketing, prix locaux.
+- Croissance pilotée par le Growth Radar (pays actifs, langues, conversions).
 
 ---
 
-## V4 – Expansion africaine · 2026
+## Principes non négociables (toutes phases)
 
-**Objectif** : Plateforme vocale de référence en Afrique francophone
-
-### Features
-- [ ] Songi Pay (wallet interne multi-devises)
-- [ ] Appels vidéo opt-in (avec floutage automatique)
-- [ ] Mode "Diaspora Pro" (coaching vocal, réseautage)
-- [ ] Podcasts communautaires
-- [ ] Mode "Famille" (connexion diaspora avec famille restée au pays)
-
-### Marchés V4
-- Afrique centrale complète
-- Afrique de l'Ouest francophone
-- Présence en Europe complète
-- Exploration Amérique du Sud (diaspora congolaise au Brésil)
-
----
-
-## Principes de développement
-
-1. **Congo First** : Toute feature est testée à Kinshasa avant d'être déployée ailleurs
-2. **Safety by Design** : Aucune feature ne peut contourner la protection du numéro
-3. **Offline First** : Les fonctionnalités critiques doivent marcher avec 2G (réseau faible)
-4. **Local First** : M-Pesa avant Stripe. Lingala avant l'anglais.
-5. **No Dark Patterns** : Pas d'abonnement caché, pas de manipulation de UI
-
----
-
-## Anti-roadmap (Ce qu'on ne fera PAS)
-
-- Photos de profil (jamais – c'est notre différenciation)
-- Swipe à la Tinder
-- Fil d'actualité / posts
-- Messagerie texte permanente
-- Publicités intrusives pendant les appels
-- Vente des données utilisateurs
-- Gamification toxique (likes, "likes cachés", etc.)
+- Numéro de téléphone **jamais** exposé.
+- Double consentement obligatoire avant tout partage de contact.
+- 18+ strict, anti-harcèlement, anti-arnaque.
+- Aucun paiement caché.
+- Voice-first : pas de swipe, pas de feed photo, pas de clone WhatsApp/Tinder.

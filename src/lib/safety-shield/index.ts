@@ -37,6 +37,19 @@ export const scamKeywords: string[] = [
   "numéro de compte",
   "code secret",
   "pin bancaire",
+  // Mots-clés arnaque ciblés Afrique / diaspora
+  "pcs",
+  "code pcs",
+  "recharge",
+  "moneygram",
+  "code",
+  "carte cadeau",
+  "carte google play",
+  "urgence argent",
+  "frais de dossier",
+  "frais dossier",
+  "neosurf",
+  "transcash",
 ];
 
 // ── Harassment rules ───────────────────────────────────────
