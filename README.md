@@ -64,6 +64,22 @@ L'app sera disponible sur `http://localhost:3000`
 
 ## Variables d'environnement
 
+Pour la **bêta**, seules les 3 variables Supabase sont requises (le formulaire
+fonctionne même sans, grâce au fallback `localStorage`) :
+
+```env
+# Supabase — collecte bêta (requis en prod)
+NEXT_PUBLIC_SUPABASE_URL=""          # URL projet Supabase (client + serveur)
+NEXT_PUBLIC_SUPABASE_ANON_KEY=""     # clé publique anon (RLS appliqué)
+SUPABASE_SERVICE_ROLE_KEY=""         # ⚠️ SERVEUR UNIQUEMENT — jamais NEXT_PUBLIC
+```
+
+> **Sécurité** : `SUPABASE_SERVICE_ROLE_KEY` n'a pas le préfixe `NEXT_PUBLIC_`,
+> donc Next.js ne l'inline jamais côté navigateur. Elle n'est utilisée que dans
+> la route serveur `/api/beta`.
+
+Variables des phases ultérieures (non requises pour la bêta) :
+
 ```env
 DATABASE_URL="postgresql://user:password@localhost:5432/songi_songi_mabe"
 NEXTAUTH_SECRET="your-secret-here"
@@ -76,6 +92,23 @@ LIVEKIT_API_SECRET=""
 STRIPE_SECRET_KEY=""
 STRIPE_PUBLISHABLE_KEY=""
 ```
+
+## Deploy on Vercel
+
+Déploiement bêta (landing + formulaire) en 5 étapes :
+
+1. **Supabase** : créer un projet, exécuter [`supabase/beta-schema.sql`](./supabase/beta-schema.sql)
+   dans le SQL Editor (crée `beta_signups`, index, RLS).
+2. **Importer** `peupleaelionor/Ssmabe-` sur [vercel.com](https://vercel.com)
+   (framework Next.js auto-détecté).
+3. **Env vars** : ajouter les 3 variables Supabase (Production + Preview) ;
+   marquer `SUPABASE_SERVICE_ROLE_KEY` comme *Sensitive*.
+4. **Deploy**, puis définir `main` comme **Production Branch**.
+5. **Tester** le formulaire bêta (avec et sans contact) → vérifier la ligne dans
+   Supabase (Table Editor → `beta_signups`).
+
+Procédure détaillée : [`docs/deployment.md`](./docs/deployment.md).
+Checklist : [`docs/production-checklist.md`](./docs/production-checklist.md).
 
 ## Structure du projet
 
@@ -111,8 +144,8 @@ src/
     │   ├── trustScore.ts
     │   ├── creditEngine.ts
     │   └── beta.ts      # Inscription bêta (local → Supabase-ready)
-    ├── country-brain/   # Logique pays (8 pays)
-    ├── language-brain/  # Logique langues (7 langues)
+    ├── country-brain/   # Logique pays (12 pays)
+    ├── language-brain/  # Logique langues (8 langues)
     ├── voice-match/     # Algorithme de matching
     ├── trust-score/     # Score de confiance 0-100
     ├── safety-shield/   # Reports, blocks, scam detection
@@ -141,7 +174,7 @@ src/
 | Nuit | 🌙 | Non | 21h-5h, voix nocturnes |
 | Respect | 🕊️ | Non | Slow, voix posées |
 
-## 8 Pays Supportés
+## 12 Pays Supportés
 
 | Pays | Code | Paiements | Diaspora |
 |------|------|-----------|----------|
@@ -153,6 +186,13 @@ src/
 | 🇨🇮 Côte d'Ivoire | CI | Orange, MTN, Wave | Non |
 | 🇨🇲 Cameroun | CM | MTN, Orange | Non |
 | 🇸🇳 Sénégal | SN | Orange, Wave | Non |
+| 🇲🇦 Maroc | MA | Flutterwave, Stripe | Non |
+| 🇩🇿 Algérie | DZ | Flutterwave, Stripe | Non |
+| 🇳🇬 Nigeria | NG | Flutterwave, Paystack | Non |
+| 🇰🇪 Kenya | KE | M-Pesa, Flutterwave | Non |
+
+> 8 langues supportées : français, lingala, swahili, kikongo, tshiluba, anglais,
+> portugais, arabe (RTL).
 
 ## Scripts disponibles
 
@@ -198,6 +238,10 @@ Voir la [roadmap détaillée](./docs/roadmap.md) (Phases 1 → 6).
 - [Country Brain](./docs/country-brain.md)
 - [Safety Shield](./docs/safety.md)
 - [Roadmap](./docs/roadmap.md)
+- [Supabase](./docs/supabase.md)
+- [Déploiement (Vercel)](./docs/deployment.md)
+- [Production checklist](./docs/production-checklist.md)
+- [Brand assets](./docs/brand-assets.md)
 
 ## Équipe
 
