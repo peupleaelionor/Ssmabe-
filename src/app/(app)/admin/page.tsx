@@ -13,6 +13,8 @@ import {
   Ban,
   Activity,
   MessageSquare,
+  UserPlus,
+  BarChart3,
 } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { StatsCard } from "@/components/admin/stats-card";
@@ -23,12 +25,53 @@ import { getAdminStats } from "@/lib/growth-radar";
 import { formatDuration, timeAgo } from "@/lib/utils";
 import { COUNTRIES } from "@/lib/country-brain/countries";
 import { MODES } from "@/lib/constants/modes";
-import type { RecentCallAdmin, RecentReportAdmin } from "@/lib/types";
+import type { RecentCallAdmin, RecentReportAdmin, BetaSignup } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { getLocalSignups } from "@/lib/mabe/beta";
+
+type AdminTab = "overview" | "calls" | "reports" | "countries" | "beta";
+
+// ── Beta analytics helpers ─────────────────────────────────
+
+function getTopCountries(signups: BetaSignup[]): { code: string; count: number }[] {
+  const counts: Record<string, number> = {};
+  for (const s of signups) {
+    counts[s.countryCode] = (counts[s.countryCode] ?? 0) + 1;
+  }
+  return Object.entries(counts)
+    .map(([code, count]) => ({ code, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 8);
+}
+
+function getIntentionDistribution(signups: BetaSignup[]): { intention: string; count: number }[] {
+  const counts: Record<string, number> = {};
+  for (const s of signups) {
+    counts[s.intention] = (counts[s.intention] ?? 0) + 1;
+  }
+  return Object.entries(counts)
+    .map(([intention, count]) => ({ intention, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
+const INTENTION_LABELS: Record<string, string> = {
+  chill: "Chill",
+  serieux: "Sérieux",
+  diaspora: "Diaspora",
+  decouverte: "Découverte",
+};
 
 export default function AdminPage() {
   const stats = getAdminStats();
-  const [tab, setTab] = React.useState<"overview" | "calls" | "reports" | "countries">("overview");
+  const [tab, setTab] = React.useState<AdminTab>("overview");
+  const [betaSignups, setBetaSignups] = React.useState<BetaSignup[]>([]);
+
+  React.useEffect(() => {
+    setBetaSignups(getLocalSignups());
+  }, [tab]);
+
+  const topBetaCountries = getTopCountries(betaSignups);
+  const betaIntentions = getIntentionDistribution(betaSignups);
 
   const callColumns = [
     {
@@ -150,6 +193,60 @@ export default function AdminPage() {
     },
   ];
 
+  const betaColumns = [
+    {
+      key: "pseudo",
+      label: "Pseudo",
+      render: (row: BetaSignup) => (
+        <span className="text-sm font-semibold text-blanc-chaud">{row.pseudo}</span>
+      ),
+    },
+    {
+      key: "country",
+      label: "Pays",
+      render: (row: BetaSignup) => {
+        const country = COUNTRIES[row.countryCode];
+        return (
+          <span className="text-sm">
+            {country?.flag ?? "🌍"} {row.countryCode}
+          </span>
+        );
+      },
+    },
+    {
+      key: "city",
+      label: "Ville",
+      render: (row: BetaSignup) => (
+        <span className="text-xs text-gris-texte">{row.city ?? "—"}</span>
+      ),
+    },
+    {
+      key: "language",
+      label: "Langue",
+      render: (row: BetaSignup) => (
+        <span className="text-xs text-blanc-chaud uppercase">{row.languageCode}</span>
+      ),
+    },
+    {
+      key: "intention",
+      label: "Intention",
+      render: (row: BetaSignup) => (
+        <Badge variant="secondary" className="text-xs">
+          {INTENTION_LABELS[row.intention] ?? row.intention}
+        </Badge>
+      ),
+    },
+    {
+      key: "createdAt",
+      label: "Inscrit",
+      render: (row: BetaSignup) => (
+        <span className="text-xs text-gris-texte">
+          {timeAgo(typeof row.createdAt === "string" ? new Date(row.createdAt) : row.createdAt)}
+        </span>
+      ),
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-noir">
       <Header title="Admin Dashboard" showBack />
@@ -169,7 +266,7 @@ export default function AdminPage() {
 
         {/* Tabs */}
         <div className="flex gap-1 mb-5 p-1 rounded-xl bg-noir-light border border-noir-border overflow-x-auto">
-          {(["overview", "calls", "reports", "countries"] as const).map((t) => (
+          {(["overview", "calls", "reports", "countries", "beta"] as const).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
@@ -180,7 +277,15 @@ export default function AdminPage() {
                   : "text-gris-texte hover:text-blanc-chaud"
               )}
             >
-              {t === "overview" ? "Vue globale" : t === "calls" ? "Appels" : t === "reports" ? "Signalements" : "Pays"}
+              {t === "overview"
+                ? "Vue globale"
+                : t === "calls"
+                ? "Appels"
+                : t === "reports"
+                ? "Signalements"
+                : t === "countries"
+                ? "Pays"
+                : "Bêta"}
             </button>
           ))}
         </div>
@@ -249,6 +354,24 @@ export default function AdminPage() {
                 icon={TrendingUp}
                 iconColor="#C76A2D"
               />
+            </div>
+
+            {/* Beta signups quick stat */}
+            <div className="p-4 rounded-2xl border border-noir-border bg-noir-card flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <UserPlus className="w-5 h-5 text-vert-congo" />
+                <div>
+                  <div className="text-sm font-bold text-blanc-chaud">
+                    Inscriptions bêta (local)
+                  </div>
+                  <div className="text-xs text-gris-texte">
+                    Stockées dans le navigateur
+                  </div>
+                </div>
+              </div>
+              <div className="text-2xl font-black text-vert-light">
+                {betaSignups.length}
+              </div>
             </div>
 
             {/* Top modes */}
@@ -337,7 +460,7 @@ export default function AdminPage() {
             <h3 className="text-sm font-bold text-blanc-chaud mb-3">
               Activité par pays
             </h3>
-            {stats.topCountries.map((item, i) => {
+            {stats.topCountries.map((item) => {
               const country = COUNTRIES[item.code];
               return (
                 <div
@@ -379,6 +502,122 @@ export default function AdminPage() {
               <Button variant="outline" size="sm" className="w-full">
                 Ajuster les limites pays
               </Button>
+            </div>
+          </motion.div>
+        )}
+
+        {tab === "beta" && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-5"
+          >
+            {/* Beta stats */}
+            <div className="grid grid-cols-2 gap-3">
+              <StatsCard
+                title="Bêta inscrits"
+                value={betaSignups.length}
+                change="localStorage"
+                changeType="neutral"
+                icon={UserPlus}
+                iconColor="#0F3D32"
+              />
+              <StatsCard
+                title="Pays représentés"
+                value={topBetaCountries.length}
+                icon={Globe}
+                iconColor="#C76A2D"
+              />
+            </div>
+
+            {/* Pays les plus demandés */}
+            {topBetaCountries.length > 0 && (
+              <div className="p-4 rounded-2xl border border-noir-border bg-noir-card">
+                <h3 className="text-sm font-bold text-blanc-chaud mb-3 flex items-center gap-2">
+                  <BarChart3 className="w-4 h-4 text-cuivre" />
+                  Pays les plus demandés
+                </h3>
+                <div className="space-y-2">
+                  {topBetaCountries.map((item) => {
+                    const country = COUNTRIES[item.code as keyof typeof COUNTRIES];
+                    const max = topBetaCountries[0].count;
+                    const pct = (item.count / max) * 100;
+                    return (
+                      <div key={item.code} className="flex items-center gap-3">
+                        <span className="text-base w-7 text-center">
+                          {country?.flag ?? "🌍"}
+                        </span>
+                        <div className="flex-1">
+                          <div className="flex justify-between text-xs mb-1">
+                            <span className="text-blanc-chaud font-medium">
+                              {country?.name ?? item.code}
+                            </span>
+                            <span className="text-gris-texte">{item.count}</span>
+                          </div>
+                          <div className="h-1.5 bg-noir-border rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-vert-congo rounded-full"
+                              style={{ width: `${pct}%` }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Distribution des intentions */}
+            {betaIntentions.length > 0 && (
+              <div className="p-4 rounded-2xl border border-noir-border bg-noir-card">
+                <h3 className="text-sm font-bold text-blanc-chaud mb-3 flex items-center gap-2">
+                  <MessageSquare className="w-4 h-4 text-cuivre" />
+                  Distribution des intentions
+                </h3>
+                <div className="space-y-2">
+                  {betaIntentions.map((item) => {
+                    const max = betaIntentions[0].count;
+                    const pct = (item.count / max) * 100;
+                    return (
+                      <div key={item.intention} className="flex items-center gap-3">
+                        <div className="flex-1">
+                          <div className="flex justify-between text-xs mb-1">
+                            <span className="text-blanc-chaud font-medium">
+                              {INTENTION_LABELS[item.intention] ?? item.intention}
+                            </span>
+                            <span className="text-gris-texte">{item.count}</span>
+                          </div>
+                          <div className="h-1.5 bg-noir-border rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-cuivre rounded-full"
+                              style={{ width: `${pct}%` }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Tableau des inscriptions bêta */}
+            <div>
+              <h3 className="text-sm font-bold text-blanc-chaud mb-3">
+                Inscriptions bêta ({betaSignups.length})
+              </h3>
+              {betaSignups.length === 0 ? (
+                <div className="text-center py-12 text-gris-texte text-sm">
+                  Aucune inscription bêta (localStorage vide)
+                </div>
+              ) : (
+                <DataTable
+                  columns={betaColumns as never}
+                  data={betaSignups as never[]}
+                  keyField="id"
+                />
+              )}
             </div>
           </motion.div>
         )}

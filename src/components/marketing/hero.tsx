@@ -86,6 +86,11 @@ export function Hero() {
               Comment ça marche ?
             </Button>
           </a>
+          <a href="/demo">
+            <Button variant="ghost" size="sm" className="w-full text-gris-texte hover:text-blanc-chaud">
+              Voir la démo →
+            </Button>
+          </a>
         </motion.div>
 
         {/* Trust line */}

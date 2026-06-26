@@ -39,7 +39,7 @@ export const LANGUAGES: Record<LanguageCode, Language> = {
     name: "Swahili",
     nameLocal: "Kiswahili",
     flag: "🌍",
-    countries: [CountryCode.CD],
+    countries: [CountryCode.CD, CountryCode.KE],
     rtl: false,
   },
 
@@ -66,7 +66,7 @@ export const LANGUAGES: Record<LanguageCode, Language> = {
     name: "English",
     nameLocal: "English",
     flag: "🇬🇧",
-    countries: [CountryCode.CA, CountryCode.CM],
+    countries: [CountryCode.CA, CountryCode.CM, CountryCode.NG, CountryCode.KE],
     rtl: false,
   },
 
@@ -77,6 +77,15 @@ export const LANGUAGES: Record<LanguageCode, Language> = {
     flag: "🇵🇹",
     countries: [],
     rtl: false,
+  },
+
+  [LanguageCode.AR]: {
+    code: LanguageCode.AR,
+    name: "Arabic",
+    nameLocal: "العربية",
+    flag: "🌙",
+    countries: [CountryCode.MA, CountryCode.DZ],
+    rtl: true,
   },
 };
 

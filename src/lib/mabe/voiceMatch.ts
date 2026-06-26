@@ -10,6 +10,10 @@ export {
   createCallSession,
   endCallSession,
   simulateWaitTime,
+  calculateMatchScore,
+  getQueueKey,
+  canMatchUsers,
+  getMatchingStats,
 } from "@/lib/voice-match";
 
 export type { UserPreference, MatchResult } from "@/lib/types";

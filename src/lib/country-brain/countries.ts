@@ -241,6 +241,122 @@ export const COUNTRIES: Record<CountryCode, Country> = {
     },
     isDiaspora: false,
   },
+
+  [CountryCode.MA]: {
+    code: CountryCode.MA,
+    name: "Maroc",
+    nameLocal: "المغرب",
+    flag: "🇲🇦",
+    currency: "MAD",
+    phonePrefix: "+212",
+    languages: [LanguageCode.FR, LanguageCode.AR],
+    cities: ["Casablanca", "Rabat", "Marrakech", "Fès", "Tanger", "Agadir", "Meknès"],
+    payments: [PaymentProvider.STRIPE, PaymentProvider.PAYPAL],
+    modes: [CallMode.MBOKA, CallMode.SERIEUX, CallMode.MONDE, CallMode.NUIT, CallMode.RESPECT],
+    safetyLevel: 5,
+    marketingTone: "trust",
+    localTexts: {
+      tagline: "Maroc s'écoute. La voix sans frontières.",
+      cta: "Trouve une voix maintenant",
+      waitingMessage: "Connexion en cours à Casablanca…",
+      matchedMessage: "Voix marocaine connectée ! Parle.",
+      endMessage: "Belle rencontre. Le Maroc connecte.",
+      safetyReminder: "Ton numéro est protégé. Toujours.",
+    },
+    startingPrice: 10, // MAD
+    matchingRules: {
+      requireSameCountry: false,
+      ageRange: [18, 65],
+    },
+    isDiaspora: false,
+  },
+
+  [CountryCode.DZ]: {
+    code: CountryCode.DZ,
+    name: "Algérie",
+    nameLocal: "الجزائر",
+    flag: "🇩🇿",
+    currency: "DZD",
+    phonePrefix: "+213",
+    languages: [LanguageCode.FR, LanguageCode.AR],
+    cities: ["Alger", "Oran", "Constantine", "Annaba", "Blida", "Tlemcen"],
+    payments: [PaymentProvider.STRIPE, PaymentProvider.PAYPAL],
+    modes: [CallMode.MBOKA, CallMode.SERIEUX, CallMode.MONDE, CallMode.NUIT, CallMode.RESPECT],
+    safetyLevel: 5,
+    marketingTone: "pride",
+    localTexts: {
+      tagline: "L'Algérie parle. La voix qui unit.",
+      cta: "Lance ton appel vocal",
+      waitingMessage: "Connexion en cours à Alger…",
+      matchedMessage: "Voix algérienne connectée ! Parle.",
+      endMessage: "Belle rencontre. L'Algérie connecte.",
+      safetyReminder: "Anonymat total. Numéro protégé.",
+    },
+    startingPrice: 100, // DZD
+    matchingRules: {
+      requireSameCountry: false,
+      ageRange: [18, 65],
+    },
+    isDiaspora: false,
+  },
+
+  [CountryCode.NG]: {
+    code: CountryCode.NG,
+    name: "Nigeria",
+    nameLocal: "Nigeria",
+    flag: "🇳🇬",
+    currency: "NGN",
+    phonePrefix: "+234",
+    languages: [LanguageCode.EN],
+    cities: ["Lagos", "Abuja", "Ibadan", "Kano", "Port Harcourt", "Enugu", "Benin City"],
+    payments: [PaymentProvider.PAYSTACK, PaymentProvider.FLUTTERWAVE, PaymentProvider.STRIPE],
+    modes: [CallMode.MBOKA, CallMode.SERIEUX, CallMode.MONDE, CallMode.NUIT, CallMode.RESPECT],
+    safetyLevel: 4,
+    marketingTone: "ambition",
+    localTexts: {
+      tagline: "Nigeria Power. La voix qui connecte l'Afrique.",
+      cta: "Find your voice now",
+      waitingMessage: "Connexion en cours à Lagos…",
+      matchedMessage: "Voix nigériane connectée ! Parle.",
+      endMessage: "Belle rencontre. Nigeria connecte.",
+      safetyReminder: "Your number is protected. Always.",
+    },
+    startingPrice: 200, // NGN
+    matchingRules: {
+      requireSameCountry: false,
+      ageRange: [18, 60],
+    },
+    isDiaspora: false,
+  },
+
+  [CountryCode.KE]: {
+    code: CountryCode.KE,
+    name: "Kenya",
+    nameLocal: "Kenya",
+    flag: "🇰🇪",
+    currency: "KES",
+    phonePrefix: "+254",
+    languages: [LanguageCode.EN, LanguageCode.SW],
+    cities: ["Nairobi", "Mombasa", "Kisumu", "Nakuru", "Eldoret", "Nyeri"],
+    payments: [PaymentProvider.M_PESA_KE, PaymentProvider.STRIPE, PaymentProvider.PAYPAL],
+    modes: [CallMode.MBOKA, CallMode.SERIEUX, CallMode.MONDE, CallMode.NUIT, CallMode.RESPECT],
+    safetyLevel: 4,
+    marketingTone: "innovation",
+    localTexts: {
+      tagline: "Nairobi innove. La voix qui connecte l'Afrique de l'Est.",
+      cta: "Find your voice",
+      waitingMessage: "Connexion en cours à Nairobi…",
+      matchedMessage: "Voix kényane connectée ! Parle.",
+      endMessage: "Belle rencontre. Kenya connecte.",
+      safetyReminder: "Your number stays hidden. Always.",
+    },
+    startingPrice: 50, // KES
+    matchingRules: {
+      requireSameCountry: false,
+      ageRange: [18, 60],
+    },
+    isDiaspora: false,
+  },
 };
 
 export const COUNTRIES_LIST = Object.values(COUNTRIES);

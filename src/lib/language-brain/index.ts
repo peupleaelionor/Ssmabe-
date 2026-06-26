@@ -29,6 +29,7 @@ const TRANSLATIONS: Record<string, Record<LanguageCode, string>> = {
     [LanguageCode.LU]: "Peta mwine wa bena",
     [LanguageCode.EN]: "Find a voice",
     [LanguageCode.PT]: "Encontrar uma voz",
+    [LanguageCode.AR]: "ابحث عن صوت",
   },
   "your_number_hidden": {
     [LanguageCode.FR]: "Ton numéro reste caché.",
@@ -38,6 +39,7 @@ const TRANSLATIONS: Record<string, Record<LanguageCode, string>> = {
     [LanguageCode.LU]: "Numéro webe wafundike.",
     [LanguageCode.EN]: "Your number stays hidden.",
     [LanguageCode.PT]: "O seu número fica escondido.",
+    [LanguageCode.AR]: "رقمك يبقى مخفياً.",
   },
   "waiting": {
     [LanguageCode.FR]: "Recherche d'une voix compatible…",
@@ -47,6 +49,7 @@ const TRANSLATIONS: Record<string, Record<LanguageCode, string>> = {
     [LanguageCode.LU]: "Twlubisha…",
     [LanguageCode.EN]: "Searching for a matching voice…",
     [LanguageCode.PT]: "Procurando uma voz compatível…",
+    [LanguageCode.AR]: "البحث عن صوت متوافق…",
   },
   "end_call": {
     [LanguageCode.FR]: "Terminer l'appel",
@@ -56,6 +59,7 @@ const TRANSLATIONS: Record<string, Record<LanguageCode, string>> = {
     [LanguageCode.LU]: "Fula appel",
     [LanguageCode.EN]: "End call",
     [LanguageCode.PT]: "Terminar chamada",
+    [LanguageCode.AR]: "إنهاء المكالمة",
   },
 };
 

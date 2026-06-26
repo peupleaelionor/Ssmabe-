@@ -1,10 +1,9 @@
 /**
  * Mabé Beta — collecte des bêta-testeurs
  * --------------------------------------------------------------
- * V1 : stockage local (localStorage) côté client.
- * Architecture prête à brancher Supabase : il suffira de remplacer
- * l'implémentation de `persistSignup()` par un insert Supabase, sans
- * toucher au composant de formulaire ni à la signature publique.
+ * V2 : tente d'abord /api/beta (Supabase).
+ *      En cas d'erreur réseau → fallback localStorage.
+ * Architecture prête : la signature publique ne change jamais.
  */
 import type { BetaIntention, BetaSignup } from "@/lib/types";
 import { CountryCode, LanguageCode } from "@/lib/types";
@@ -24,6 +23,7 @@ export interface BetaSignupResult {
   ok: boolean;
   signup?: BetaSignup;
   error?: string;
+  local?: boolean;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,18 +52,16 @@ function generateId(): string {
 }
 
 /**
- * Couche de persistance — point d'extension Supabase.
- * Aujourd'hui : localStorage. Demain :
- *   await supabase.from("beta_signups").insert(signup)
+ * Persistance localStorage (fallback ou quand pas de Supabase).
  */
-async function persistSignup(signup: BetaSignup): Promise<void> {
+function persistToLocalStorage(signup: BetaSignup): void {
   if (typeof window === "undefined") return;
   try {
     const existing = getLocalSignups();
     existing.push(signup);
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
   } catch {
-    // Stockage indisponible (mode privé, quota) — on n'échoue pas l'UX bêta.
+    // Stockage indisponible (mode privé, quota) — on n'échoue pas l'UX.
   }
 }
 
@@ -77,14 +75,37 @@ export function getLocalSignups(): BetaSignup[] {
   }
 }
 
+export function getBetaCount(): number {
+  return getLocalSignups().length;
+}
+
+/**
+ * Tente l'API /api/beta (Supabase).
+ * Retourne null en cas d'erreur réseau pour trigger le fallback.
+ */
+async function tryApiInsert(
+  input: BetaSignupInput
+): Promise<{ ok: boolean; id?: string; local?: boolean; error?: string } | null> {
+  if (typeof window === "undefined") return null;
+  try {
+    const res = await fetch("/api/beta", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(input),
+    });
+    const data = (await res.json()) as { ok: boolean; id?: string; local?: boolean; error?: string };
+    return data;
+  } catch {
+    // Erreur réseau → fallback localStorage
+    return null;
+  }
+}
+
 export async function submitBetaSignup(
   input: BetaSignupInput
 ): Promise<BetaSignupResult> {
   const error = validate(input);
   if (error) return { ok: false, error };
-
-  // Simule la latence réseau (sera réelle avec Supabase)
-  await new Promise((r) => setTimeout(r, 900));
 
   const signup: BetaSignup = {
     id: generateId(),
@@ -98,10 +119,27 @@ export async function submitBetaSignup(
     converted: false,
   };
 
-  await persistSignup(signup);
-  return { ok: true, signup };
-}
+  // Tente l'API Supabase en premier
+  const apiResult = await tryApiInsert(input);
 
-export function getBetaCount(): number {
-  return getLocalSignups().length;
+  if (apiResult !== null) {
+    if (apiResult.ok) {
+      // Succès API (Supabase ou local server-side)
+      if (apiResult.id) {
+        signup.id = apiResult.id;
+      }
+      // Si flag local: true, on persiste aussi en localStorage pour la dashboard admin
+      if (apiResult.local) {
+        persistToLocalStorage(signup);
+      }
+      return { ok: true, signup, local: apiResult.local };
+    } else {
+      // Erreur de validation côté API
+      return { ok: false, error: apiResult.error ?? "Erreur lors de l'inscription." };
+    }
+  }
+
+  // Fallback : erreur réseau → localStorage
+  persistToLocalStorage(signup);
+  return { ok: true, signup, local: true };
 }

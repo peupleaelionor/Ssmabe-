@@ -50,6 +50,15 @@ export const scamKeywords: string[] = [
   "frais dossier",
   "neosurf",
   "transcash",
+  "mandat cash",
+  "coupon",
+  "paypal ami",
+  "crypto urgente",
+  "usdt",
+  "faux frais",
+  "aide urgente",
+  "code de recharge",
+  "bon de recharge",
 ];
 
 // ── Harassment rules ───────────────────────────────────────
@@ -165,3 +174,43 @@ export function getSafetyScore(userId: string): number {
   };
   return scores[riskLevel];
 }
+
+/**
+ * Retourne true si l'utilisateur doit être ralenti (throttled).
+ * Cas : 3+ signalements cette semaine OU risque high/critical.
+ */
+export function shouldThrottleUser(userId: string): boolean {
+  const riskLevel = calculateRiskLevel(userId);
+  if (riskLevel === "high" || riskLevel === "critical") return true;
+
+  const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  const reports = getReportsForUser(userId);
+  const recentReports = reports.filter((r) => new Date(r.createdAt) > oneWeekAgo);
+  return recentReports.length >= 3;
+}
+
+/**
+ * Retourne true si l'utilisateur doit passer en revue manuelle.
+ * Cas : score confiance < 30 OU risque critical.
+ */
+export function shouldRequireReview(userId: string): boolean {
+  const riskLevel = calculateRiskLevel(userId);
+  if (riskLevel === "critical") return true;
+
+  const safetyScore = getSafetyScore(userId);
+  return safetyScore < 30;
+}
+
+/**
+ * Liste des comportements interdits affichés aux utilisateurs.
+ */
+export const forbiddenBehaviors: string[] = [
+  "Demander un numéro de téléphone pendant l'appel",
+  "Demander de l'argent sous quelque forme que ce soit",
+  "Partager des liens suspects",
+  "Harcèlement ou insistance après refus",
+  "Usurpation d'identité",
+  "Contenu à caractère sexuel non sollicité",
+  "Discrimination ethnique ou religieuse",
+  "Appel à la haine ou à la violence",
+];

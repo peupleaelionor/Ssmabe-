@@ -130,6 +130,10 @@ export function getCountryStats(): Record<CountryCode, { users: number; calls: n
     [CountryCode.CI]: { users: 388, calls: 1200, revenue: 900 },
     [CountryCode.CM]: { users: 121, calls: 443, revenue: 300 },
     [CountryCode.SN]: { users: 89, calls: 357, revenue: 247 },
+    [CountryCode.MA]: { users: 0, calls: 0, revenue: 0 },
+    [CountryCode.DZ]: { users: 0, calls: 0, revenue: 0 },
+    [CountryCode.NG]: { users: 0, calls: 0, revenue: 0 },
+    [CountryCode.KE]: { users: 0, calls: 0, revenue: 0 },
   };
 }
 
@@ -173,6 +177,10 @@ export function getSignupStats(): {
       [CountryCode.CI]: 388,
       [CountryCode.CM]: 121,
       [CountryCode.SN]: 89,
+      [CountryCode.MA]: 0,
+      [CountryCode.DZ]: 0,
+      [CountryCode.NG]: 0,
+      [CountryCode.KE]: 0,
     },
     conversionRate: 18.4,
   };
