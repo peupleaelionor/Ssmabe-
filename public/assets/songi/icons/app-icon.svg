@@ -1,0 +1,12 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Songi Songi Mabé app icon">
+  <rect width="512" height="512" rx="112" fill="#0B0B0B"/>
+  <circle cx="256" cy="256" r="172" fill="#0F3D32"/>
+  <path d="M170 196 L150 110 L236 168 Z" fill="#0B0B0B"/>
+  <path d="M342 196 L362 110 L276 168 Z" fill="#0B0B0B"/>
+  <ellipse cx="256" cy="290" rx="120" ry="110" fill="#0B0B0B"/>
+  <ellipse cx="214" cy="278" rx="22" ry="29" fill="#3ad29f"/>
+  <ellipse cx="298" cy="278" rx="22" ry="29" fill="#3ad29f"/>
+  <ellipse cx="214" cy="281" rx="8" ry="19" fill="#0B0B0B"/>
+  <ellipse cx="298" cy="281" rx="8" ry="19" fill="#0B0B0B"/>
+  <path d="M256 314 l12 12 -12 9 -12 -9 Z" fill="#C76A2D"/>
+</svg>

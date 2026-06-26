@@ -1,0 +1,28 @@
+{
+  "name": "Songi Songi Mabé",
+  "short_name": "SSMabé",
+  "description": "Téléchat vocal né au Congo. Appels anonymes, numéro protégé.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B0B0B",
+  "theme_color": "#0F3D32",
+  "categories": ["social", "lifestyle", "communication"],
+  "icons": [
+    {
+      "src": "/assets/songi/icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/songi/icons/maskable-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
