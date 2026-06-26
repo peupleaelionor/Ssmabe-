@@ -13,20 +13,30 @@ Préparation des branchements externes. Rien n'est chargé par défaut (privacy)
   `SUPABASE_SERVICE_ROLE_KEY` (Sensitive).
 - `main` = Production Branch. Détails : `docs/deployment.md`.
 
-## PostHog (analytics produit)
-Events proposés (anonymes, orientés produit) :
+## PostHog (analytics produit) — ✅ couche implémentée
 
-| Event | Quand |
-|---|---|
-| `beta_form_viewed` | section bêta visible |
-| `beta_signup_submitted` | inscription envoyée |
-| `country_selected` | choix pays |
-| `mode_selected` | choix mode |
-| `demo_started` | démo lancée (`/demo`) |
-| `demo_completed` | démo terminée |
+La couche `src/lib/analytics/` est **déjà branchée** sur le funnel. Elle est
+**provider-agnostique** et **no-op tant qu'aucune clé n'est configurée** (aucune
+dépendance ajoutée). Les events sont **anonymes** : pseudo, contact, numéro sont
+filtrés automatiquement avant envoi (`FORBIDDEN_PROP_KEYS`).
 
-> Ne jamais envoyer pseudo + contact dans les propriétés d'event. Identifiants
-> anonymisés uniquement.
+Events câblés :
+
+| Event | Quand | Où |
+|---|---|---|
+| `beta_form_viewed` | section bêta affichée | `marketing/beta-form.tsx` |
+| `beta_signup_submitted` | inscription réussie | beta forms (props : country, language, intention, has_contact) |
+| `country_selected` | choix pays | `/demo` |
+| `mode_selected` | choix mode | `/demo` |
+| `demo_started` | démo ouverte | `/demo` |
+| `demo_completed` | démo terminée | `/demo` |
+
+### Activation (plus tard, sans toucher au code)
+1. Ajouter `NEXT_PUBLIC_POSTHOG_KEY` (+ `NEXT_PUBLIC_POSTHOG_HOST`) dans Vercel.
+2. Charger le snippet PostHog (ou le SDK) pour exposer `window.posthog`.
+3. `track()` détecte `window.posthog` et envoie automatiquement. Sinon, no-op.
+
+> Alternative tests/Segment : `setAnalyticsSink((event, props) => …)`.
 
 ## Sentry (erreurs)
 - Erreurs API (`/api/beta`), erreurs formulaire, erreurs Supabase.
