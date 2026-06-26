@@ -13,6 +13,10 @@ export enum CountryCode {
   CI = "CI", // Côte d'Ivoire
   CM = "CM", // Cameroun
   SN = "SN", // Sénégal
+  MA = "MA", // Maroc
+  DZ = "DZ", // Algérie
+  NG = "NG", // Nigeria
+  KE = "KE", // Kenya
 }
 
 export enum LanguageCode {
@@ -23,6 +27,7 @@ export enum LanguageCode {
   LU = "lu", // Tshiluba
   EN = "en", // English
   PT = "pt", // Portugais
+  AR = "ar", // Arabe
 }
 
 export enum CallMode {
@@ -74,6 +79,9 @@ export enum PaymentProvider {
   STRIPE = "stripe",
   PAYLIB = "paylib",
   INTERAC = "interac",
+  FLUTTERWAVE = "flutterwave",
+  PAYSTACK = "paystack",
+  M_PESA_KE = "mpesa_ke",
 }
 
 // ── Country & Language ─────────────────────────────────────
@@ -99,7 +107,7 @@ export interface Country {
   payments: PaymentProvider[];
   modes: CallMode[];
   safetyLevel: number; // 1-5
-  marketingTone: "warmth" | "trust" | "pride" | "aspiration";
+  marketingTone: "warmth" | "trust" | "pride" | "aspiration" | "ambition" | "innovation";
   localTexts: LocalTexts;
   startingPrice: number; // in local currency
   matchingRules: MatchingRules;
@@ -308,13 +316,15 @@ export interface Transaction {
 
 // ── Onboarding & Beta ──────────────────────────────────────
 
+export type BetaIntention = "chill" | "serieux" | "diaspora" | "decouverte";
+
 export interface BetaSignup {
   id: string;
   pseudo: string;
   countryCode: CountryCode;
   city?: string;
   languageCode: LanguageCode;
-  intention: "friendship" | "love" | "networking" | "culture" | "fun";
+  intention: BetaIntention;
   contact?: string; // email or phone (optional)
   createdAt: Date;
   converted: boolean;

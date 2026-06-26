@@ -1,0 +1,370 @@
+// ============================================================
+// SONGI SONGI MABÉ – Prisma Schema
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Enums ──────────────────────────────────────────────────
+
+enum CountryCode {
+  CD
+  CG
+  FR
+  BE
+  CA
+  CI
+  CM
+  SN
+}
+
+enum LanguageCode {
+  fr
+  ln
+  sw
+  kg
+  lu
+  en
+  pt
+}
+
+enum CallMode {
+  MBOKA
+  LINGALA
+  SERIEUX
+  DIASPORA
+  MONDE
+  NUIT
+  RESPECT
+}
+
+enum CallStatus {
+  IDLE
+  SEARCHING
+  MATCHED
+  CONNECTING
+  ACTIVE
+  ENDING
+  ENDED
+  CANCELLED
+  FAILED
+}
+
+enum ConsentStatus {
+  PENDING
+  YES
+  NO
+  EXTEND
+  SKIP
+  BLOCK
+  REPORT
+}
+
+enum TrustLevel {
+  new
+  trusted
+  verified
+  vip
+}
+
+enum UserRole {
+  user
+  moderator
+  admin
+}
+
+enum ReportStatus {
+  pending
+  reviewed
+  actioned
+  dismissed
+}
+
+enum ReportReason {
+  harassment
+  spam
+  scam
+  underage
+  offensive
+  inappropriate
+  fake
+  other
+}
+
+enum ReportSeverity {
+  low
+  medium
+  high
+  critical
+}
+
+enum TransactionType {
+  purchase
+  deduct
+  refund
+  bonus
+}
+
+enum SafetyEventType {
+  call_completed
+  call_cancelled
+  reported
+  blocked
+  report_received
+  block_received
+  verified
+  consent_given
+  spam_detected
+}
+
+// ── Models ─────────────────────────────────────────────────
+
+model User {
+  id            String       @id @default(cuid())
+  phone         String?      @unique
+  email         String?      @unique
+  pseudo        String
+  countryCode   CountryCode
+  languageCode  LanguageCode
+  preferredMode CallMode     @default(MBOKA)
+  isBanned      Boolean      @default(false)
+  isVerified    Boolean      @default(false)
+  role          UserRole     @default(user)
+  createdAt     DateTime     @default(now())
+  lastActiveAt  DateTime     @default(now())
+
+  // Relations
+  profile          Profile?
+  wallet           CreditWallet?
+  trustScore       TrustScore?
+  callsAsA         CallSession[]     @relation("UserARelation")
+  callsAsB         CallSession[]     @relation("UserBRelation")
+  reportsGiven     Report[]          @relation("ReporterRelation")
+  reportsReceived  Report[]          @relation("ReportedRelation")
+  blocksGiven      Block[]           @relation("BlockerRelation")
+  blocksReceived   Block[]           @relation("BlockedRelation")
+  transactions     Transaction[]
+  safetyEvents     SafetyEvent[]
+  moderationEvents ModerationEvent[]
+
+  @@map("users")
+}
+
+model Profile {
+  id                  String   @id @default(cuid())
+  userId              String   @unique
+  bio                 String?
+  age                 Int?
+  ageConfirmed        Boolean  @default(false)
+  cities              String[]
+  interests           String[]
+  preferredGender     String?
+  callCount           Int      @default(0)
+  reportCount         Int      @default(0)
+  blockCount          Int      @default(0)
+  averageCallDuration Float    @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model TrustScore {
+  id          String     @id @default(cuid())
+  userId      String     @unique
+  score       Float      @default(50)
+  level       TrustLevel @default(new)
+  lastUpdated DateTime   @default(now())
+
+  user   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  events SafetyEvent[]
+
+  @@map("trust_scores")
+}
+
+model SafetyEvent {
+  id           String          @id @default(cuid())
+  userId       String
+  trustScoreId String?
+  type         SafetyEventType
+  value        Float
+  metadata     Json?
+  createdAt    DateTime        @default(now())
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trustScore TrustScore? @relation(fields: [trustScoreId], references: [id])
+
+  @@map("safety_events")
+}
+
+model CallSession {
+  id           String        @id @default(cuid())
+  userAId      String
+  userBId      String
+  mode         CallMode
+  countryCode  CountryCode
+  languageCode LanguageCode
+  status       CallStatus    @default(IDLE)
+  startedAt    DateTime?
+  endedAt      DateTime?
+  duration     Int           @default(0)
+  creditsUsed  Float         @default(0)
+  userAConsent ConsentStatus @default(PENDING)
+  userBConsent ConsentStatus @default(PENDING)
+  channelId    String        @unique
+  qualityScore Float?
+  flagged      Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  userA   User         @relation("UserARelation", fields: [userAId], references: [id])
+  userB   User         @relation("UserBRelation", fields: [userBId], references: [id])
+  reports Report[]
+  matches VoiceMatch[]
+
+  @@map("call_sessions")
+}
+
+model CallQueue {
+  id           String       @id @default(cuid())
+  userId       String
+  countryCode  CountryCode
+  languageCode LanguageCode
+  mode         CallMode
+  city         String?
+  joinedAt     DateTime     @default(now())
+  matched      Boolean      @default(false)
+  matchedAt    DateTime?
+  sessionId    String?
+
+  @@map("call_queue")
+}
+
+model VoiceMatch {
+  id        String   @id @default(cuid())
+  sessionId String
+  userAId   String
+  userBId   String
+  matchScore Float
+  mode      CallMode
+  matchedAt DateTime @default(now())
+
+  session CallSession @relation(fields: [sessionId], references: [id])
+
+  @@map("voice_matches")
+}
+
+model Report {
+  id          String         @id @default(cuid())
+  reporterId  String
+  reportedId  String
+  sessionId   String?
+  reason      ReportReason
+  severity    ReportSeverity
+  description String?
+  status      ReportStatus   @default(pending)
+  reviewedAt  DateTime?
+  reviewedBy  String?
+  createdAt   DateTime       @default(now())
+
+  reporter User         @relation("ReporterRelation", fields: [reporterId], references: [id])
+  reported User         @relation("ReportedRelation", fields: [reportedId], references: [id])
+  session  CallSession? @relation(fields: [sessionId], references: [id])
+
+  @@map("reports")
+}
+
+model Block {
+  id        String   @id @default(cuid())
+  blockerId String
+  blockedId String
+  reason    String?
+  createdAt DateTime @default(now())
+
+  blocker User @relation("BlockerRelation", fields: [blockerId], references: [id])
+  blocked User @relation("BlockedRelation", fields: [blockedId], references: [id])
+
+  @@unique([blockerId, blockedId])
+  @@map("blocks")
+}
+
+model CreditWallet {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  balance            Float    @default(0)
+  freeCallsRemaining Int      @default(3)
+  freeCallsResetAt   DateTime
+  totalSpent         Float    @default(0)
+  totalPurchased     Float    @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+
+  @@map("credit_wallets")
+}
+
+model Transaction {
+  id            String          @id @default(cuid())
+  userId        String
+  walletId      String
+  type          TransactionType
+  amount        Float
+  balanceBefore Float
+  balanceAfter  Float
+  description   String
+  metadata      Json?
+  createdAt     DateTime        @default(now())
+
+  user   User         @relation(fields: [userId], references: [id])
+  wallet CreditWallet @relation(fields: [walletId], references: [id])
+
+  @@map("transactions")
+}
+
+model BetaSignup {
+  id           String       @id @default(cuid())
+  pseudo       String
+  countryCode  CountryCode
+  city         String?
+  languageCode LanguageCode
+  intention    String
+  contact      String?
+  converted    Boolean      @default(false)
+  createdAt    DateTime     @default(now())
+
+  @@map("beta_signups")
+}
+
+model ModerationEvent {
+  id          String   @id @default(cuid())
+  userId      String
+  action      String
+  reason      String?
+  performedBy String
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("moderation_events")
+}
+
+model CountryConfig {
+  code           CountryCode @id
+  isActive       Boolean     @default(true)
+  maxUsersPerDay Int?
+  notes          String?
+  updatedAt      DateTime    @updatedAt
+
+  @@map("country_configs")
+}

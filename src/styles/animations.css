@@ -1,0 +1,220 @@
+/* ============================================================
+   SONGI SONGI MABÉ – Custom Animations
+   ============================================================ */
+
+/* Voice Wave Animation */
+@keyframes voiceWave {
+  0%, 100% {
+    transform: scaleY(0.2);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes voiceWavePulse {
+  0%, 100% {
+    transform: scaleY(0.3);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scaleY(1.2);
+    opacity: 1;
+  }
+}
+
+.voice-bar {
+  animation: voiceWave 1.2s ease-in-out infinite;
+}
+
+.voice-bar.active {
+  animation: voiceWavePulse 0.8s ease-in-out infinite;
+}
+
+.voice-bar:nth-child(1) { animation-delay: 0s; }
+.voice-bar:nth-child(2) { animation-delay: 0.08s; }
+.voice-bar:nth-child(3) { animation-delay: 0.16s; }
+.voice-bar:nth-child(4) { animation-delay: 0.24s; }
+.voice-bar:nth-child(5) { animation-delay: 0.32s; }
+.voice-bar:nth-child(6) { animation-delay: 0.24s; }
+.voice-bar:nth-child(7) { animation-delay: 0.16s; }
+.voice-bar:nth-child(8) { animation-delay: 0.08s; }
+.voice-bar:nth-child(9) { animation-delay: 0s; }
+
+/* Fade in from below */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Stagger delay helpers */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* Pulsing circle for active call */
+@keyframes callPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(15, 61, 50, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(15, 61, 50, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(15, 61, 50, 0);
+  }
+}
+
+.call-pulse {
+  animation: callPulse 2s ease-out infinite;
+}
+
+/* Spinning search indicator */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #1a1a1a 25%,
+    #2a2a2a 50%,
+    #1a1a1a 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Glow pulse for CTA elements */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(15, 61, 50, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(15, 61, 50, 0.8), 0 0 60px rgba(15, 61, 50, 0.4);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+/* Copper glow for accent elements */
+@keyframes copperGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(199, 106, 45, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(199, 106, 45, 0.7);
+  }
+}
+
+.copper-glow {
+  animation: copperGlow 2s ease-in-out infinite;
+}
+
+/* Scale in animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+/* Onboarding step transition */
+@keyframes stepIn {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes stepOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}
+
+.step-in {
+  animation: stepIn 0.35s ease-out forwards;
+}
+
+.step-out {
+  animation: stepOut 0.3s ease-in forwards;
+}
