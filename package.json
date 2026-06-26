@@ -12,7 +12,7 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
-    "next": "15.3.3",
+    "next": "15.5.19",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "framer-motion": "^11.0.0",
@@ -37,6 +37,6 @@
     "postcss": "^8.4.0",
     "prisma": "^5.22.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "15.3.3"
+    "eslint-config-next": "15.5.19"
   }
 }
