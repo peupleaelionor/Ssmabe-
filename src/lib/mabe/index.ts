@@ -15,6 +15,7 @@ export * as creditEngine from "@/lib/mabe/creditEngine";
 export * as beta from "@/lib/mabe/beta";
 
 // Raccourcis les plus utilisés
-export { findVoiceMatch } from "@/lib/mabe/voiceMatch";
-export { submitBetaSignup, getBetaCount } from "@/lib/mabe/beta";
-export { calculateRiskLevel, detectScam } from "@/lib/mabe/safetyShield";
+export { findVoiceMatch, calculateMatchScore, canMatchUsers, getMatchingStats } from "@/lib/mabe/voiceMatch";
+export { submitBetaSignup, getBetaCount, getLocalSignups } from "@/lib/mabe/beta";
+export { calculateRiskLevel, detectScam, shouldThrottleUser, shouldRequireReview, forbiddenBehaviors } from "@/lib/mabe/safetyShield";
+export { getPricingForCountry, formatPrice } from "@/lib/mabe/creditEngine";

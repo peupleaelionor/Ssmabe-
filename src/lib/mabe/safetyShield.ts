@@ -16,6 +16,9 @@ export {
   detectScam,
   detectHarassment,
   getSafetyScore,
+  shouldThrottleUser,
+  shouldRequireReview,
+  forbiddenBehaviors,
 } from "@/lib/safety-shield";
 
 export { SAFETY_RULES, REPORT_REASONS } from "@/lib/constants/config";
