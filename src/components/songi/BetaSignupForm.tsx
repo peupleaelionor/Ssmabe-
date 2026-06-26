@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { submitBetaSignup } from "@/lib/mabe/beta";
+import { analytics } from "@/lib/analytics";
 import { PrimaryCTA } from "./PrimaryCTA";
 import { cn } from "@/lib/utils";
 
@@ -51,6 +52,12 @@ export function BetaSignupForm({ className, onSuccess }: BetaSignupFormProps) {
       setError(result.error ?? "Une erreur est survenue. Réessaie.");
       return;
     }
+    analytics.betaSignupSubmitted({
+      country: form.country,
+      language: form.language,
+      intention: form.intention,
+      hasContact: Boolean(form.contact && form.contact.trim().length > 0),
+    });
     setDone(true);
     onSuccess?.();
   };

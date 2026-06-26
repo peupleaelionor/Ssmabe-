@@ -18,6 +18,7 @@ import { COUNTRIES_LIST } from "@/lib/country-brain/countries";
 import { MODES_LIST } from "@/lib/constants/modes";
 import { CountryCode, LanguageCode, CallMode, type UserPreference } from "@/lib/types";
 import { findVoiceMatch } from "@/lib/mabe/voiceMatch";
+import { analytics } from "@/lib/analytics";
 import type { MatchResult } from "@/lib/mabe/voiceMatch";
 import { LANGUAGES } from "@/lib/language-brain/languages";
 import { getLanguagesForCountry } from "@/lib/language-brain";
@@ -47,6 +48,15 @@ export default function DemoPage() {
   const [callTimer, setCallTimer] = React.useState(CALL_DURATION);
   const [consentChoice, setConsentChoice] = React.useState<ConsentChoice>(null);
   const [finalResult, setFinalResult] = React.useState<"double_yes" | "ended" | null>(null);
+
+  // Funnel démo (anonyme, no-op si analytics non configurée).
+  React.useEffect(() => {
+    analytics.demoStarted();
+  }, []);
+
+  React.useEffect(() => {
+    if (step === "result") analytics.demoCompleted({ steps: 9 });
+  }, [step]);
 
   // Available languages based on selected country
   const availableLanguages = React.useMemo(() => {
@@ -110,6 +120,7 @@ export default function DemoPage() {
   const handleCountrySelect = (code: CountryCode) => {
     setSelectedCountry(code);
     setSelectedLanguage(null);
+    analytics.countrySelected(code);
     setStep("language");
   };
 
@@ -120,6 +131,7 @@ export default function DemoPage() {
 
   const handleModeSelect = (mode: CallMode) => {
     setSelectedMode(mode);
+    analytics.modeSelected(mode);
   };
 
   const handleFindVoice = () => {
