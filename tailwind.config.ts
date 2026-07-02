@@ -24,9 +24,19 @@ const config: Config = {
         "noir-light": "#1a1a1a",
         "noir-card": "#111111",
         "noir-border": "#222222",
+        // Landing premium (noir profond / vert nuit / or doux)
+        "noir-abysse": "#050807",
+        "vert-nuit": "#07110D",
+        "vert-premium": "#0B2A1F",
+        "vert-aura": "#0F5C43",
+        "or-doux": "#D6B76A",
+        "or-sombre": "#9E8145",
+        ivoire: "#F4EFE4",
+        "gris-doux": "#A9A39A",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
       },
       animation: {
         "wave-1": "wave 1.2s ease-in-out infinite",
