@@ -1,6 +1,7 @@
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
 import { PositioningBand } from "@/components/landing/PositioningBand";
+import { Vibes } from "@/components/landing/Vibes";
 import { Why } from "@/components/landing/Why";
 import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
@@ -14,10 +15,9 @@ import { BetaTeaser } from "@/components/mvp/BetaTeaser";
 import { Footer } from "@/components/landing/Footer";
 
 /**
- * Landing Songi Songi Mabé — plateforme de la parole africaine.
- * RDC-first, diaspora-ready, mobile-first, faible connexion.
- * Palette : noir profond · vert nuit · or doux · cuivre.
- * Contenu centralisé dans src/content (i18n-ready fr/en/ln).
+ * Landing Songi Songi Mabé — téléchat moderne.
+ * Simple en façade : appel, WhatsApp, SMS, web, cercles.
+ * Puissant derrière : voix, sécurité, low-data, diaspora, paiement futur.
  */
 export default function LandingPage() {
   return (
@@ -25,6 +25,7 @@ export default function LandingPage() {
       <Header />
       <Hero />
       <PositioningBand />
+      <Vibes />
       <Why />
       <Features />
       <HowItWorks />

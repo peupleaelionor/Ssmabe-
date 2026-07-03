@@ -6,9 +6,11 @@ import { getWhatsAppHref } from "@/lib/whatsapp";
 import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const BTN = "flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition";
+const BTN = "flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-sm font-semibold transition";
 
-export function CallButton({ className, label = "Appeler pour rejoindre" }: { className?: string; label?: string }) {
+type ButtonProps = { className?: string; label?: string };
+
+export function CallButton({ className, label = "Appeler pour rejoindre" }: ButtonProps) {
   const href = getCallHref();
   if (!href) {
     return (
@@ -24,17 +26,17 @@ export function CallButton({ className, label = "Appeler pour rejoindre" }: { cl
   );
 }
 
-export function SmsButton({ className }: { className?: string }) {
+export function SmsButton({ className, label = "Rejoindre par SMS" }: ButtonProps) {
   const href = getSmsHref();
   if (!href) return null; // le fallback SMS n'apparaît que si le numéro existe
   return (
     <a href={href} onClick={() => analytics.contactClick("sms")} className={cn(BTN, "border border-olive/40 text-ivoire hover:border-terra/60", className)}>
-      ✉️ Rejoindre par SMS
+      ✉️ {label}
     </a>
   );
 }
 
-export function WhatsAppButton({ className }: { className?: string }) {
+export function WhatsAppButton({ className, label = "Rejoindre par WhatsApp" }: ButtonProps) {
   const href = getWhatsAppHref();
   if (!href) {
     return (
@@ -45,7 +47,7 @@ export function WhatsAppButton({ className }: { className?: string }) {
   }
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => analytics.contactClick("whatsapp")} className={cn(BTN, "bg-olive text-ivoire hover:bg-olive-dark", className)}>
-      💬 WhatsApp
+      💬 {label}
     </a>
   );
 }
@@ -64,7 +66,7 @@ export function ContactOptions({ className }: { className?: string }) {
         ✉️ {CONTACT.email}
       </a>
       <a href="/beta" className={cn(BTN, "border border-terra/40 text-terra hover:bg-terra hover:text-noir-abysse")}>
-        ✦ Rejoindre la bêta
+        ✦ Entrer sur le site
       </a>
       <SmsButton className="sm:col-span-2" />
       <p className="sm:col-span-2 text-center text-[11px] leading-relaxed text-gris-doux/80">

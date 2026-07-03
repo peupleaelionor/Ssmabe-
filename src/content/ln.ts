@@ -7,20 +7,22 @@ import type { Content } from "./fr";
  */
 export const ln: DeepPartial<Content> = {
   brand: {
-    tagline: "Mongongo liboso.",
-    signature: "Mongongo liboso. Contact sima.",
+    tagline: "Téléchat ya sika.",
+    signature: "Pasi te lokola kobenga. Ebatelami lokola plateforme.",
   },
-  navCta: "Kota na bêta",
+  navCta: "Kota",
   hero: {
-    title1: "Ebotami na Kinshasa.",
-    title2: "Ekanisami mpo na ba communautés nyonso.",
+    title1: "Loba.",
+    title2: "Kutana. Kota.",
     subtitle:
-      "Songi Songi Mabé ekangisi mingongo, makanisi mpe ba communautés kati ya RDC, Afrika mpe diaspora. Mongongo liboso. Contact sima, soki bino mibale bondimi.",
-    ctaPrimary: "Kota na Songi Songi",
-    ctaSecondary: "Tala vision",
-    trust: "18+ kaka · Numéro ebombami · Boyokani ya mibale",
+      "Téléchat ya sika mpo na Afrika, diaspora mpe ba communautés nyonso. Kota na appel, WhatsApp, SMS to web. Numéro na yo ebombami.",
+    ctaCall: "Benga sikoyo",
+    ctaWhatsApp: "WhatsApp",
+    ctaEnter: "Kota na site",
+    ctaCreate: "Sala cercle na ngai",
+    trust: "18+ kaka · Numéro ebombami · Contact sima ya boyokani",
   },
-  positioning: "Ebotami na Kinshasa. Ekanisami mpo na ba communautés nyonso.",
+  positioning: "Pasi te lokola kobenga. Makasi lokola plateforme ya mokili.",
   beta: {
     title: "Kota na liboke ya liboso.",
     submit: "Kota na bêta",
@@ -28,6 +30,6 @@ export const ln: DeepPartial<Content> = {
     successSub: "Mabé akoyebisa yo tango bêta ekofungwama.",
   },
   footer: {
-    signature: "Songi Songi Mabé — Mongongo liboso. Contact sima.",
+    signature: "Songi Songi Mabé — Téléchat ya sika. Pasi te lokola kobenga.",
   },
 };
