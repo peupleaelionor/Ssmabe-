@@ -20,7 +20,7 @@ export const ln: DeepPartial<Content> = {
     ctaSecondary: "Tala vision",
     trust: "18+ kaka · Numéro ebombami · Boyokani ya mibale",
   },
-  positioning: "Ebotami na Congo. Ekanisami mpo na diaspora. Efungwami na mokili.",
+  positioning: "Ebotami na Kinshasa. Ekanisami mpo na ba communautés nyonso.",
   beta: {
     title: "Kota na liboke ya liboso.",
     submit: "Kota na bêta",

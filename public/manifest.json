@@ -8,21 +8,21 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0B0B0B",
-  "theme_color": "#0F3D32",
+  "background_color": "#0D0F14",
+  "theme_color": "#0D0F14",
   "categories": ["social", "lifestyle", "communication"],
   "icons": [
     {
-      "src": "/assets/songi/icons/app-icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/brand/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/songi/icons/maskable-icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "maskable"
+      "src": "/brand/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

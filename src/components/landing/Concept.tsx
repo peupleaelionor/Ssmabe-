@@ -31,7 +31,7 @@ export function Concept() {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-xl text-center"
         >
-          <h2 className="font-serif text-3xl font-semibold text-ivoire sm:text-4xl">
+          <h2 className="font-display text-3xl font-semibold text-ivoire sm:text-4xl">
             Une voix avant l&apos;image.
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-gris-doux sm:text-base">
@@ -48,10 +48,10 @@ export function Concept() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="rounded-2xl border border-or-doux/20 bg-white/[0.035] p-6"
+              className="rounded-2xl border border-olive/20 bg-white/[0.035] p-6"
             >
               <span className="text-xl" aria-hidden>{c.icon}</span>
-              <h3 className="mt-3 font-serif text-lg font-semibold text-ivoire">
+              <h3 className="mt-3 font-display text-lg font-semibold text-ivoire">
                 {c.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-gris-doux">{c.text}</p>

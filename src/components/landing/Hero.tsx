@@ -13,7 +13,7 @@ function GoldWave() {
       {heights.map((h, i) => (
         <span
           key={i}
-          className={`w-[3px] rounded-full bg-or-doux/80 animate-wave-${(i % 5) + 1}`}
+          className={`w-[3px] rounded-full bg-terra/80 animate-wave-${(i % 5) + 1}`}
           style={{ height: `${h}px` }}
         />
       ))}
@@ -26,20 +26,20 @@ function PhonePreview() {
   return (
     <div
       aria-hidden
-      className="hidden w-[230px] shrink-0 rounded-[2.2rem] border border-or-doux/25 bg-vert-nuit p-3 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.8)] lg:block"
+      className="hidden w-[230px] shrink-0 rounded-[2.2rem] border border-olive/25 bg-vert-nuit p-3 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.8)] lg:block"
     >
-      <div className="mx-auto mb-2.5 h-1 w-12 rounded-full bg-or-doux/20" />
+      <div className="mx-auto mb-2.5 h-1 w-12 rounded-full bg-terra/20" />
       <div className="rounded-[1.6rem] bg-gradient-to-b from-vert-premium to-noir-abysse p-5 text-center">
-        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-or-doux">Appel en cours</p>
+        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-terra">Appel en cours</p>
         <div className="my-5 flex flex-col items-center gap-2">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full border border-or-doux/30 bg-vert-aura/30 text-xl">🎙</span>
+          <span className="flex h-14 w-14 items-center justify-center rounded-full border border-olive/30 bg-vert-aura/30 text-xl">🎙</span>
           <p className="text-sm font-semibold text-ivoire">Voix anonyme</p>
           <p className="text-[11px] text-gris-doux">Numéro masqué · 02:14</p>
         </div>
         <GoldWave />
         <div className="mt-5 flex items-center justify-center gap-3">
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.06] text-sm">🔇</span>
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cuivre/80 text-sm">⏹</span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-terra text-sm">⏹</span>
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.06] text-sm">🚩</span>
         </div>
       </div>
@@ -68,8 +68,8 @@ export function Hero() {
                 key={b}
                 className={
                   i === 0
-                    ? "rounded-full border border-or-doux/30 px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-or-doux"
-                    : "rounded-full border border-or-doux/20 bg-white/[0.035] px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-gris-doux"
+                    ? "rounded-full border border-olive/30 px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-terra"
+                    : "rounded-full border border-olive/20 bg-white/[0.035] px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-gris-doux"
                 }
               >
                 {b}
@@ -77,10 +77,10 @@ export function Hero() {
             ))}
           </div>
 
-          <h1 className="font-serif text-[2.5rem] font-semibold leading-[1.1] text-ivoire sm:text-6xl">
+          <h1 className="font-display text-[2.5rem] font-semibold leading-[1.1] text-ivoire sm:text-6xl">
             {c.hero.title1}
             <br />
-            <span className="text-or-doux">{c.hero.title2}</span>
+            <span className="text-terra">{c.hero.title2}</span>
           </h1>
 
           <p className="mt-5 max-w-lg text-base leading-relaxed text-gris-doux">
@@ -94,13 +94,13 @@ export function Hero() {
           <div className="flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center lg:justify-start lg:pt-7">
             <a
               href="#beta"
-              className="rounded-full bg-or-doux px-8 py-3.5 text-center text-sm font-semibold text-noir-abysse transition hover:bg-or-sombre"
+              className="rounded-full bg-terra px-8 py-3.5 text-center text-sm font-semibold text-noir-abysse transition hover:bg-terra-dark"
             >
               {c.hero.ctaPrimary}
             </a>
             <a
               href="#vision"
-              className="rounded-full border border-or-doux/30 px-8 py-3.5 text-center text-sm font-semibold text-ivoire transition hover:border-or-doux/60"
+              className="rounded-full border border-olive/30 px-8 py-3.5 text-center text-sm font-semibold text-ivoire transition hover:border-olive/60"
             >
               {c.hero.ctaSecondary}
             </a>

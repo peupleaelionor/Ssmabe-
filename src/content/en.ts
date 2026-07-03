@@ -29,7 +29,7 @@ export const en: Content = {
     ctaSecondary: "See the vision",
     trust: "18+ only · Number hidden · Mutual consent",
   },
-  positioning: "Born in Congo. Built for the diaspora. Open to the world.",
+  positioning: "Born in Kinshasa. Built for every community.",
   why: {
     title: "Why Songi Songi Mabé exists",
     problem: {

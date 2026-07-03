@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { getContent } from "@/content";
+import { BrandMark } from "@/components/brand/BrandMark";
 
 const c = getContent("fr");
 
@@ -25,27 +26,30 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-or-doux/10 bg-noir-abysse/80 backdrop-blur-md">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-olive/10 bg-noir-abysse/80 backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5">
-          <a href="#top" className="flex flex-col leading-tight">
-            <span className="font-serif text-lg font-semibold tracking-wide text-ivoire">
-              {c.brand.name}
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.22em] text-or-doux/80">
-              {c.brand.tagline}
+          <a href="#top" className="flex items-center gap-2.5" aria-label="Songi Songi Mabé — accueil">
+            <BrandMark size={34} />
+            <span className="hidden flex-col leading-tight md:flex">
+              <span className="font-display text-lg font-extrabold tracking-tight text-ivoire">
+                {c.brand.name}
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.22em] text-terra/90">
+                {c.brand.tagline}
+              </span>
             </span>
           </a>
 
           <div className="flex items-center gap-3">
             <nav className="hidden items-center gap-5 md:flex" aria-label="Navigation principale">
               {c.nav.slice(0, 4).map((l) => (
-                <a key={l.href} href={l.href} className="text-xs text-gris-doux transition hover:text-or-doux">
+                <a key={l.href} href={l.href} className="text-xs text-gris-doux transition hover:text-terra">
                   {l.label}
                 </a>
               ))}
               <a
                 href="#beta"
-                className="rounded-full bg-or-doux px-4 py-2 text-xs font-semibold text-noir-abysse transition hover:bg-or-sombre"
+                className="rounded-full bg-terra px-4 py-2 text-xs font-semibold text-noir-abysse transition hover:bg-terra-dark"
               >
                 {c.navCta}
               </a>
@@ -56,7 +60,7 @@ export function Header() {
               onClick={() => setOpen(true)}
               aria-label="Ouvrir le menu"
               aria-expanded={open}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-or-doux/30 text-ivoire transition hover:border-or-doux/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-or-doux/60 md:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-olive/30 text-ivoire transition hover:border-olive/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra/60 md:hidden"
             >
               <span className="flex flex-col gap-[5px]" aria-hidden>
                 <span className="block h-px w-4 bg-ivoire" />
@@ -72,12 +76,15 @@ export function Header() {
       {open && (
         <div className="fixed inset-0 z-[60] flex flex-col bg-noir-abysse/95 backdrop-blur-2xl animate-fade-in">
           <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-5">
-            <span className="font-serif text-lg font-semibold text-ivoire">{c.brand.name}</span>
+            <span className="flex items-center gap-2.5">
+              <BrandMark size={30} />
+              <span className="font-display text-lg font-extrabold text-ivoire">{c.brand.name}</span>
+            </span>
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Fermer le menu"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-or-doux/30 text-ivoire transition hover:border-or-doux/60"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-olive/30 text-ivoire transition hover:border-olive/60"
             >
               <span className="text-lg leading-none" aria-hidden>×</span>
             </button>
@@ -89,7 +96,7 @@ export function Header() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-serif text-2xl text-ivoire transition hover:text-or-doux"
+                className="font-display text-2xl text-ivoire transition hover:text-terra"
               >
                 {l.label}
               </a>
@@ -97,7 +104,7 @@ export function Header() {
             <a
               href="#beta"
               onClick={() => setOpen(false)}
-              className="mt-3 rounded-full bg-or-doux px-8 py-3.5 text-sm font-semibold text-noir-abysse transition hover:bg-or-sombre"
+              className="mt-3 rounded-full bg-terra px-8 py-3.5 text-sm font-semibold text-noir-abysse transition hover:bg-terra-dark"
             >
               {c.navCta}
             </a>
