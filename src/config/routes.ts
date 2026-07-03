@@ -2,6 +2,8 @@
 export const ROUTES = [
   { path: "/", label: "Accueil", nav: false, footer: false },
   { path: "/communautes", label: "Communautés", nav: true, footer: true },
+  { path: "/create", label: "Créer un cercle", nav: true, footer: true },
+  { path: "/pricing", label: "Tarifs", nav: false, footer: true },
   { path: "/discussions", label: "Discussions", nav: false, footer: true },
   { path: "/createurs", label: "Créateurs", nav: true, footer: true },
   { path: "/diaspora", label: "Diaspora", nav: true, footer: true },
