@@ -1,29 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { getContent } from "@/content";
 
-const STEPS = [
-  {
-    num: "01",
-    title: "Choisis ton pays",
-    text: "Congo, France, Belgique, Canada… ton point de départ te ressemble.",
-  },
-  {
-    num: "02",
-    title: "Choisis ta langue",
-    text: "Français, Lingala et autres langues pour parler naturellement.",
-  },
-  {
-    num: "03",
-    title: "Trouve une voix",
-    text: "Tu écoutes, tu ressens, tu choisis sans pression.",
-  },
-  {
-    num: "04",
-    title: "Contact après accord",
-    text: "Le numéro reste protégé jusqu'au consentement mutuel.",
-  },
-];
+const c = getContent("fr");
 
 export function HowItWorks() {
   return (
@@ -36,12 +16,11 @@ export function HowItWorks() {
           transition={{ duration: 0.5 }}
           className="text-center font-serif text-3xl font-semibold leading-snug text-ivoire sm:text-4xl"
         >
-          Quatre gestes.
-          <br className="sm:hidden" /> Une rencontre vraie.
+          {c.how.title}
         </motion.h2>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {STEPS.map((s, i) => (
+          {c.how.steps.map((s, i) => (
             <motion.div
               key={s.num}
               initial={{ opacity: 0, y: 14 }}
