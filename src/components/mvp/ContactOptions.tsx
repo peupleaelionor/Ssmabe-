@@ -1,14 +1,14 @@
 "use client";
 
 import { CONTACT } from "@/config/contact";
-import { getCallHref } from "@/lib/call";
+import { getCallHref, getSmsHref } from "@/lib/call";
 import { getWhatsAppHref } from "@/lib/whatsapp";
 import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const BTN = "flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition";
 
-export function CallButton({ className }: { className?: string }) {
+export function CallButton({ className, label = "Appeler pour rejoindre" }: { className?: string; label?: string }) {
   const href = getCallHref();
   if (!href) {
     return (
@@ -19,7 +19,17 @@ export function CallButton({ className }: { className?: string }) {
   }
   return (
     <a href={href} onClick={() => analytics.contactClick("call")} className={cn(BTN, "bg-terra text-noir-abysse hover:bg-terra-dark", className)}>
-      📞 Appeler
+      📞 {label}
+    </a>
+  );
+}
+
+export function SmsButton({ className }: { className?: string }) {
+  const href = getSmsHref();
+  if (!href) return null; // le fallback SMS n'apparaît que si le numéro existe
+  return (
+    <a href={href} onClick={() => analytics.contactClick("sms")} className={cn(BTN, "border border-olive/40 text-ivoire hover:border-terra/60", className)}>
+      ✉️ Rejoindre par SMS
     </a>
   );
 }
@@ -56,6 +66,10 @@ export function ContactOptions({ className }: { className?: string }) {
       <a href="/beta" className={cn(BTN, "border border-terra/40 text-terra hover:bg-terra hover:text-noir-abysse")}>
         ✦ Rejoindre la bêta
       </a>
+      <SmsButton className="sm:col-span-2" />
+      <p className="sm:col-span-2 text-center text-[11px] leading-relaxed text-gris-doux/80">
+        Ton numéro ne sera jamais affiché publiquement · Contact uniquement pour la bêta · 18+ uniquement · Consentement obligatoire.
+      </p>
     </div>
   );
 }

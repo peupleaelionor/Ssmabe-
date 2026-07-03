@@ -1,4 +1,6 @@
 /** Validation pure du formulaire waitlist (front + API). */
+export type JoinSource = "web" | "call" | "whatsapp" | "sms" | "lite" | string;
+
 export interface WaitlistInput {
   firstName: string;
   email: string;
@@ -11,7 +13,7 @@ export interface WaitlistInput {
   goal?: string;
   message?: string;
   consent: boolean;
-  source?: string;
+  source?: JoinSource;
   /** Honeypot anti-spam : doit rester vide. */
   website?: string;
 }

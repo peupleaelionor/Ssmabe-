@@ -60,7 +60,7 @@ export function Header() {
               onClick={() => setOpen(true)}
               aria-label="Ouvrir le menu"
               aria-expanded={open}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-olive/30 text-ivoire transition hover:border-olive/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra/60 md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-olive/30 text-ivoire transition hover:border-olive/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra/60 md:hidden"
             >
               <span className="flex flex-col gap-[5px]" aria-hidden>
                 <span className="block h-px w-4 bg-ivoire" />
@@ -84,7 +84,7 @@ export function Header() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Fermer le menu"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-olive/30 text-ivoire transition hover:border-olive/60"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-olive/30 text-ivoire transition hover:border-olive/60"
             >
               <span className="text-lg leading-none" aria-hidden>×</span>
             </button>

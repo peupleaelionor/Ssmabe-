@@ -1,6 +1,7 @@
 import { getContent } from "@/content";
 import { FOOTER_ROUTES } from "@/config/routes";
 import { Logo } from "@/components/brand/Logo";
+import { CONTACT, isCallReady } from "@/config/contact";
 
 const c = getContent("fr");
 
@@ -32,6 +33,10 @@ export function Footer() {
         </div>
 
         <p className="text-[11px] text-gris-doux/60">{c.footer.legal}</p>
+        <p className="text-[10px] text-gris-doux/60">
+          Mode : web + appel + lite ready · Contact bêta :{" "}
+          {isCallReady() ? CONTACT.phone : "bientôt disponible"}
+        </p>
         <p className="text-[10px] text-gris-doux/50">
           © {new Date().getFullYear()} Songi Songi Mabé · build {sha} ·{" "}
           <a href="https://ssmabe.vercel.app" className="underline-offset-2 transition hover:text-terra hover:underline">

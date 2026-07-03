@@ -21,6 +21,7 @@ const ROUTES = [
   "src/app/contact/page.tsx",
   "src/app/privacy/page.tsx",
   "src/app/terms/page.tsx",
+  "src/app/lite/page.tsx",
   "src/app/api/health/route.ts",
   "src/app/api/waitlist/route.ts",
   "src/app/api/contact/route.ts",
@@ -66,6 +67,14 @@ test("waitlist: email invalide bloque", () => {
 test("waitlist: téléphone optionnel mais validé si fourni", () => {
   assert.equal(validate({ firstName: "K", email: "k@x.cd", country: "RDC", consent: true, firstName: "Kevin", phone: "123" }), "phone");
   assert.equal(validate({ firstName: "Kevin", email: "k@x.cd", country: "RDC", consent: true, phone: "+243812345678" }), null);
+});
+
+// ── Contact : jamais de numéro en dur, piloté par env ──
+test("contact: numéro jamais hardcodé, lu depuis env", () => {
+  const src = readFileSync("src/config/contact.ts", "utf8");
+  assert.ok(src.includes("NEXT_PUBLIC_CONTACT_PHONE_NUMBER"), "env phone manquant");
+  assert.ok(src.includes("NEXT_PUBLIC_CONTACT_WHATSAPP_NUMBER"), "env whatsapp manquant");
+  assert.ok(!/phone:\s*"\+?\d{6,}"/.test(src), "numéro hardcodé détecté");
 });
 
 // ── Pas de secret exposé côté client ──
