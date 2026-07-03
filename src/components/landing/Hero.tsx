@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { getContent } from "@/content";
+import { CallButton, WhatsAppButton } from "@/components/mvp/ContactOptions";
 
 const c = getContent("fr");
 
@@ -30,16 +31,16 @@ function PhonePreview() {
     >
       <div className="mx-auto mb-2.5 h-1 w-12 rounded-full bg-terra/20" />
       <div className="rounded-[1.6rem] bg-gradient-to-b from-vert-premium to-noir-abysse p-5 text-center">
-        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-terra">Appel en cours</p>
+        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-terra">Téléchat moderne</p>
         <div className="my-5 flex flex-col items-center gap-2">
           <span className="flex h-14 w-14 items-center justify-center rounded-full border border-olive/30 bg-vert-aura/30 text-xl">🎙</span>
-          <p className="text-sm font-semibold text-ivoire">Voix anonyme</p>
-          <p className="text-[11px] text-gris-doux">Numéro masqué · 02:14</p>
+          <p className="text-sm font-semibold text-ivoire">Voix protégée</p>
+          <p className="text-[11px] text-gris-doux">Numéro masqué · consentement</p>
         </div>
         <GoldWave />
         <div className="mt-5 flex items-center justify-center gap-3">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.06] text-sm">🔇</span>
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-terra text-sm">⏹</span>
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.06] text-sm">👂</span>
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-terra text-sm">📞</span>
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.06] text-sm">🚩</span>
         </div>
       </div>
@@ -77,7 +78,7 @@ export function Hero() {
             ))}
           </div>
 
-          <h1 className="font-display text-[2.5rem] font-semibold leading-[1.1] text-ivoire sm:text-6xl">
+          <h1 className="font-display text-[2.7rem] font-semibold leading-[1.02] text-ivoire sm:text-6xl">
             {c.hero.title1}
             <br />
             <span className="text-terra">{c.hero.title2}</span>
@@ -91,20 +92,23 @@ export function Hero() {
             <GoldWave />
           </div>
 
-          <div className="flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center lg:justify-start lg:pt-7">
+          <div className="grid w-full max-w-sm gap-3 sm:max-w-2xl sm:grid-cols-3 lg:pt-7">
+            <CallButton label={c.hero.ctaCall} />
+            <WhatsAppButton label={c.hero.ctaWhatsApp} />
             <a
               href="/beta?source=hero"
-              className="rounded-full bg-terra px-8 py-3.5 text-center text-sm font-semibold text-noir-abysse transition hover:bg-terra-dark"
+              className="flex min-h-11 items-center justify-center rounded-full border border-terra/45 px-6 py-3 text-center text-sm font-semibold text-terra transition hover:bg-terra hover:text-noir-abysse"
             >
-              {c.hero.ctaPrimary}
-            </a>
-            <a
-              href="#vision"
-              className="rounded-full border border-olive/30 px-8 py-3.5 text-center text-sm font-semibold text-ivoire transition hover:border-olive/60"
-            >
-              {c.hero.ctaSecondary}
+              {c.hero.ctaEnter}
             </a>
           </div>
+
+          <a
+            href="/create"
+            className="mt-3 inline-flex min-h-11 w-full max-w-sm items-center justify-center rounded-full border border-olive/30 px-6 py-3 text-sm font-semibold text-ivoire transition hover:border-terra/60 hover:text-terra sm:max-w-none lg:w-auto"
+          >
+            {c.hero.ctaCreate}
+          </a>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
             {c.hero.trustChips.map((chip) => (
@@ -113,7 +117,7 @@ export function Hero() {
               </span>
             ))}
           </div>
-          <p className="mt-4 text-xs tracking-wide text-terra/90">La voix d&apos;abord. Le contact après.</p>
+          <p className="mt-4 text-xs tracking-wide text-terra/90">{c.hero.trust}</p>
         </motion.div>
 
         <motion.div
