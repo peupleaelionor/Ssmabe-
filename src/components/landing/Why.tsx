@@ -9,7 +9,7 @@ const c = getContent("fr");
 export function Why() {
   const blocks = [
     { ...c.why.problem, accent: "border-cuivre/30", chip: "text-cuivre" },
-    { ...c.why.solution, accent: "border-or-doux/30", chip: "text-or-doux" },
+    { ...c.why.solution, accent: "border-olive/30", chip: "text-terra" },
   ];
 
   return (
@@ -20,7 +20,7 @@ export function Why() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="text-center font-serif text-3xl font-semibold text-ivoire sm:text-4xl"
+          className="text-center font-display text-3xl font-semibold text-ivoire sm:text-4xl"
         >
           {c.why.title}
         </motion.h2>

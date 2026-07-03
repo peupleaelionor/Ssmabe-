@@ -17,7 +17,7 @@ export function Sovereignty() {
           transition={{ duration: 0.5 }}
           className="mx-auto max-w-xl text-center"
         >
-          <h2 className="font-serif text-3xl font-semibold text-ivoire sm:text-4xl">
+          <h2 className="font-display text-3xl font-semibold text-ivoire sm:text-4xl">
             {c.sovereignty.title}
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-gris-doux sm:text-base">
@@ -33,7 +33,7 @@ export function Sovereignty() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
-              className="flex gap-3.5 rounded-2xl border border-or-doux/15 bg-white/[0.035] p-5"
+              className="flex gap-3.5 rounded-2xl border border-olive/15 bg-white/[0.035] p-5"
             >
               <span className="text-lg" aria-hidden>{p.icon}</span>
               <div>

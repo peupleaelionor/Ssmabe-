@@ -30,7 +30,7 @@ export const fr = {
     trust: "18+ uniquement · Numéro masqué · Double consentement",
   },
 
-  positioning: "Né au Congo. Pensé pour la diaspora. Ouvert au monde.",
+  positioning: "Né à Kinshasa. Pensé pour toutes les communautés.",
 
   why: {
     title: "Pourquoi Songi Songi Mabé existe",

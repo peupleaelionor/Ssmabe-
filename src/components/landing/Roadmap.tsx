@@ -15,12 +15,12 @@ export function Roadmap() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="text-center font-serif text-3xl font-semibold text-ivoire sm:text-4xl"
+          className="text-center font-display text-3xl font-semibold text-ivoire sm:text-4xl"
         >
           {c.roadmap.title}
         </motion.h2>
 
-        <ol className="relative mt-10 space-y-6 border-l border-or-doux/20 pl-6">
+        <ol className="relative mt-10 space-y-6 border-l border-olive/20 pl-6">
           {c.roadmap.phases.map((p, i) => {
             const active = "active" in p && p.active;
             return (
@@ -35,17 +35,17 @@ export function Roadmap() {
                 <span
                   aria-hidden
                   className={`absolute -left-[31px] top-1 h-2.5 w-2.5 rounded-full ${
-                    active ? "bg-or-doux ring-4 ring-or-doux/20" : "bg-or-doux/30"
+                    active ? "bg-terra ring-4 ring-terra/20" : "bg-terra/30"
                   }`}
                 />
                 <span
                   className={`text-[10px] font-semibold uppercase tracking-[0.18em] ${
-                    active ? "text-or-doux" : "text-gris-doux"
+                    active ? "text-terra" : "text-gris-doux"
                   }`}
                 >
                   {p.tag}
                 </span>
-                <h3 className="mt-0.5 font-serif text-lg font-semibold text-ivoire">{p.title}</h3>
+                <h3 className="mt-0.5 font-display text-lg font-semibold text-ivoire">{p.title}</h3>
                 <p className="mt-1 text-sm leading-relaxed text-gris-doux">{p.text}</p>
               </motion.li>
             );

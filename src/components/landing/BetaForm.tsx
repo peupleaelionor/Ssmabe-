@@ -11,7 +11,7 @@ import { getContent } from "@/content";
 const c = getContent("fr");
 
 const FIELD =
-  "w-full rounded-xl border border-or-doux/25 bg-white/[0.035] px-4 py-3.5 text-sm text-ivoire placeholder:text-gris-doux/70 focus:outline-none focus:ring-2 focus:ring-or-doux/50 appearance-none";
+  "w-full rounded-xl border border-olive/25 bg-white/[0.035] px-4 py-3.5 text-sm text-ivoire placeholder:text-gris-doux/70 focus:outline-none focus:ring-2 focus:ring-terra/50 appearance-none";
 
 /**
  * Formulaire bêta — 3 champs, validation locale, Supabase-ready
@@ -76,7 +76,7 @@ export function BetaForm() {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h2 className="font-serif text-3xl font-semibold text-ivoire sm:text-4xl">
+          <h2 className="font-display text-3xl font-semibold text-ivoire sm:text-4xl">
             {c.beta.title}
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-gris-doux sm:text-base">
@@ -88,10 +88,10 @@ export function BetaForm() {
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="mt-8 rounded-2xl border border-or-doux/30 bg-vert-premium/40 p-8 text-center"
+            className="mt-8 rounded-2xl border border-olive/30 bg-olive/15 p-8 text-center"
           >
             <span className="text-2xl" aria-hidden>✦</span>
-            <p className="mt-3 font-serif text-lg font-semibold text-ivoire">
+            <p className="mt-3 font-display text-lg font-semibold text-ivoire">
               {c.beta.success}
             </p>
             <p className="mt-2 text-sm text-gris-doux">
@@ -148,7 +148,7 @@ export function BetaForm() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-1 rounded-full bg-or-doux px-8 py-3.5 text-sm font-semibold text-noir-abysse transition hover:bg-or-sombre disabled:pointer-events-none disabled:opacity-60"
+              className="mt-1 rounded-full bg-terra px-8 py-3.5 text-sm font-semibold text-noir-abysse transition hover:bg-terra-dark disabled:pointer-events-none disabled:opacity-60"
             >
               {loading ? c.beta.submitting : c.beta.submit}
             </button>
