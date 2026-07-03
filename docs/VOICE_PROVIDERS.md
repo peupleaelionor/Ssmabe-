@@ -4,7 +4,7 @@
 
 Préparer la voix réelle sans exposer de clés dans le frontend.
 
-Le frontend ne doit jamais signer directement les tokens. Les routes API Next.js reçoivent une demande courte, signent côté serveur, puis renvoient un token temporaire.
+Le frontend ne doit jamais signer directement les tokens. Les routes API Next.js reçoivent une demande courte, signent côté serveur, puis renvoient uniquement ce qui est nécessaire au navigateur.
 
 ## Provider principal recommandé
 
@@ -31,7 +31,7 @@ NEXT_PUBLIC_AGORA_APP_ID=...
 AGORA_APP_CERTIFICATE=...
 ```
 
-`AGORA_APP_CERTIFICATE` est optionnel pour tester en mode App ID, mais recommandé en production avec tokens sécurisés.
+`AGORA_APP_CERTIFICATE` est optionnel pour tester en mode App ID. Pour une production sécurisée, il faudra brancher un token server Agora complet avant d’ouvrir massivement.
 
 ## Routes API ajoutées
 
@@ -73,7 +73,7 @@ Réponse :
 }
 ```
 
-### Agora token
+### Agora readiness
 
 ```txt
 POST /api/agora/token
@@ -89,7 +89,7 @@ Body :
 }
 ```
 
-Réponse : app ID, channel, uid, token si certificat configuré.
+Réponse : app ID, channel, uid, token nul en MVP. Si `AGORA_APP_CERTIFICATE` est présent, la réponse indique que le token sécurisé sera requis avant production.
 
 ## Test après déploiement
 
@@ -101,7 +101,8 @@ Réponse : app ID, channel, uid, token si certificat configuré.
 
 ## Suite produit
 
-- Ajouter une page `/voice` pour test interne.
-- Ajouter le client LiveKit ou Agora côté navigateur.
+- Page `/voice` disponible pour test interne.
+- Ajouter le client LiveKit côté navigateur.
 - Créer un salon vocal beta.
+- Ajouter un vrai token server Agora si Agora devient provider actif.
 - Puis seulement après : LiveKit SIP / Telephony pour vrais appels téléphoniques.
