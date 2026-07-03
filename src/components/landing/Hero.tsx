@@ -93,7 +93,7 @@ export function Hero() {
 
           <div className="flex w-full max-w-sm flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center lg:justify-start lg:pt-7">
             <a
-              href="#beta"
+              href="/beta?source=hero"
               className="rounded-full bg-terra px-8 py-3.5 text-center text-sm font-semibold text-noir-abysse transition hover:bg-terra-dark"
             >
               {c.hero.ctaPrimary}
@@ -106,7 +106,14 @@ export function Hero() {
             </a>
           </div>
 
-          <p className="mt-6 text-xs tracking-wide text-gris-doux">{c.hero.trust}</p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+            {c.hero.trustChips.map((chip) => (
+              <span key={chip} className="rounded-full border border-olive/25 bg-white/[0.03] px-3 py-1 text-[11px] text-gris-doux">
+                {chip}
+              </span>
+            ))}
+          </div>
+          <p className="mt-4 text-xs tracking-wide text-terra/90">La voix d&apos;abord. Le contact après.</p>
         </motion.div>
 
         <motion.div

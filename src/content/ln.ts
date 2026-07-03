@@ -12,8 +12,8 @@ export const ln: DeepPartial<Content> = {
   },
   navCta: "Kota na bêta",
   hero: {
-    title1: "Réseau ya bomoi ya",
-    title2: "mongongo ya Afrika.",
+    title1: "Ebotami na Kinshasa.",
+    title2: "Ekanisami mpo na ba communautés nyonso.",
     subtitle:
       "Songi Songi Mabé ekangisi mingongo, makanisi mpe ba communautés kati ya RDC, Afrika mpe diaspora. Mongongo liboso. Contact sima, soki bino mibale bondimi.",
     ctaPrimary: "Kota na Songi Songi",

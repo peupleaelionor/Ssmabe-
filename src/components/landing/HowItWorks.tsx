@@ -18,6 +18,9 @@ export function HowItWorks() {
         >
           {c.how.title}
         </motion.h2>
+        <p className="mx-auto mt-4 max-w-xl text-center text-sm leading-relaxed text-gris-doux sm:text-base">
+          {c.how.intro}
+        </p>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {c.how.steps.map((s, i) => (
