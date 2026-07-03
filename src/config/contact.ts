@@ -1,18 +1,29 @@
 /**
- * Contact — source unique. Ne jamais coder le numéro en dur ailleurs.
- * Renseigner phone/whatsapp ici active automatiquement les boutons.
+ * Contact — source unique, pilotée par variables d'environnement.
+ * Renseigner les env vars active automatiquement appel/WhatsApp/SMS.
+ * Ne JAMAIS coder un numéro en dur ailleurs.
  */
+const PHONE = process.env.NEXT_PUBLIC_CONTACT_PHONE_NUMBER ?? "";
+const WHATSAPP = process.env.NEXT_PUBLIC_CONTACT_WHATSAPP_NUMBER ?? "";
+
 export const CONTACT = {
-  phone: "",
-  whatsapp: "",
+  phone: PHONE,
+  whatsapp: WHATSAPP,
   email: "hello@songisongi.app",
-  callEnabled: false,
-  whatsappEnabled: false,
+  callEnabled: PHONE.length > 5,
+  whatsappEnabled: WHATSAPP.length > 5,
 } as const;
 
 export function isCallReady(): boolean {
-  return CONTACT.callEnabled && CONTACT.phone.length > 5;
+  return CONTACT.callEnabled;
 }
 export function isWhatsAppReady(): boolean {
-  return CONTACT.whatsappEnabled && CONTACT.whatsapp.length > 5;
+  return CONTACT.whatsappEnabled;
 }
+
+/** Message WhatsApp prérempli pour rejoindre la bêta. */
+export const WHATSAPP_JOIN_MESSAGE =
+  "Bonjour, je veux rejoindre la première vague Songi Songi Mabé. Mon prénom : … Ma ville : … Ma langue : …";
+
+/** Corps SMS fallback. */
+export const SMS_JOIN_BODY = "Je veux rejoindre Songi Songi Mabé";

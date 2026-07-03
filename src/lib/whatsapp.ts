@@ -1,7 +1,7 @@
-/** Génération lien WhatsApp — prêt, activé par config/contact. */
-import { CONTACT, isWhatsAppReady } from "@/config/contact";
+/** Lien WhatsApp — prérempli bêta, activé par env var (config/contact). */
+import { CONTACT, isWhatsAppReady, WHATSAPP_JOIN_MESSAGE } from "@/config/contact";
 
-export function getWhatsAppHref(message = "Bonjour Songi Songi Mabé 👋"): string | null {
+export function getWhatsAppHref(message: string = WHATSAPP_JOIN_MESSAGE): string | null {
   if (!isWhatsAppReady()) return null;
   const num = CONTACT.whatsapp.replace(/[^\d]/g, "");
   return `https://wa.me/${num}?text=${encodeURIComponent(message)}`;

@@ -9,6 +9,7 @@ import { ForWho } from "@/components/landing/ForWho";
 import { Sovereignty } from "@/components/landing/Sovereignty";
 import { Difference } from "@/components/landing/Difference";
 import { Roadmap } from "@/components/landing/Roadmap";
+import { JoinAnyway } from "@/components/mvp/JoinAnyway";
 import { BetaTeaser } from "@/components/mvp/BetaTeaser";
 import { Footer } from "@/components/landing/Footer";
 
@@ -32,6 +33,7 @@ export default function LandingPage() {
       <Sovereignty />
       <Difference />
       <Roadmap />
+      <JoinAnyway />
       <BetaTeaser />
       <Footer />
     </main>
