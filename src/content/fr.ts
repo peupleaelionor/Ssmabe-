@@ -10,27 +10,27 @@ export const fr = {
   },
 
   nav: [
-    { href: "#vision", label: "Vision" },
-    { href: "#features", label: "Fonctionnalités" },
-    { href: "#rdc", label: "RDC & diaspora" },
-    { href: "#souverainete", label: "Souveraineté" },
-    { href: "#roadmap", label: "Roadmap" },
-    { href: "#beta", label: "Bêta" },
+    { href: "/communautes", label: "Communautés" },
+    { href: "/createurs", label: "Créateurs" },
+    { href: "/diaspora", label: "Diaspora" },
+    { href: "/#vision", label: "Vision" },
+    { href: "/beta", label: "Bêta" },
   ],
   navCta: "Rejoindre la bêta",
 
   hero: {
-    badges: ["Téléchat vocal", "RDC · Afrique · Diaspora"],
-    title1: "Le réseau vivant",
-    title2: "de la parole africaine.",
+    badges: ["Plateforme communautaire", "Kinshasa · Afrique · Monde"],
+    title1: "Né à Kinshasa.",
+    title2: "Pensé pour toutes les communautés.",
     subtitle:
-      "Songi Songi Mabé connecte les voix, les idées et les communautés entre la RDC, l'Afrique et la diaspora. On commence par la voix. Le contact vient après, si les deux veulent.",
-    ctaPrimary: "Entrer dans Songi Songi",
-    ctaSecondary: "Voir la vision",
+      "Connectez-vous à votre communauté locale, échangez sur les sujets qui comptent, trouvez des voix proches de vous et restez informé des événements importants.",
+    ctaPrimary: "Rejoindre la bêta",
+    ctaSecondary: "Découvrir la vision",
     trust: "18+ uniquement · Numéro masqué · Double consentement",
+    trustChips: ["Communautés actives", "Discussions respectueuses", "Numéro protégé", "Diaspora connectée"],
   },
 
-  positioning: "Né à Kinshasa. Pensé pour toutes les communautés.",
+  positioning: "La voix locale. La communauté mondiale.",
 
   why: {
     title: "Pourquoi Songi Songi Mabé existe",
@@ -64,7 +64,9 @@ export const fr = {
   },
 
   how: {
-    title: "Quatre gestes. Une rencontre vraie.",
+    title: "La voix d'abord. La communauté autour.",
+    intro:
+      "Songi Songi Mabé commence par la voix : on s'écoute, on échange, puis le contact vient seulement si les deux personnes sont d'accord. Autour de la voix, il y a tout le reste : communautés, salons, créateurs, alertes.",
     steps: [
       { num: "01", title: "Choisis ton pays", text: "Congo, France, Belgique, Canada… ton point de départ te ressemble." },
       { num: "02", title: "Choisis ta langue", text: "Français, lingala, swahili — parle comme chez toi." },
@@ -131,9 +133,14 @@ export const fr = {
     fields: { pseudo: "Prénom", country: "Pays", language: "Langue principale" },
     submit: "Rejoindre la bêta",
     submitting: "Envoi…",
-    success: "Merci. Ta demande bêta a été enregistrée.",
+    success: "Bienvenue dans la première vague. Votre demande bêta est bien enregistrée.",
     successSub: "Mabé te préviendra quand la bêta ouvre.",
-    note: "18+ uniquement · Aucun numéro demandé",
+    note: "Numéro optionnel · Jamais affiché publiquement · Contact après consentement.",
+    successByProfile: {
+      createur: "Bienvenue dans la première vague. Ton espace créateur est bien préparé.",
+      diaspora: "Bienvenue. Ta communauté diaspora est bien prise en compte.",
+      local: "Bienvenue. Ta communauté locale est bien enregistrée pour la bêta.",
+    },
     errors: {
       pseudo: "Entre ton prénom (2 caractères minimum).",
       country: "Choisis ton pays.",
@@ -141,6 +148,27 @@ export const fr = {
       generic: "Une erreur est survenue. Réessaie.",
     },
   },
+
+  communitiesSection: {
+    title: "Communautés en action",
+    text: "Des espaces réels, par ville et par passion. De Kinshasa à Montréal.",
+    cta: "Voir toutes les communautés",
+  },
+
+  contactSection: {
+    title: "Parler à l'équipe",
+    text: "Une question, un partenariat, une communauté à lancer ? On répond.",
+  },
+
+  faq: [
+    { q: "C'est quoi Songi Songi Mabé ?", a: "Une plateforme sociale communautaire née à Kinshasa : communautés locales, salons, voix, créateurs et diaspora — avec le numéro toujours protégé." },
+    { q: "Est-ce limité à la RDC ?", a: "Non. Le cœur bat à Kinshasa, mais la plateforme est pensée pour toutes les communautés : Afrique, diaspora et monde." },
+    { q: "Mon numéro est-il visible ?", a: "Jamais. Le numéro n'est jamais affiché publiquement et le contact ne s'échange qu'après consentement mutuel." },
+    { q: "Quand l'application arrive ?", a: "Le web d'abord (PWA installable), puis l'app Android et iOS. Voir la page Applications." },
+    { q: "Est-ce gratuit ?", a: "La bêta est gratuite. Certaines fonctions premium arriveront plus tard, toujours annoncées clairement." },
+    { q: "Comment créer une communauté ?", a: "Rejoins la bêta avec le profil « Créateur » : les premiers espaces sont ouverts avec les premiers testeurs." },
+    { q: "Comment rejoindre la bêta ?", a: "Le formulaire prend une minute. Prénom, email, pays — le téléphone est optionnel." },
+  ],
 
   footer: {
     signature: "Songi Songi Mabé — La voix d'abord. Le contact après.",

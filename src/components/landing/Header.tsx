@@ -48,7 +48,7 @@ export function Header() {
                 </a>
               ))}
               <a
-                href="#beta"
+                href="/beta"
                 className="rounded-full bg-terra px-4 py-2 text-xs font-semibold text-noir-abysse transition hover:bg-terra-dark"
               >
                 {c.navCta}
@@ -102,7 +102,7 @@ export function Header() {
               </a>
             ))}
             <a
-              href="#beta"
+              href="/beta"
               onClick={() => setOpen(false)}
               className="mt-3 rounded-full bg-terra px-8 py-3.5 text-sm font-semibold text-noir-abysse transition hover:bg-terra-dark"
             >

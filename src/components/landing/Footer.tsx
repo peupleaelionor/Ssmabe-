@@ -1,4 +1,5 @@
 import { getContent } from "@/content";
+import { FOOTER_ROUTES } from "@/config/routes";
 import { Logo } from "@/components/brand/Logo";
 
 const c = getContent("fr");
@@ -13,11 +14,11 @@ export function Footer() {
         <Logo variant="horizontal" markSize={30} />
         <p className="text-xs text-gris-doux">{c.footer.signature}</p>
 
-        <nav className="flex items-center gap-2 text-xs text-gris-doux" aria-label="Pied de page">
-          {c.footer.links.map((l, i) => (
-            <span key={l.href} className="flex items-center gap-2">
+        <nav className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5 text-xs text-gris-doux" aria-label="Pied de page">
+          {FOOTER_ROUTES.map((r, i) => (
+            <span key={r.path} className="flex items-center gap-2">
               {i > 0 && <span aria-hidden>·</span>}
-              <a href={l.href} className="transition hover:text-terra">{l.label}</a>
+              <a href={r.path} className="transition hover:text-terra">{r.label}</a>
             </span>
           ))}
         </nav>

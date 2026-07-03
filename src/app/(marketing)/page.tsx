@@ -4,12 +4,12 @@ import { PositioningBand } from "@/components/landing/PositioningBand";
 import { Why } from "@/components/landing/Why";
 import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
-import { RdcFirst } from "@/components/landing/RdcFirst";
+import { CommunitiesSection } from "@/components/mvp/CommunitiesSection";
 import { ForWho } from "@/components/landing/ForWho";
 import { Sovereignty } from "@/components/landing/Sovereignty";
 import { Difference } from "@/components/landing/Difference";
 import { Roadmap } from "@/components/landing/Roadmap";
-import { BetaForm } from "@/components/landing/BetaForm";
+import { BetaTeaser } from "@/components/mvp/BetaTeaser";
 import { Footer } from "@/components/landing/Footer";
 
 /**
@@ -27,12 +27,12 @@ export default function LandingPage() {
       <Why />
       <Features />
       <HowItWorks />
-      <RdcFirst />
+      <CommunitiesSection />
       <ForWho />
       <Sovereignty />
       <Difference />
       <Roadmap />
-      <BetaForm />
+      <BetaTeaser />
       <Footer />
     </main>
   );

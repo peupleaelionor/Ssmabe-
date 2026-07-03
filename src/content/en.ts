@@ -11,25 +11,25 @@ export const en: Content = {
     signature: "Voice first. Contact after.",
   },
   nav: [
-    { href: "#vision", label: "Vision" },
-    { href: "#features", label: "Features" },
-    { href: "#rdc", label: "DRC & diaspora" },
-    { href: "#souverainete", label: "Sovereignty" },
-    { href: "#roadmap", label: "Roadmap" },
-    { href: "#beta", label: "Beta" },
+    { href: "/communautes", label: "Communities" },
+    { href: "/createurs", label: "Creators" },
+    { href: "/diaspora", label: "Diaspora" },
+    { href: "/#vision", label: "Vision" },
+    { href: "/beta", label: "Beta" },
   ],
   navCta: "Join the beta",
   hero: {
-    badges: ["Voice chat", "DRC · Africa · Diaspora"],
-    title1: "The living network of",
-    title2: "the African voice.",
+    badges: ["Community platform", "Kinshasa · Africa · World"],
+    title1: "Born in Kinshasa.",
+    title2: "Built for every community.",
     subtitle:
-      "Songi Songi Mabé connects voices, ideas and communities across the DRC, Africa and the diaspora. Voice comes first. Contact comes after — only if both agree.",
-    ctaPrimary: "Enter Songi Songi",
-    ctaSecondary: "See the vision",
+      "Connect with your local community, discuss what matters, find voices near you and stay informed about important events.",
+    ctaPrimary: "Join the beta",
+    ctaSecondary: "Discover the vision",
     trust: "18+ only · Number hidden · Mutual consent",
+    trustChips: ["Active communities", "Respectful discussions", "Protected number", "Connected diaspora"],
   },
-  positioning: "Born in Kinshasa. Built for every community.",
+  positioning: "Local voice. Global community.",
   why: {
     title: "Why Songi Songi Mabé exists",
     problem: {
@@ -60,7 +60,9 @@ export const en: Content = {
     ],
   },
   how: {
-    title: "Four steps. One real connection.",
+    title: "Voice first. Community all around.",
+    intro:
+      "Songi Songi Mabé starts with voice: you listen, you talk, and contact only comes if both agree. Around the voice, there's everything else: communities, rooms, creators, alerts.",
     steps: [
       { num: "01", title: "Pick your country", text: "Congo, France, Belgium, Canada… start where you belong." },
       { num: "02", title: "Pick your language", text: "French, Lingala, Swahili — talk like home." },
@@ -121,9 +123,14 @@ export const en: Content = {
     fields: { pseudo: "First name", country: "Country", language: "Main language" },
     submit: "Join the beta",
     submitting: "Sending…",
-    success: "Thank you. Your beta request has been recorded.",
+    success: "Welcome to the first wave. Your beta request has been recorded.",
     successSub: "Mabé will let you know when the beta opens.",
-    note: "18+ only · No phone number required",
+    note: "Phone optional · Never shown publicly · Contact after consent.",
+    successByProfile: {
+      createur: "Welcome to the first wave. Your creator space is ready.",
+      diaspora: "Welcome. Your diaspora community is registered.",
+      local: "Welcome. Your local community is registered for the beta.",
+    },
     errors: {
       pseudo: "Enter your first name (2 characters minimum).",
       country: "Pick your country.",
@@ -131,6 +138,27 @@ export const en: Content = {
       generic: "Something went wrong. Try again.",
     },
   },
+  communitiesSection: {
+    title: "Communities in action",
+    text: "Real spaces, by city and by passion. From Kinshasa to Montreal.",
+    cta: "See all communities",
+  },
+
+  contactSection: {
+    title: "Talk to the team",
+    text: "A question, a partnership, a community to launch? We answer.",
+  },
+
+  faq: [
+    { q: "What is Songi Songi Mabé?", a: "A community platform born in Kinshasa: local communities, rooms, voice, creators and diaspora — with your number always protected." },
+    { q: "Is it DRC-only?", a: "No. The heart beats in Kinshasa, but the platform is built for every community: Africa, diaspora, world." },
+    { q: "Is my number visible?", a: "Never. Numbers are never shown publicly and contact is only exchanged after mutual consent." },
+    { q: "When does the app arrive?", a: "Web first (installable PWA), then Android and iOS." },
+    { q: "Is it free?", a: "The beta is free. Premium features will come later, always clearly announced." },
+    { q: "How do I create a community?", a: "Join the beta with the Creator profile: the first spaces open with the first testers." },
+    { q: "How do I join the beta?", a: "The form takes one minute. First name, email, country — phone is optional." },
+  ],
+
   footer: {
     signature: "Songi Songi Mabé — Voice first. Contact after.",
     status: "Private beta in preparation",

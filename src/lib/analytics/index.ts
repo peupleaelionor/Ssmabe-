@@ -10,8 +10,20 @@
  */
 
 export type AnalyticsEvent =
+  | "page_view"
+  | "hero_cta_click"
   | "beta_form_viewed"
+  | "beta_form_start"
+  | "beta_form_submit"
+  | "beta_form_success"
+  | "beta_form_error"
   | "beta_signup_submitted"
+  | "community_join_click"
+  | "creator_join_click"
+  | "diaspora_join_click"
+  | "contact_click"
+  | "whatsapp_click"
+  | "call_click"
   | "country_selected"
   | "mode_selected"
   | "demo_started"
@@ -98,4 +110,13 @@ export const analytics = {
   modeSelected: (mode: string) => track("mode_selected", { mode }),
   demoStarted: () => track("demo_started"),
   demoCompleted: (props: { steps?: number } = {}) => track("demo_completed", { steps: props.steps ?? 0 }),
+  heroCta: (cta: string) => track("hero_cta_click", { cta }),
+  betaFormStart: () => track("beta_form_start"),
+  betaFormSubmit: () => track("beta_form_submit"),
+  betaFormSuccess: (profileType: string) => track("beta_form_success", { profile_type: profileType }),
+  betaFormError: (reason: string) => track("beta_form_error", { reason }),
+  communityJoin: (id: string) => track("community_join_click", { community: id }),
+  creatorJoin: () => track("creator_join_click"),
+  diasporaJoin: (country: string) => track("diaspora_join_click", { country }),
+  contactClick: (channel: string) => track("contact_click", { channel }),
 };
