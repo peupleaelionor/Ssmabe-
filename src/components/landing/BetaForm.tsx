@@ -6,6 +6,9 @@ import { COUNTRIES_LIST } from "@/lib/country-brain/countries";
 import { LANGUAGES_LIST } from "@/lib/language-brain/languages";
 import { submitBetaSignup } from "@/lib/mabe/beta";
 import { analytics } from "@/lib/analytics";
+import { getContent } from "@/content";
+
+const c = getContent("fr");
 
 const FIELD =
   "w-full rounded-xl border border-or-doux/25 bg-white/[0.035] px-4 py-3.5 text-sm text-ivoire placeholder:text-gris-doux/70 focus:outline-none focus:ring-2 focus:ring-or-doux/50 appearance-none";
@@ -27,15 +30,15 @@ export function BetaForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (form.pseudo.trim().length < 2) {
-      setError("Entre ton prénom (2 caractères minimum).");
+      setError(c.beta.errors.pseudo);
       return;
     }
     if (!form.country) {
-      setError("Choisis ton pays.");
+      setError(c.beta.errors.country);
       return;
     }
     if (!form.language) {
-      setError("Choisis ta langue principale.");
+      setError(c.beta.errors.language);
       return;
     }
 
@@ -50,7 +53,7 @@ export function BetaForm() {
     setLoading(false);
 
     if (!result.ok) {
-      setError(result.error ?? "Une erreur est survenue. Réessaie.");
+      setError(result.error ?? c.beta.errors.generic);
       return;
     }
 
@@ -74,11 +77,10 @@ export function BetaForm() {
           className="text-center"
         >
           <h2 className="font-serif text-3xl font-semibold text-ivoire sm:text-4xl">
-            Entre dans la première vague.
+            {c.beta.title}
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-gris-doux sm:text-base">
-            Songi Songi Mabé ouvre d&apos;abord à une communauté limitée pour
-            tester une rencontre plus humaine, plus vocale et plus protégée.
+            {c.beta.text}
           </p>
         </motion.div>
 
@@ -90,10 +92,10 @@ export function BetaForm() {
           >
             <span className="text-2xl" aria-hidden>✦</span>
             <p className="mt-3 font-serif text-lg font-semibold text-ivoire">
-              Merci. Ta demande bêta a été enregistrée.
+              {c.beta.success}
             </p>
             <p className="mt-2 text-sm text-gris-doux">
-              Mabé te préviendra quand la bêta ouvre.
+              {c.beta.successSub}
             </p>
           </motion.div>
         ) : (
@@ -102,7 +104,7 @@ export function BetaForm() {
             <input
               id="beta-pseudo"
               className={FIELD}
-              placeholder="Prénom"
+              placeholder={c.beta.fields.pseudo}
               value={form.pseudo}
               onChange={(e) => setForm((f) => ({ ...f, pseudo: e.target.value }))}
               maxLength={50}
@@ -117,7 +119,7 @@ export function BetaForm() {
               onChange={(e) => setForm((f) => ({ ...f, country: e.target.value }))}
               required
             >
-              <option value="" className="bg-vert-nuit">Pays</option>
+              <option value="" className="bg-vert-nuit">{c.beta.fields.country}</option>
               {COUNTRIES_LIST.map((c) => (
                 <option key={c.code} value={c.code} className="bg-vert-nuit">
                   {c.flag} {c.name}
@@ -133,7 +135,7 @@ export function BetaForm() {
               onChange={(e) => setForm((f) => ({ ...f, language: e.target.value }))}
               required
             >
-              <option value="" className="bg-vert-nuit">Langue principale</option>
+              <option value="" className="bg-vert-nuit">{c.beta.fields.language}</option>
               {LANGUAGES_LIST.map((l) => (
                 <option key={l.code} value={l.code} className="bg-vert-nuit">
                   {l.name}
@@ -148,11 +150,11 @@ export function BetaForm() {
               disabled={loading}
               className="mt-1 rounded-full bg-or-doux px-8 py-3.5 text-sm font-semibold text-noir-abysse transition hover:bg-or-sombre disabled:pointer-events-none disabled:opacity-60"
             >
-              {loading ? "Envoi…" : "Rejoindre la bêta"}
+              {loading ? c.beta.submitting : c.beta.submit}
             </button>
 
             <p className="text-center text-[11px] text-gris-doux/80">
-              18+ uniquement · Aucun numéro demandé
+              {c.beta.note}
             </p>
           </form>
         )}

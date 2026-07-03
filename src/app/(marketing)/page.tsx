@@ -1,16 +1,22 @@
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
 import { PositioningBand } from "@/components/landing/PositioningBand";
-import { Concept } from "@/components/landing/Concept";
+import { Why } from "@/components/landing/Why";
+import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
-import { Avatars } from "@/components/landing/Avatars";
-import { Security } from "@/components/landing/Security";
+import { RdcFirst } from "@/components/landing/RdcFirst";
+import { ForWho } from "@/components/landing/ForWho";
+import { Sovereignty } from "@/components/landing/Sovereignty";
+import { Difference } from "@/components/landing/Difference";
+import { Roadmap } from "@/components/landing/Roadmap";
 import { BetaForm } from "@/components/landing/BetaForm";
 import { Footer } from "@/components/landing/Footer";
 
 /**
- * Landing Songi Songi Mabé — premium, mobile-first.
- * Palette : noir profond · vert nuit · or doux. Typo : Playfair / Inter.
+ * Landing Songi Songi Mabé — plateforme de la parole africaine.
+ * RDC-first, diaspora-ready, mobile-first, faible connexion.
+ * Palette : noir profond · vert nuit · or doux · cuivre.
+ * Contenu centralisé dans src/content (i18n-ready fr/en/ln).
  */
 export default function LandingPage() {
   return (
@@ -18,10 +24,14 @@ export default function LandingPage() {
       <Header />
       <Hero />
       <PositioningBand />
-      <Concept />
+      <Why />
+      <Features />
       <HowItWorks />
-      <Avatars />
-      <Security />
+      <RdcFirst />
+      <ForWho />
+      <Sovereignty />
+      <Difference />
+      <Roadmap />
       <BetaForm />
       <Footer />
     </main>

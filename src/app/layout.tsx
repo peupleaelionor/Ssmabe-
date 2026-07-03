@@ -17,11 +17,11 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://songisongi.app"),
   title: {
-    default: "Songi Songi Mabé — Téléchat vocal né au Congo",
+    default: "Songi Songi Mabé — Le réseau vivant de la parole africaine",
     template: "%s | Songi Songi Mabé",
   },
   description:
-    "Appels anonymes, numéro protégé. Songi Songi Mabé connecte les voix du Congo, de la diaspora et du monde.",
+    "La voix d'abord, le numéro protégé. Songi Songi Mabé connecte les voix, les idées et les communautés entre la RDC, l'Afrique et la diaspora.",
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/assets/songi/icons/app-icon.svg" }],
