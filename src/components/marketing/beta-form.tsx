@@ -9,6 +9,7 @@ import { COUNTRIES_LIST } from "@/lib/country-brain/countries";
 import { LANGUAGES_LIST } from "@/lib/language-brain/languages";
 import { BETA_INTENTIONS } from "@/lib/constants/config";
 import { submitBetaSignup } from "@/lib/mabe/beta";
+import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 const intentions = BETA_INTENTIONS;
@@ -26,6 +27,11 @@ export function BetaForm() {
   const [submitted, setSubmitted] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
+
+  // Funnel : vue du formulaire bêta (anonyme, no-op si analytics non configurée).
+  React.useEffect(() => {
+    analytics.betaFormViewed();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,6 +59,14 @@ export function BetaForm() {
       setError(result.error ?? "Une erreur est survenue. Réessaie.");
       return;
     }
+
+    // Conversion (propriétés anonymes uniquement : pas de pseudo ni contact).
+    analytics.betaSignupSubmitted({
+      country: form.country,
+      language: form.language,
+      intention: form.intention,
+      hasContact: Boolean(form.contact && form.contact.trim().length > 0),
+    });
 
     setSubmitted(true);
   };

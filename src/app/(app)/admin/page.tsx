@@ -19,6 +19,7 @@ import {
 import { Header } from "@/components/layout/header";
 import { StatsCard } from "@/components/admin/stats-card";
 import { DataTable } from "@/components/admin/data-table";
+import { ReadinessPanel } from "@/components/admin/readiness-panel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getAdminStats } from "@/lib/growth-radar";
@@ -29,7 +30,7 @@ import type { RecentCallAdmin, RecentReportAdmin, BetaSignup } from "@/lib/types
 import { cn } from "@/lib/utils";
 import { getLocalSignups } from "@/lib/mabe/beta";
 
-type AdminTab = "overview" | "calls" | "reports" | "countries" | "beta";
+type AdminTab = "overview" | "calls" | "reports" | "countries" | "beta" | "readiness";
 
 // ── Beta analytics helpers ─────────────────────────────────
 
@@ -266,7 +267,7 @@ export default function AdminPage() {
 
         {/* Tabs */}
         <div className="flex gap-1 mb-5 p-1 rounded-xl bg-noir-light border border-noir-border overflow-x-auto">
-          {(["overview", "calls", "reports", "countries", "beta"] as const).map((t) => (
+          {(["overview", "calls", "reports", "countries", "beta", "readiness"] as const).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
@@ -285,7 +286,9 @@ export default function AdminPage() {
                 ? "Signalements"
                 : t === "countries"
                 ? "Pays"
-                : "Bêta"}
+                : t === "beta"
+                ? "Bêta"
+                : "Readiness"}
             </button>
           ))}
         </div>
@@ -619,6 +622,15 @@ export default function AdminPage() {
                 />
               )}
             </div>
+          </motion.div>
+        )}
+
+        {tab === "readiness" && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <ReadinessPanel signups={betaSignups} />
           </motion.div>
         )}
       </div>

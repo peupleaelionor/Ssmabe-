@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sécurité">
+  <circle cx="32" cy="32" r="31" fill="#0F3D32" fill-opacity="0.1"/>
+  <g stroke="#0F3D32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M32 14 l16 6 v10 c0 11 -8 17 -16 20 c-8 -3 -16 -9 -16 -20 V20 Z"/>
+    <path d="M25 32 l5 5 9 -10"/>
+  </g>
+</svg>

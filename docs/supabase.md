@@ -41,6 +41,16 @@ create table public.beta_signups (
 );
 ```
 
+> **`contact` est nullable — choix volontaire et assumé.** Le contact (email /
+> WhatsApp) est **optionnel** : on ne force jamais un identifiant pour rejoindre
+> la bêta, par cohérence avec la promesse *privacy-first*. Le formulaire
+> (`beta-form.tsx`) n'exige que `pseudo`, `country`, `language`, `intention` ;
+> la validation serveur (`/api/beta`) et `lib/mabe/beta.ts` n'acceptent un
+> `contact` que s'il est fourni **et** valide (email ou 8+ chiffres).
+> ⚠️ Ne **pas** passer cette colonne en `not null` : une inscription sans
+> contact échouerait. Le schéma de référence est **toujours**
+> `supabase/beta-schema.sql`.
+
 ### 2. profiles — Phase 2
 ```sql
 create table public.profiles (

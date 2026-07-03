@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,13 +8,28 @@ const inter = Inter({
   display: "swap",
 });
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://songisongi.app"),
   title: {
-    default: "Songi Songi Mabé – Rencontres vocales du Congo",
+    default: "Songi Songi Mabé — Le réseau vivant de la parole africaine",
     template: "%s | Songi Songi Mabé",
   },
   description:
-    "La plateforme de rencontre vocale née au Congo. Parle, écoute, connecte – sans jamais partager ton numéro. Voix du Congo, cœur ouvert.",
+    "La voix d'abord, le numéro protégé. Songi Songi Mabé connecte les voix, les idées et les communautés entre la RDC, l'Afrique et la diaspora.",
+  icons: {
+    icon: [
+      { url: "/brand/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/brand/app-icon-192.png", sizes: "192x192" }],
+  },
   keywords: [
     "rencontre vocale",
     "Congo",
@@ -37,15 +52,24 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://songisongi.app",
     siteName: "Songi Songi Mabé",
-    title: "Songi Songi Mabé – La voix qui connecte",
+    title: "Songi Songi Mabé — La voix d'abord. Le contact après.",
     description:
-      "Rencontre par la voix. Numéro protégé. La plateforme de rencontre vocale née au Congo.",
+      "Appels anonymes, numéro protégé. Le téléchat vocal né au Congo, pensé pour la diaspora, ouvert au monde.",
+    images: [
+      {
+        url: "/brand/og-ssmabe-brand.png",
+        width: 1200,
+        height: 630,
+        alt: "Songi Songi Mabé — Né à Kinshasa. Pensé pour toutes les communautés.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Songi Songi Mabé",
     description: "Rencontre par la voix. Numéro protégé.",
     creator: "@SongiSongiApp",
+    images: ["/brand/og-ssmabe-brand.png"],
   },
   manifest: "/manifest.json",
 };
@@ -55,7 +79,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#0B0B0B",
+  themeColor: "#0D0F14",
 };
 
 export default function RootLayout({
@@ -64,7 +88,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} dark`}>
+    <html lang="fr" className={`${inter.variable} ${poppins.variable} dark`}>
       <body className="bg-noir text-blanc-chaud antialiased">
         {children}
       </body>
