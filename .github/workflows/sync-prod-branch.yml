@@ -1,0 +1,31 @@
+name: Sync production branch
+
+# La Production Branch Vercel actuelle est `claude/songi-songi-mabe-mvp-7ljs3p`
+# (branche par défaut du repo à la création du projet Vercel).
+# Ce workflow pousse automatiquement chaque avancée de `main` vers cette
+# branche → la prod suit `main` sans PR manuelle.
+# Devient inutile (mais inoffensif) dès que Production Branch = main dans Vercel.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-prod
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fast-forward production branch to main
+        run: |
+          git push origin HEAD:claude/songi-songi-mabe-mvp-7ljs3p

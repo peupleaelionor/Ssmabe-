@@ -1,5 +1,28 @@
 # Vercel — dépannage du workflow GitHub → Preview → Production
 
+## ✅ CAUSE RACINE IDENTIFIÉE (2026-07-03)
+
+La **Production Branch du projet Vercel est `claude/songi-songi-mabe-mvp-7ljs3p`**
+(la branche par défaut du repo au moment de la création du projet), **pas `main`**.
+Preuve : le footer prod affichait `build eb2a5e5` = merge de la PR #8
+(`main` → `claude/songi-songi-mabe-mvp-7ljs3p`), créée manuellement pour "pousser"
+la prod.
+
+**Corrections en place :**
+1. **Workflow `.github/workflows/sync-prod-branch.yml`** : chaque push sur `main`
+   est automatiquement propagé vers la branche de prod → plus jamais de PR
+   manuelle type #8. La prod suit `main` toute seule.
+2. **Fix définitif recommandé (1 min, dashboard)** : Vercel → Settings → Git →
+   **Production Branch = `main`**. Le workflow devient alors superflu (inoffensif).
+3. Optionnel mais conseillé : GitHub → Settings du repo → **Default branch = `main`**,
+   puis supprimer l'ancienne branche une fois Vercel rebranché.
+
+> Note : le sha affiché au footer est celui du commit **déployé** (branche de
+> prod). Tant que Vercel construit l'ancienne branche, ce sha est le commit de
+> synchro (≠ sha de `main`), mais le **contenu est identique** à `main`.
+
+---
+
 Symptôme : les améliorations mergées n'apparaissent pas sur **ssmabe.vercel.app**,
 alors que l'URL de branche (`ssmabe-git-main-….vercel.app`) existe.
 
