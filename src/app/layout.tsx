@@ -16,13 +16,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://songisongi.app"),
+  metadataBase: new URL("https://ssmabe.vercel.app"),
   title: {
-    default: "Songi Songi Mabé — Le réseau vivant de la parole africaine",
+    default: "Songi Songi Mabé — Le téléchat moderne",
     template: "%s | Songi Songi Mabé",
   },
   description:
-    "La voix d'abord, le numéro protégé. Songi Songi Mabé connecte les voix, les idées et les communautés entre la RDC, l'Afrique et la diaspora.",
+    "Parle, rencontre, rejoins. Le téléchat moderne pour l'Afrique, la diaspora et toutes les communautés : appel, WhatsApp, SMS, web et numéro protégé.",
   icons: {
     icon: [
       { url: "/brand/favicon.ico", sizes: "32x32" },
@@ -31,14 +31,15 @@ export const metadata: Metadata = {
     apple: [{ url: "/brand/app-icon-192.png", sizes: "192x192" }],
   },
   keywords: [
+    "téléchat moderne",
     "rencontre vocale",
     "Congo",
     "lingala",
-    "appel anonyme",
+    "appel protégé",
     "diaspora Congo",
     "voix anonyme",
     "Kinshasa",
-    "Brazzaville",
+    "WhatsApp diaspora",
   ],
   authors: [{ name: "Songi Songi Mabé Team" }],
   creator: "Songi Songi Mabé",
@@ -50,24 +51,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://songisongi.app",
+    url: "https://ssmabe.vercel.app",
     siteName: "Songi Songi Mabé",
-    title: "Songi Songi Mabé — La voix d'abord. Le contact après.",
+    title: "Songi Songi Mabé — Parle. Rencontre. Rejoins.",
     description:
-      "Appels anonymes, numéro protégé. Le téléchat vocal né au Congo, pensé pour la diaspora, ouvert au monde.",
+      "Le téléchat moderne : appel, WhatsApp, SMS, web, cercles et numéro protégé. Né à Kinshasa, ouvert au monde.",
     images: [
       {
         url: "/brand/og-ssmabe-brand.png",
         width: 1200,
         height: 630,
-        alt: "Songi Songi Mabé — Né à Kinshasa. Pensé pour toutes les communautés.",
+        alt: "Songi Songi Mabé — Parle. Rencontre. Rejoins.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Songi Songi Mabé",
-    description: "Rencontre par la voix. Numéro protégé.",
+    description: "Parle, rencontre, rejoins. Le téléchat moderne avec numéro protégé.",
     creator: "@SongiSongiApp",
     images: ["/brand/og-ssmabe-brand.png"],
   },
