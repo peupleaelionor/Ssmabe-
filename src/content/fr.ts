@@ -153,6 +153,7 @@ export const fr = {
     title: "Communautés en action",
     text: "Des espaces réels, par ville et par passion. De Kinshasa à Montréal.",
     cta: "Voir toutes les communautés",
+    worldLine: "Né à Kinshasa. Ouvert à toutes les communautés du monde.",
   },
 
   contactSection: {

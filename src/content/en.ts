@@ -142,6 +142,7 @@ export const en: Content = {
     title: "Communities in action",
     text: "Real spaces, by city and by passion. From Kinshasa to Montreal.",
     cta: "See all communities",
+    worldLine: "Born in Kinshasa. Open to every community in the world.",
   },
 
   contactSection: {
