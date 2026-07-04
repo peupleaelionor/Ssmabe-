@@ -1,0 +1,21 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="96" fill="#0B0F14"/>
+  <circle cx="256" cy="256" r="178" fill="url(#glow)"/>
+  <circle cx="256" cy="256" r="124" stroke="#E0694A" stroke-opacity="0.42" stroke-width="4"/>
+  <ellipse cx="256" cy="256" rx="194" ry="62" transform="rotate(-13 256 256)" stroke="#E0694A" stroke-opacity="0.68" stroke-width="4"/>
+  <ellipse cx="256" cy="256" rx="184" ry="54" transform="rotate(22 256 256)" stroke="#A3AD7A" stroke-opacity="0.55" stroke-width="3"/>
+  <path d="M221 144c20 34 27 70 18 111-7 36-25 65-52 92 41-7 71-27 88-64 18-39 16-78-5-116 46 27 76 69 82 121 5 37-5 71-27 103" stroke="#E0694A" stroke-opacity="0.65" stroke-width="4" stroke-linecap="round"/>
+  <path d="M156 254c42-18 80-20 117-7 37 14 67 40 91 79" stroke="#F4F2EC" stroke-opacity="0.32" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="129" cy="201" r="15" fill="#A3AD7A"/>
+  <circle cx="391" cy="310" r="17" fill="#E0694A"/>
+  <circle cx="301" cy="112" r="7" fill="#F4F2EC" fill-opacity="0.72"/>
+  <circle cx="180" cy="372" r="7" fill="#F4F2EC" fill-opacity="0.45"/>
+  <circle cx="256" cy="256" r="156" stroke="#F4F2EC" stroke-opacity="0.1" stroke-dasharray="5 18"/>
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(210)">
+      <stop stop-color="#E0694A" stop-opacity="0.55"/>
+      <stop offset="0.64" stop-color="#E0694A" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#E0694A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

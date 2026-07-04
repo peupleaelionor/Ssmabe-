@@ -2,6 +2,9 @@
 export const ROUTES = [
   { path: "/", label: "Accueil", nav: false, footer: false },
   { path: "/communautes", label: "Communautés", nav: true, footer: true },
+  { path: "/create", label: "Créer un cercle", nav: true, footer: true },
+  { path: "/pricing", label: "Tarifs", nav: false, footer: true },
+  { path: "/voice", label: "Voice readiness", nav: false, footer: true },
   { path: "/discussions", label: "Discussions", nav: false, footer: true },
   { path: "/createurs", label: "Créateurs", nav: true, footer: true },
   { path: "/diaspora", label: "Diaspora", nav: true, footer: true },
@@ -11,7 +14,6 @@ export const ROUTES = [
   { path: "/contact", label: "Contact", nav: false, footer: true },
   { path: "/beta", label: "Bêta", nav: true, footer: true },
   { path: "/lite", label: "Mode léger", nav: false, footer: true },
-  { path: "/pricing", label: "Offres", nav: true, footer: true },
   { path: "/privacy", label: "Confidentialité", nav: false, footer: true },
   { path: "/terms", label: "Conditions", nav: false, footer: true },
 ] as const;

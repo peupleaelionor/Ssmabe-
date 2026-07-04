@@ -13,7 +13,7 @@ export function WaitlistCounter({ className }: { className?: string }) {
   }, []);
   return (
     <p className={className}>
-      <span className="font-display font-bold text-soleil">{count.toLocaleString("fr-FR")}</span>{" "}
+      <span className="font-display font-bold text-terra">{count.toLocaleString("fr-FR")}</span>{" "}
       <span className="text-gris-doux">personnes déjà dans la première vague</span>
     </p>
   );

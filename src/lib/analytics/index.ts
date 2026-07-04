@@ -24,9 +24,6 @@ export type AnalyticsEvent =
   | "contact_click"
   | "whatsapp_click"
   | "call_click"
-  | "sms_click"
-  | "lite_opened"
-  | "pricing_viewed"
   | "country_selected"
   | "mode_selected"
   | "demo_started"
@@ -121,17 +118,5 @@ export const analytics = {
   communityJoin: (id: string) => track("community_join_click", { community: id }),
   creatorJoin: () => track("creator_join_click"),
   diasporaJoin: (country: string) => track("diaspora_join_click", { country }),
-  contactClick: (channel: string) => track("contact_click", { channel, device: deviceType() }),
-  smsClick: () => track("sms_click", { device: deviceType() }),
-  liteOpened: () => track("lite_opened", { device: deviceType() }),
-  pricingViewed: () => track("pricing_viewed"),
+  contactClick: (channel: string) => track("contact_click", { channel }),
 };
-
-/** Détecte le type d'appareil (sans donnée perso). */
-function deviceType(): "mobile" | "tablet" | "desktop" {
-  if (typeof navigator === "undefined") return "desktop";
-  const w = typeof window !== "undefined" ? window.innerWidth : 1024;
-  if (w < 640) return "mobile";
-  if (w < 1024) return "tablet";
-  return "desktop";
-}

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LiteTracker } from "@/components/mvp/PricingTracker";
 import { CONTACT } from "@/config/contact";
 import { getCallHref, getSmsHref } from "@/lib/call";
 import { getWhatsAppHref } from "@/lib/whatsapp";
@@ -23,8 +22,7 @@ export default function LitePage() {
     "block w-full rounded-full px-6 py-4 text-center text-base font-semibold";
 
   return (
-    <main data-lite className="min-h-screen bg-noir-abysse px-5 py-10 font-sans text-ivoire antialiased" style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}>
-      <LiteTracker />
+    <main className="min-h-screen bg-noir-abysse px-5 py-10 font-sans text-ivoire antialiased" style={{ paddingBottom: "max(2.5rem, env(safe-area-inset-bottom))" }}>
       <div className="mx-auto max-w-sm">
         <h1 className="font-display text-2xl font-extrabold leading-snug">
           Songi Songi Mabé

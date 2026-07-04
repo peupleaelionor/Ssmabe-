@@ -18,30 +18,16 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     );
   }
 
-  // Support double : JSON (client JS) et form natif (fallback no-JS).
-  const contentType = req.headers.get("content-type") ?? "";
-  const isForm = contentType.includes("form");
   let body: WaitlistInput;
   try {
-    if (isForm) {
-      const fd = await req.formData();
-      body = Object.fromEntries(fd.entries()) as unknown as WaitlistInput;
-      body.consent = fd.get("consent") === "true" || fd.get("consent") === "on";
-    } else {
-      body = (await req.json()) as WaitlistInput;
-    }
+    body = (await req.json()) as WaitlistInput;
   } catch {
     return NextResponse.json({ ok: false, error: "Requête invalide." }, { status: 400 });
   }
 
-  // Redirection propre pour le parcours no-JS.
-  const redirectOk = () => NextResponse.redirect(new URL("/beta?ok=1", req.url), 303);
-  const redirectErr = (m: string) =>
-    NextResponse.redirect(new URL(`/beta?err=${encodeURIComponent(m)}`, req.url), 303);
-
   const error = validateWaitlist(body);
-  if (error === "spam") return isForm ? redirectOk() : NextResponse.json({ ok: true });
-  if (error) return isForm ? redirectErr(error) : NextResponse.json({ ok: false, error }, { status: 422 });
+  if (error === "spam") return NextResponse.json({ ok: true }); // honeypot : succès silencieux
+  if (error) return NextResponse.json({ ok: false, error }, { status: 422 });
 
   const record = {
     first_name: body.firstName.trim(),
@@ -60,15 +46,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   };
 
   if (!isSupabaseConfigured()) {
-    return isForm ? redirectOk() : NextResponse.json({ ok: true, local: true });
+    return NextResponse.json({ ok: true, local: true });
   }
 
   try {
     await supabaseServerInsert("waitlist_entries", record);
-    return isForm ? redirectOk() : NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true });
   } catch (err) {
     const msg = err instanceof Error ? err.message.slice(0, 120) : "insert failed";
     console.error("[api/waitlist]", msg);
-    return isForm ? redirectOk() : NextResponse.json({ ok: true, local: true });
+    return NextResponse.json({ ok: true, local: true }); // dégradation gracieuse
   }
 }
