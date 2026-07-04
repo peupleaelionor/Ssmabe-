@@ -37,7 +37,7 @@ export function Security() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: i * 0.06 }}
-              className="flex flex-col items-center gap-2.5 rounded-2xl border border-olive/20 bg-white/[0.035] px-3 py-6 text-center"
+              className="flex flex-col items-center gap-2.5 card-lift rounded-2xl border border-olive/20 bg-white/[0.035] px-3 py-6 text-center"
             >
               <span className="text-xl" aria-hidden>{r.icon}</span>
               <span className="text-xs font-medium leading-snug text-ivoire sm:text-sm">

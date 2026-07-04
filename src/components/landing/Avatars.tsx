@@ -55,7 +55,7 @@ export function Avatars() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="flex flex-col items-center rounded-2xl border border-olive/20 bg-white/[0.035] p-7 text-center"
+              className="flex flex-col items-center card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-7 text-center"
             >
               <span
                 className={`flex h-20 w-20 items-center justify-center rounded-full border border-olive/30 bg-gradient-to-br ${a.ring}`}

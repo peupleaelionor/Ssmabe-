@@ -36,7 +36,7 @@ export function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
-              className="relative rounded-[1.65rem] border border-olive/15 bg-white/[0.035] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)] sm:p-5"
+              className="relative card-lift rounded-[1.65rem] border border-olive/15 bg-white/[0.035] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)] sm:p-5"
             >
               {"live" in f && f.live ? (
                 <span className="absolute right-3 top-3 rounded-full bg-terra/15 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wide text-terra">

@@ -18,7 +18,7 @@ export default function BlogPage() {
       <PageHero title="Le journal de bord" text="Les premiers articles arrivent avec la bêta. Voici ce qu'on prépare." />
       <div className="mx-auto max-w-2xl space-y-4 px-5 pb-16">
         {POSTS.map((p) => (
-          <article key={p.title} className="rounded-2xl border border-olive/20 bg-white/[0.035] p-6">
+          <article key={p.title} className="card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-6">
             <p className="text-[11px] uppercase tracking-wide text-terra">{p.date}</p>
             <h2 className="mt-1 font-display text-lg font-bold text-ivoire">{p.title}</h2>
             <p className="mt-2 text-sm leading-relaxed text-gris-doux">{p.excerpt}</p>

@@ -23,7 +23,7 @@ export default function ApplicationsPage() {
       <div className="mx-auto max-w-4xl px-5 pb-16">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {STEPS.map((s) => (
-            <div key={s.title} className="rounded-2xl border border-olive/20 bg-white/[0.035] p-5">
+            <div key={s.title} className="card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-5">
               <div className="flex items-center justify-between">
                 <span className="text-xl" aria-hidden>{s.icon}</span>
                 <span className="rounded-full bg-terra/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-terra">{s.status}</span>

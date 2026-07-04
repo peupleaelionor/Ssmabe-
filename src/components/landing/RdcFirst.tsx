@@ -28,7 +28,7 @@ export function RdcFirst() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-10 rounded-2xl border border-olive/20 bg-white/[0.035] p-6 sm:p-8"
+          className="mt-10 card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-6 sm:p-8"
         >
           {/* Villes cœur */}
           <div className="flex flex-wrap items-center justify-center gap-2.5">

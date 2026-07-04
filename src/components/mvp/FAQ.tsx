@@ -11,7 +11,7 @@ export function FAQ() {
       </h2>
       <div className="mt-8 space-y-3">
         {c.faq.map((item) => (
-          <details key={item.q} className="group rounded-2xl border border-olive/20 bg-white/[0.035] px-5 py-4">
+          <details key={item.q} className="group card-lift rounded-2xl border border-olive/20 bg-white/[0.035] px-5 py-4">
             <summary className="cursor-pointer list-none text-sm font-semibold text-ivoire marker:content-none">
               <span className="mr-2 text-terra transition group-open:rotate-45 inline-block">+</span>
               {item.q}

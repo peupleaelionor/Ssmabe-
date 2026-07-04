@@ -28,7 +28,7 @@ export function Difference() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.4, delay: (i % 2) * 0.08 }}
-              className="rounded-2xl border border-olive/20 bg-white/[0.035] p-6"
+              className="card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-6"
             >
               <h3 className="font-display text-lg font-semibold text-terra">{p.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-gris-doux">{p.text}</p>

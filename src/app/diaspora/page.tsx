@@ -21,7 +21,7 @@ export default function DiasporaPage() {
             <Link
               key={m.id}
               href={`/beta?type=diaspora&country=${encodeURIComponent(m.label)}&source=diaspora-page`}
-              className="flex items-center justify-between rounded-2xl border border-olive/20 bg-white/[0.035] px-5 py-4 transition hover:border-terra/50"
+              className="flex items-center justify-between card-lift rounded-2xl border border-olive/20 bg-white/[0.035] px-5 py-4 transition hover:border-terra/50"
             >
               <span className="flex items-center gap-3">
                 <span className="text-xl" aria-hidden>{m.flag}</span>

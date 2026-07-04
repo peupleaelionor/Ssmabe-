@@ -48,7 +48,7 @@ export function Concept() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: i * 0.08 }}
-              className="rounded-2xl border border-olive/20 bg-white/[0.035] p-6"
+              className="card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-6"
             >
               <span className="text-xl" aria-hidden>{c.icon}</span>
               <h3 className="mt-3 font-display text-lg font-semibold text-ivoire">

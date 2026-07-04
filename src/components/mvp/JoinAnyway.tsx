@@ -25,7 +25,7 @@ export function JoinAnyway() {
             <Link
               key={card.title}
               href={card.href}
-              className="rounded-2xl border border-olive/20 bg-white/[0.035] p-4 text-left transition hover:border-terra/50"
+              className="card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-4 text-left transition hover:border-terra/50"
             >
               <span className="text-lg" aria-hidden>{card.icon}</span>
               <h3 className="mt-2 text-sm font-semibold text-ivoire">{card.title}</h3>

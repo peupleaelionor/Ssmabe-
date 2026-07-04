@@ -260,3 +260,90 @@ a {
 footer {
   padding-bottom: max(3rem, env(safe-area-inset-bottom));
 }
+
+
+/* ═══ premium-layer : lumière, verre, physique — UI only ═══ */
+
+/* Sélection de texte aux couleurs de la marque */
+::selection { background: rgba(224, 105, 74, 0.35); color: #F3EFE6; }
+
+/* Scrollbar fine et discrète (desktop) */
+@media (pointer: fine) {
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0D0F14; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(122, 127, 98, 0.35);
+    border-radius: 8px;
+    border: 2px solid #0D0F14;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(224, 105, 74, 0.5); }
+}
+
+/* Focus clavier visible partout — accessibilité premium */
+:focus-visible {
+  outline: 2px solid rgba(224, 105, 74, 0.85);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Verre moderne */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  border: 1px solid rgba(243, 239, 230, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 18px 50px -28px rgba(0, 0, 0, 0.7);
+}
+
+/* Carte premium : lift + réchauffement de bordure + sheen */
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+@media (hover: hover) {
+  .card-lift:hover {
+    transform: translateY(-3px);
+    border-color: rgba(224, 105, 74, 0.35);
+    box-shadow: 0 22px 55px -30px rgba(224, 105, 74, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+}
+.card-lift:active { transform: translateY(-1px) scale(0.995); }
+
+/* Flottement doux (aperçu téléphone, éléments décoratifs) */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float { animation: float-soft 7s ease-in-out infinite; }
+
+/* Dérive lente des halos de fond */
+@keyframes drift {
+  0%, 100% { transform: translate(-50%, 0) scale(1); }
+  50% { transform: translate(-46%, 12px) scale(1.06); }
+}
+.animate-drift { animation: drift 14s ease-in-out infinite; }
+
+/* Shimmer de chargement */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.035) 25%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.035) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+/* Halo respirant sur l'élément vivant */
+@keyframes glow-breathe {
+  0%, 100% { box-shadow: 0 0 22px -8px rgba(224, 105, 74, 0.45); }
+  50% { box-shadow: 0 0 34px -6px rgba(224, 105, 74, 0.7); }
+}
+.animate-glow { animation: glow-breathe 3.2s ease-in-out infinite; }
+
+/* Les préférences reduced-motion coupent déjà tout plus haut. */

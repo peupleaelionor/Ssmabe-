@@ -26,7 +26,7 @@ export default function DiscussionsPage() {
       <div className="mx-auto max-w-4xl px-5 pb-16">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SALONS.map((s) => (
-            <div key={s.name} className="rounded-2xl border border-olive/20 bg-white/[0.035] p-5">
+            <div key={s.name} className="card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-5">
               <span className="rounded-full bg-terra/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-terra">{s.tag}</span>
               <h3 className="mt-3 font-display text-base font-bold text-ivoire">{s.name}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-gris-doux">{s.desc}</p>

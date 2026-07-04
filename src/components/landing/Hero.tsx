@@ -13,7 +13,7 @@ function PhonePreview() {
   return (
     <div
       aria-hidden
-      className="hidden w-[250px] shrink-0 rounded-[2.35rem] border border-olive/25 bg-vert-nuit p-3 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.8)] lg:block"
+      className="animate-float hidden w-[250px] shrink-0 rounded-[2.35rem] border border-olive/25 bg-vert-nuit p-3 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.8)] lg:block"
     >
       <div className="mx-auto mb-2.5 h-1 w-12 rounded-full bg-terra/20" />
       <div className="overflow-hidden rounded-[1.75rem] bg-gradient-to-b from-vert-premium to-noir-abysse p-5 text-center">
@@ -39,7 +39,7 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden px-4 pb-14 pt-24 sm:px-5 sm:pb-16 sm:pt-32">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-vert-aura/15 blur-[120px]"
+        className="animate-drift pointer-events-none absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-vert-aura/15 blur-[120px]"
       />
       <div
         aria-hidden

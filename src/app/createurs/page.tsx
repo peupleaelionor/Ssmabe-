@@ -19,7 +19,7 @@ export default function CreateursPage() {
       <div className="mx-auto max-w-5xl px-5 pb-8">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CREATORS.map((cr) => (
-            <div key={cr.id} className="flex items-center gap-4 rounded-2xl border border-olive/20 bg-white/[0.035] p-5">
+            <div key={cr.id} className="flex items-center gap-4 card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-5">
               <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-terra/70 to-olive/60 font-display text-lg font-bold text-ivoire">
                 {cr.initial}
               </span>

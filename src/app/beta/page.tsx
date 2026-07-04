@@ -4,6 +4,7 @@ import { PageShell, PageHero } from "@/components/mvp/PageShell";
 import { BetaFormPro } from "@/components/mvp/BetaFormPro";
 import { WaitlistCounter } from "@/components/mvp/WaitlistCounter";
 import { FAQ } from "@/components/mvp/FAQ";
+import { BetaFormSkeleton } from "@/components/mvp/Skeleton";
 
 export const metadata: Metadata = {
   title: "Rejoindre la bêta",
@@ -19,7 +20,7 @@ export default function BetaPage() {
       />
       <div className="mx-auto max-w-xl px-5">
         <WaitlistCounter className="mb-6 text-center text-sm" />
-        <Suspense fallback={<p className="text-center text-sm text-gris-doux">Chargement du formulaire…</p>}>
+        <Suspense fallback={<BetaFormSkeleton />}>
           <BetaFormPro />
         </Suspense>
         <p className="mt-6 text-center text-xs text-gris-doux">

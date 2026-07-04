@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export function CommunityCard({ community, className }: { community: Community; className?: string }) {
   const href = `/beta?community=${community.id}&source=community-card`;
   return (
-    <div className={cn("flex flex-col rounded-2xl border border-olive/20 bg-white/[0.035] p-5 transition hover:border-terra/50", className)}>
+    <div className={cn("flex flex-col card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-5 transition hover:border-terra/50", className)}>
       <div className="flex items-start justify-between gap-2">
         <div>
           <h3 className="font-display text-base font-bold text-ivoire">{community.name}</h3>

@@ -30,7 +30,7 @@ export function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: i * 0.06 }}
-              className="flex gap-4 rounded-2xl border border-olive/20 bg-white/[0.035] p-5"
+              className="flex gap-4 card-lift rounded-2xl border border-olive/20 bg-white/[0.035] p-5"
             >
               <span className="font-display text-xl font-semibold text-terra/90">
                 {s.num}

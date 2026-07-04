@@ -33,7 +33,7 @@ export function Sovereignty() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
-              className="flex gap-3.5 rounded-2xl border border-olive/15 bg-white/[0.035] p-5"
+              className="flex gap-3.5 card-lift rounded-2xl border border-olive/15 bg-white/[0.035] p-5"
             >
               <span className="text-lg" aria-hidden>{p.icon}</span>
               <div>
