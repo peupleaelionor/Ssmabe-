@@ -11,7 +11,7 @@
     "db:generate": "prisma generate",
     "db:studio": "prisma studio",
     "typecheck": "tsc --noEmit",
-    "test": "node --test scripts/smoke.mjs",
+    "test": "node --test scripts/smoke.mjs scripts/realtime.test.mjs",
     "format": "prettier --write . || echo 'prettier non installé — formatage via ESLint'"
   },
   "dependencies": {
