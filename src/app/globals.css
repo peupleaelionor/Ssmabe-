@@ -347,3 +347,42 @@ footer {
 .animate-glow { animation: glow-breathe 3.2s ease-in-out infinite; }
 
 /* Les préférences reduced-motion coupent déjà tout plus haut. */
+
+
+/* ═══ wow-layer : profondeur vivante ═══ */
+
+/* Titres display : tracking premium resserré */
+.font-display { letter-spacing: -0.022em; }
+
+/* 2e dérive, à contre-temps */
+@keyframes drift-alt {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-18px, -14px) scale(1.08); }
+}
+.animate-drift-alt { animation: drift-alt 18s ease-in-out infinite; }
+
+/* Particules ultra discrètes — 100% CSS, zéro JS */
+.particle {
+  position: absolute;
+  width: 3px; height: 3px;
+  border-radius: 9999px;
+  background: rgba(224, 105, 74, 0.5);
+  animation: particle-rise 11s ease-in-out infinite;
+  pointer-events: none;
+}
+.particle.olive { background: rgba(122, 127, 98, 0.55); }
+.particle.soft { background: rgba(243, 239, 230, 0.28); width: 2px; height: 2px; }
+@keyframes particle-rise {
+  0% { opacity: 0; transform: translateY(18px) scale(0.8); }
+  18% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-90px) scale(1.15); }
+}
+
+/* Vignette de profondeur sur le hero */
+.hero-vignette::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(120% 90% at 50% 0%, transparent 55%, rgba(13, 15, 20, 0.55) 100%);
+  pointer-events: none;
+}

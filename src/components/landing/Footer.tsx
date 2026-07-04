@@ -19,7 +19,7 @@ export function Footer() {
           {FOOTER_ROUTES.map((r, i) => (
             <span key={r.path} className="flex items-center gap-2">
               {i > 0 && <span aria-hidden>·</span>}
-              <a href={r.path} className="transition hover:text-terra">{r.label}</a>
+              <a href={r.path} className="inline-block px-1 py-2 transition hover:text-terra">{r.label}</a>
             </span>
           ))}
         </nav>

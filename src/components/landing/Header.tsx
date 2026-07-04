@@ -28,7 +28,7 @@ export function Header() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-olive/10 bg-noir-abysse/85 backdrop-blur-xl safe-area-top">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-5">
-          <a href="#top" className="flex min-w-0 items-center gap-2.5" aria-label="Songi Songi Mabé — accueil">
+          <a href="#top" className="flex min-w-0 items-center gap-2.5" aria-label="Songi Songi Mabé">
             <BrandMark size={36} className="shrink-0 drop-shadow-[0_8px_18px_rgba(224,105,74,0.18)]" />
             <span className="flex min-w-0 flex-col leading-tight">
               <span className="truncate font-display text-[1.05rem] font-extrabold tracking-tight text-ivoire sm:text-lg">

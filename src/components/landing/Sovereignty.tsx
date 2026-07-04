@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { getContent } from "@/content";
+import { TelechatIcon } from "@/components/brand/TelechatAssets";
 
 const c = getContent("fr");
 
@@ -35,7 +36,9 @@ export function Sovereignty() {
               transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
               className="flex gap-3.5 card-lift rounded-2xl border border-olive/15 bg-white/[0.035] p-5"
             >
-              <span className="text-lg" aria-hidden>{p.icon}</span>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/[0.04] text-terra" aria-hidden>
+                <TelechatIcon name={(["lock", "shield", "shield", "wave", "language", "globe"] as const)[i % 6]} />
+              </span>
               <div>
                 <h3 className="text-sm font-semibold text-ivoire">{p.title}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-gris-doux">{p.text}</p>

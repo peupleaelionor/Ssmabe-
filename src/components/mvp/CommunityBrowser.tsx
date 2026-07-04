@@ -4,6 +4,7 @@ import * as React from "react";
 import { COMMUNITIES } from "@/config/communities";
 import { CommunityCard } from "./CommunityCard";
 import { cn } from "@/lib/utils";
+import { BrandMark } from "@/components/brand/BrandMark";
 
 const CATEGORIES = ["Toutes", ...Array.from(new Set(COMMUNITIES.map((c) => c.category)))];
 const COUNTRIES = ["Tous", ...Array.from(new Set(COMMUNITIES.map((c) => c.country)))];
@@ -39,7 +40,19 @@ export function CommunityBrowser() {
         {list.map((c) => <CommunityCard key={c.id} community={c} />)}
       </div>
       {list.length === 0 && (
-        <p className="mt-10 text-center text-sm text-gris-doux">Aucune communauté pour ce filtre — elle arrive peut-être bientôt.</p>
+        <div className="mx-auto mt-10 flex max-w-sm flex-col items-center gap-4 rounded-[2rem] border border-olive/20 bg-white/[0.03] px-6 py-10 text-center">
+          <span className="opacity-60"><BrandMark size={56} /></span>
+          <p className="text-sm leading-relaxed text-gris-doux">
+            Aucune communauté pour ce filtre — elle arrive peut-être bientôt.
+          </p>
+          <button
+            type="button"
+            onClick={() => { setCat("Toutes"); setCountry("Tous"); }}
+            className="rounded-full border border-terra/40 px-5 py-2 text-xs font-semibold text-terra transition hover:bg-terra hover:text-noir-abysse"
+          >
+            Réinitialiser les filtres
+          </button>
+        </div>
       )}
     </div>
   );

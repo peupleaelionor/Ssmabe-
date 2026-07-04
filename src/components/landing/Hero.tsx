@@ -36,21 +36,30 @@ function PhonePreview() {
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden px-4 pb-14 pt-24 sm:px-5 sm:pb-16 sm:pt-32">
+    <section id="top" className="hero-vignette relative overflow-hidden px-4 pb-14 pt-24 sm:px-5 sm:pb-16 sm:pt-32">
       <div
         aria-hidden
         className="animate-drift pointer-events-none absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-vert-aura/15 blur-[120px]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-24 mx-auto h-64 max-w-[560px] rounded-full bg-terra/8 blur-[90px]"
+        className="animate-drift-alt pointer-events-none absolute inset-x-0 top-24 mx-auto h-64 max-w-[560px] rounded-full bg-terra/8 blur-[90px]"
       />
+      {/* Particules discrètes — vivant sans distraire */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 hidden sm:block">
+        <span className="particle" style={{ left: "12%", top: "62%", animationDelay: "0s" }} />
+        <span className="particle olive" style={{ left: "26%", top: "78%", animationDelay: "2.4s" }} />
+        <span className="particle soft" style={{ left: "44%", top: "70%", animationDelay: "5s" }} />
+        <span className="particle soft" style={{ left: "63%", top: "82%", animationDelay: "1.2s" }} />
+        <span className="particle" style={{ left: "78%", top: "66%", animationDelay: "3.6s" }} />
+        <span className="particle olive" style={{ left: "90%", top: "74%", animationDelay: "6.2s" }} />
+      </div>
 
       <div className="relative mx-auto flex max-w-5xl items-center justify-center gap-12">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ y: 14 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="flex w-full max-w-2xl flex-col items-center text-center lg:items-start lg:text-left"
         >
           <div className="mb-6 flex max-w-full flex-wrap items-center justify-center gap-2 lg:justify-start">
@@ -80,12 +89,29 @@ export function Hero() {
 
           <SoundWave className="my-7 h-11 w-28" />
 
-          <div className="grid w-full max-w-[31rem] gap-3 lg:pt-2">
-            <CallButton label={c.hero.ctaCall} />
-            <WhatsAppButton label={c.hero.ctaWhatsApp} />
-            <EnterSiteButton label={c.hero.ctaEnter} />
-            <CreateCircleButton label={c.hero.ctaCreate} />
-          </div>
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={{ show: { transition: { staggerChildren: 0.09, delayChildren: 0.25 } } }}
+            className="grid w-full max-w-[31rem] gap-3 lg:pt-2"
+          >
+            {[
+              <CallButton key="call" label={c.hero.ctaCall} />,
+              <WhatsAppButton key="wa" label={c.hero.ctaWhatsApp} />,
+              <EnterSiteButton key="web" label={c.hero.ctaEnter} />,
+              <CreateCircleButton key="create" label={c.hero.ctaCreate} />,
+            ].map((btn, i) => (
+              <motion.div
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 14 },
+                  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 260, damping: 24 } },
+                }}
+              >
+                {btn}
+              </motion.div>
+            ))}
+          </motion.div>
 
           <div className="mt-8 w-full max-w-[31rem]">
             <PremiumDivider label="Un espace fait pour toi" />
