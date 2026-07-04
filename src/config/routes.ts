@@ -11,6 +11,7 @@ export const ROUTES = [
   { path: "/contact", label: "Contact", nav: false, footer: true },
   { path: "/beta", label: "Bêta", nav: true, footer: true },
   { path: "/lite", label: "Mode léger", nav: false, footer: true },
+  { path: "/pricing", label: "Offres", nav: true, footer: true },
   { path: "/privacy", label: "Confidentialité", nav: false, footer: true },
   { path: "/terms", label: "Conditions", nav: false, footer: true },
 ] as const;

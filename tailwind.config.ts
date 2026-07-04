@@ -37,6 +37,8 @@ const config: Config = {
         "terra-dark": "#C2543A",
         olive: "#7A7F62",
         "olive-dark": "#5F644C",
+        soleil: "#F2B04A",
+        "soleil-dark": "#D89A35",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],

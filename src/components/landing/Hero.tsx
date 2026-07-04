@@ -80,7 +80,7 @@ export function Hero() {
           <h1 className="font-display text-[2.5rem] font-semibold leading-[1.1] text-ivoire sm:text-6xl">
             {c.hero.title1}
             <br />
-            <span className="text-terra">{c.hero.title2}</span>
+            <span className="text-glow-soleil">{c.hero.title2}</span>
           </h1>
 
           <p className="mt-5 max-w-lg text-base leading-relaxed text-gris-doux">

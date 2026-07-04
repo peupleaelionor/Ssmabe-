@@ -24,6 +24,7 @@ export function CommunitiesSection() {
             {c.communitiesSection.title}
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-gris-doux sm:text-base">{c.communitiesSection.text}</p>
+          <p className="mt-3 text-xs font-medium uppercase tracking-[0.14em] text-soleil/80">{c.communitiesSection.worldLine}</p>
         </motion.div>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
