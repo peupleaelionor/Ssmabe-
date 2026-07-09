@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import { ToasterLazy } from "@/components/ds/ToasterLazy";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -90,6 +91,7 @@ export default function RootLayout({
     <html lang="fr" className={`${inter.variable} ${poppins.variable} dark`}>
       <body className="bg-noir text-blanc-chaud antialiased">
         {children}
+        <ToasterLazy />
       </body>
     </html>
   );

@@ -9,6 +9,8 @@ import { USER_TYPES, GOALS } from "@/config/userTypes";
 import { COMMUNITIES, getCommunity } from "@/config/communities";
 import { submitWaitlist } from "@/lib/waitlist";
 import { analytics } from "@/lib/analytics";
+import { haptic } from "@/lib/haptics";
+import { toast } from "@/components/ds/toast-bus";
 import { getContent } from "@/content";
 
 const c = getContent("fr");
@@ -79,6 +81,7 @@ export function BetaFormPro() {
     e.preventDefault();
     setError("");
     setLoading(true);
+    haptic("tap");
     analytics.betaFormSubmit();
     const result = await submitWaitlist({
       ...form,
@@ -88,9 +91,12 @@ export function BetaFormPro() {
     if (!result.ok) {
       const msg = result.error ?? c.beta.errors.generic;
       setError(msg);
+      haptic("error");
+      toast({ variant: "error", title: "Petit souci", description: msg });
       analytics.betaFormError(msg.slice(0, 40));
       return;
     }
+    haptic("success");
     analytics.betaFormSuccess(form.profileType || "unknown");
     setSuccessMsg(successFor(form.profileType, form.community));
   };
