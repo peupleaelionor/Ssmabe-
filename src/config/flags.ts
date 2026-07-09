@@ -10,6 +10,7 @@ export const FLAGS = {
   creatorSupportEnabled: false,
   marketplaceEnabled: false,
   pwaEnabled: true,
+  circlesEnabled: true,
   betaMode: true,
   maintenanceMode: false,
 } as const;

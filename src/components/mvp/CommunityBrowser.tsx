@@ -1,18 +1,24 @@
 "use client";
 
 import * as React from "react";
-import { COMMUNITIES } from "@/config/communities";
+import { COMMUNITIES, type Community } from "@/config/communities";
 import { CommunityCard } from "./CommunityCard";
+import { CommunityPreviewSheet } from "@/components/social/CommunityPreviewSheet";
+import { flag } from "@/config/flags";
+import { useJoinedCircles } from "@/lib/social/circles";
 import { cn } from "@/lib/utils";
 import { BrandMark } from "@/components/brand/BrandMark";
 
 const CATEGORIES = ["Toutes", ...Array.from(new Set(COMMUNITIES.map((c) => c.category)))];
 const COUNTRIES = ["Tous", ...Array.from(new Set(COMMUNITIES.map((c) => c.country)))];
 
-/** Liste des communautés avec filtres catégorie / pays. */
+/** Liste des communautés avec filtres catégorie / pays + aperçu « Mes cercles ». */
 export function CommunityBrowser() {
   const [cat, setCat] = React.useState("Toutes");
   const [country, setCountry] = React.useState("Tous");
+  const [selected, setSelected] = React.useState<Community | null>(null);
+  const circles = flag("circlesEnabled");
+  const joined = useJoinedCircles();
 
   const list = COMMUNITIES.filter(
     (c) => (cat === "Toutes" || c.category === cat) && (country === "Tous" || c.country === country)
@@ -37,7 +43,14 @@ export function CommunityBrowser() {
         ))}
       </div>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {list.map((c) => <CommunityCard key={c.id} community={c} />)}
+        {list.map((c) => (
+          <CommunityCard
+            key={c.id}
+            community={c}
+            onOpen={circles ? () => setSelected(c) : undefined}
+            joined={circles && joined.includes(c.id)}
+          />
+        ))}
       </div>
       {list.length === 0 && (
         <div className="mx-auto mt-10 flex max-w-sm flex-col items-center gap-4 rounded-[2rem] border border-olive/20 bg-white/[0.03] px-6 py-10 text-center">
@@ -54,6 +67,7 @@ export function CommunityBrowser() {
           </button>
         </div>
       )}
+      {circles && <CommunityPreviewSheet community={selected} onClose={() => setSelected(null)} />}
     </div>
   );
 }
