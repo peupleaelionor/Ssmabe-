@@ -1,10 +1,12 @@
 import { CallMode } from "@/lib/types";
+import { env } from "@/lib/env";
 
 export const APP_NAME = "Songi Songi Mabé";
 export const APP_TAGLINE = "La voix qui connecte. Le numéro qui reste caché.";
 export const APP_DESCRIPTION =
   "Une plateforme de rencontre vocale née au Congo. Parle, écoute, connecte – sans jamais partager ton numéro.";
-export const APP_URL = "https://songisongi.app";
+// Domaine canonique unique — aligné sur metadataBase / sitemap / robots.
+export const APP_URL = env.siteUrl;
 export const APP_TWITTER = "@SongiSongiApp";
 
 export const MIN_AGE = 18;

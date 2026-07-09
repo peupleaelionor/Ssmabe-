@@ -1,13 +1,15 @@
 import type { MetadataRoute } from "next";
+import { env } from "@/lib/env";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      // Pages applicatives non destinées à l'indexation publique
-      disallow: ["/admin", "/api/"],
+      // Écrans applicatifs et endpoints non destinés à l'indexation publique
+      disallow: ["/api/", "/admin", "/home", "/wallet", "/onboarding", "/call"],
     },
-    sitemap: "https://songisongi.app/sitemap.xml",
+    sitemap: `${env.siteUrl}/sitemap.xml`,
+    host: env.siteUrl,
   };
 }
