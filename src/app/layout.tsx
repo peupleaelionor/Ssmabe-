@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { ToasterLazy } from "@/components/ds/ToasterLazy";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -92,6 +93,7 @@ export default function RootLayout({
       <body className="bg-noir text-blanc-chaud antialiased">
         {children}
         <ToasterLazy />
+        <JsonLd />
       </body>
     </html>
   );
