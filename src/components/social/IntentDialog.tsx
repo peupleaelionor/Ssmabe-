@@ -1,10 +1,17 @@
 "use client";
 
 import * as React from "react";
+import dynamic from "next/dynamic";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion } from "framer-motion";
 import { haptic } from "@/lib/haptics";
 import { analytics } from "@/lib/analytics";
+
+// Formulaire lourd (liste pays) chargé uniquement à l'ouverture — hors bundle Hero.
+const IntentForm = dynamic(() => import("./IntentForm").then((m) => m.IntentForm), {
+  ssr: false,
+  loading: () => <p className="mt-4 text-center text-sm text-gris-doux">Chargement…</p>,
+});
 
 /**
  * Micro-modal « bientôt disponible » — capture d'intention.
@@ -63,17 +70,8 @@ export function IntentDialog({ intent, title, description, children }: IntentDia
                 <Dialog.Description id="intent-desc" className="mt-2 text-sm leading-relaxed text-gris-doux">
                   {description}
                 </Dialog.Description>
-                <div className="mt-6 grid gap-2.5">
-                  <a
-                    href={`/beta?source=${intent}`}
-                    onClick={() => haptic("success")}
-                    className="w-full rounded-full bg-terra px-6 py-3.5 text-sm font-semibold text-noir-abysse transition hover:bg-terra-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra/60"
-                  >
-                    Être prévenu·e en premier
-                  </a>
-                  <Dialog.Close className="w-full rounded-full border border-olive/25 px-6 py-3 text-sm font-semibold text-gris-doux transition hover:border-terra/50 hover:text-terra">
-                    Plus tard
-                  </Dialog.Close>
+                <div className="mt-5">
+                  <IntentForm source={intent} onDone={() => setOpen(false)} />
                 </div>
               </motion.div>
             </Dialog.Content>
