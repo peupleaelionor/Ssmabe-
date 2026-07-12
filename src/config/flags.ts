@@ -20,6 +20,7 @@ export const FLAGS = {
   marketplaceEnabled: bool(process.env.NEXT_PUBLIC_FLAG_MARKETPLACE, false),
   pwaEnabled: bool(process.env.NEXT_PUBLIC_FLAG_PWA, true),
   circlesEnabled: bool(process.env.NEXT_PUBLIC_FLAG_CIRCLES, true),
+  avatarsEnabled: bool(process.env.NEXT_PUBLIC_FLAG_AVATARS, true),
   betaMode: bool(process.env.NEXT_PUBLIC_FLAG_BETA, true),
   maintenanceMode: bool(process.env.NEXT_PUBLIC_FLAG_MAINTENANCE, false),
 } as const;

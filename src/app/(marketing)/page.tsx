@@ -1,11 +1,13 @@
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
+import { WorldBand } from "@/components/landing/WorldBand";
 import { PositioningBand } from "@/components/landing/PositioningBand";
 import { Vibes } from "@/components/landing/Vibes";
 import { Why } from "@/components/landing/Why";
 import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { CommunitiesSection } from "@/components/mvp/CommunitiesSection";
+import { ChoosePresence } from "@/components/social/ChoosePresence";
 import { ForWho } from "@/components/landing/ForWho";
 import { Sovereignty } from "@/components/landing/Sovereignty";
 import { Difference } from "@/components/landing/Difference";
@@ -13,6 +15,7 @@ import { Roadmap } from "@/components/landing/Roadmap";
 import { JoinAnyway } from "@/components/mvp/JoinAnyway";
 import { BetaTeaser } from "@/components/mvp/BetaTeaser";
 import { Footer } from "@/components/landing/Footer";
+import { FLAGS } from "@/config/flags";
 
 /**
  * Landing Songi Songi Mabé — téléchat moderne.
@@ -24,12 +27,14 @@ export default function LandingPage() {
     <main className="min-h-screen overflow-x-hidden bg-gradient-to-b from-noir-abysse via-vert-nuit to-noir-abysse font-sans text-ivoire antialiased">
       <Header />
       <Hero />
+      {FLAGS.avatarsEnabled && <WorldBand />}
       <PositioningBand />
       <Vibes />
       <Why />
       <Features />
       <HowItWorks />
       <CommunitiesSection />
+      {FLAGS.avatarsEnabled && <ChoosePresence />}
       <ForWho />
       <Sovereignty />
       <Difference />
