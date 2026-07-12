@@ -5,6 +5,7 @@ import { TelechatIcon, type TelechatIconName } from "@/components/brand/Telechat
 import { getCallHref, getSmsHref } from "@/lib/call";
 import { getWhatsAppHref } from "@/lib/whatsapp";
 import { analytics } from "@/lib/analytics";
+import { IntentDialog } from "@/components/social/IntentDialog";
 import { cn } from "@/lib/utils";
 
 const BTN = "group flex min-h-[3.75rem] w-full items-center justify-between gap-3 rounded-[1.65rem] border px-4 py-3.5 text-left text-sm font-semibold transition active:scale-[0.99] sm:min-h-14 sm:px-5";
@@ -41,10 +42,51 @@ function ButtonShell({ icon, label, tone, badge, className }: { icon: TelechatIc
   );
 }
 
+/** État « bientôt disponible » : apparence désactivée mais capture l'intention. */
+function ComingSoonButton({
+  icon,
+  label,
+  intent,
+  title,
+  description,
+  className,
+}: {
+  icon: TelechatIconName;
+  label: string;
+  intent: string;
+  title: string;
+  description: string;
+  className?: string;
+}) {
+  return (
+    <IntentDialog intent={intent} title={title} description={description}>
+      <button
+        type="button"
+        aria-label={`${label} — bientôt disponible, être prévenu·e`}
+        className={cn(
+          "block w-full cursor-not-allowed rounded-[1.65rem] text-left opacity-70 transition hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra/50",
+          className
+        )}
+      >
+        <ButtonShell icon={icon} label={label} tone="disabled" badge="Bientôt disponible" />
+      </button>
+    </IntentDialog>
+  );
+}
+
 export function CallButton({ className, label = "Appeler pour rejoindre" }: ButtonProps) {
   const href = getCallHref();
   if (!href) {
-    return <ButtonShell icon="call" label={label} tone="disabled" badge="Bientôt disponible" className={className} />;
+    return (
+      <ComingSoonButton
+        icon="call"
+        label={label}
+        intent="call_intent"
+        title="L'appel arrive très bientôt"
+        description="Ce canal n'est pas encore ouvert. Laisse ton contact pour la bêta : tu seras prévenu·e dès que l'appel direct sera disponible."
+        className={className}
+      />
+    );
   }
   return (
     <a href={href} onClick={() => analytics.contactClick("call")}>
@@ -66,7 +108,16 @@ export function SmsButton({ className, label = "Rejoindre par SMS" }: ButtonProp
 export function WhatsAppButton({ className, label = "Rejoindre par WhatsApp" }: ButtonProps) {
   const href = getWhatsAppHref();
   if (!href) {
-    return <ButtonShell icon="whatsapp" label={label} tone="disabled" badge="Bientôt disponible" className={className} />;
+    return (
+      <ComingSoonButton
+        icon="whatsapp"
+        label={label}
+        intent="whatsapp_intent"
+        title="WhatsApp arrive très bientôt"
+        description="Ce canal n'est pas encore ouvert. Laisse ton contact pour la bêta : tu seras prévenu·e dès que WhatsApp sera branché."
+        className={className}
+      />
+    );
   }
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" onClick={() => analytics.contactClick("whatsapp")}>

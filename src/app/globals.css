@@ -189,6 +189,14 @@ select {
     @apply text-2xl font-bold text-blanc-chaud tracking-tight;
   }
 
+  /* Carte premium canonique : bordure olive + halo terracotta.
+     Évite la répétition de valeurs magiques dans les composants
+     (le rayon reste au choix de l'appelant). */
+  .premium-card {
+    @apply border border-olive/20 bg-white/[0.035];
+    box-shadow: 0 24px 70px -40px rgba(224, 105, 74, 0.55);
+  }
+
   .section-subtitle {
     @apply text-gris-texte text-sm leading-relaxed;
   }

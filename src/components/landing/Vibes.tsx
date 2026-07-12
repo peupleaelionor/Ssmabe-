@@ -19,7 +19,7 @@ export function Vibes() {
             </p>
           </div>
 
-          <article className="relative overflow-hidden rounded-[2rem] border border-olive/20 bg-white/[0.035] p-5 shadow-[0_24px_70px_-40px_rgba(224,105,74,0.55)] sm:p-6">
+          <article className="premium-card relative overflow-hidden rounded-[2rem] p-5 sm:p-6">
             <div className="relative z-10 max-w-[15rem]">
               <h3 className="font-display text-2xl font-semibold text-ivoire">Ambiances</h3>
               <p className="mt-2 text-sm leading-relaxed text-gris-doux">
