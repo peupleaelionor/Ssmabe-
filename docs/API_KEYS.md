@@ -81,6 +81,25 @@ Puis activer l'UI d'appels : `NEXT_PUBLIC_FLAG_CALLS=1`.
 |---|---|
 | `NEXT_PUBLIC_POSTHOG_KEY` | PostHog → Project Settings → API Key |
 
+## 4b. Email de confirmation — Resend (câblé)
+
+| Variable | Portée | Note |
+|---|---|---|
+| `RESEND_API_KEY` | Serveur | Resend → API Keys |
+| `RESEND_FROM` | Serveur | `Nom <hello@ton-domaine.com>` — **domaine vérifié requis** en prod. Défaut `onboarding@resend.dev` = test (envoi limité à ton email de compte). |
+
+Effet : un email de bienvenue part à chaque inscription bêta réussie.
+No-op si `RESEND_API_KEY` absente.
+
+## 4c. Monitoring d'erreurs — Sentry (câblé, serveur)
+
+| Variable | Portée | Note |
+|---|---|---|
+| `SENTRY_DSN` | Serveur | Sentry → Project → Client Keys (DSN) |
+
+Capture les exceptions des routes API (waitlist, contact). No-op si absente.
+La capture côté navigateur nécessiterait `NEXT_PUBLIC_SENTRY_DSN` (non câblé).
+
 ## 5. Domaine canonique (quand tu brancheras songisongi.app)
 
 | Variable | Valeur |

@@ -8,6 +8,8 @@ import { type NextRequest, NextResponse } from "next/server";
 import { validateWaitlist, type WaitlistInput } from "@/lib/validators";
 import { rateLimit, clientKey } from "@/lib/rate-limit";
 import { isSupabaseConfigured, supabaseServerInsert } from "@/lib/supabase";
+import { sendBetaWelcome } from "@/lib/email/resend";
+import { captureException } from "@/lib/observability/sentry";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const rl = rateLimit(`waitlist:${clientKey(req.headers)}`, { limit: 5, windowMs: 60_000 });
@@ -45,6 +47,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     status: "pending",
   };
 
+  // Email de confirmation (no-op si Resend non configuré) — non bloquant.
+  await sendBetaWelcome(record.email, record.first_name).catch(() => {});
+
   if (!isSupabaseConfigured()) {
     return NextResponse.json({ ok: true, local: true });
   }
@@ -55,6 +60,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   } catch (err) {
     const msg = err instanceof Error ? err.message.slice(0, 120) : "insert failed";
     console.error("[api/waitlist]", msg);
+    captureException(err, { route: "api/waitlist" });
     return NextResponse.json({ ok: true, local: true }); // dégradation gracieuse
   }
 }

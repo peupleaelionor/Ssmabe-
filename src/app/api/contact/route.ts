@@ -2,6 +2,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { rateLimit, clientKey } from "@/lib/rate-limit";
 import { isSupabaseConfigured, supabaseServerInsert } from "@/lib/supabase";
+import { captureException } from "@/lib/observability/sentry";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
   const rl = rateLimit(`contact:${clientKey(req.headers)}`, { limit: 3, windowMs: 60_000 });
@@ -27,7 +28,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       message: body.message.trim(),
     });
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    captureException(err, { route: "api/contact" });
     return NextResponse.json({ ok: true, local: true });
   }
 }

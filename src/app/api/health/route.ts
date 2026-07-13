@@ -3,6 +3,8 @@ import { env } from "@/lib/env";
 import { FLAGS } from "@/config/flags";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { isLiveKitReady, isAgoraReady, isAgoraSecureTokenReady } from "@/lib/voice/env";
+import { isEmailConfigured } from "@/lib/email/resend";
+import { isSentryConfigured } from "@/lib/observability/sentry";
 
 /**
  * GET /api/health — état de l'app + intégrations configurées.
@@ -23,6 +25,8 @@ export async function GET(): Promise<NextResponse> {
       livekit: isLiveKitReady() ? "configured" : "missing",
       agora: isAgoraReady() ? (isAgoraSecureTokenReady() ? "configured-secure" : "configured-insecure") : "missing",
       posthog: env.posthogKey ? "configured" : "missing",
+      resendEmail: isEmailConfigured() ? "configured" : "missing",
+      sentry: isSentryConfigured() ? "configured" : "missing",
       contactPhone: process.env.NEXT_PUBLIC_CONTACT_PHONE_NUMBER ? "configured" : "missing",
       contactWhatsApp: process.env.NEXT_PUBLIC_CONTACT_WHATSAPP_NUMBER ? "configured" : "missing",
     },
