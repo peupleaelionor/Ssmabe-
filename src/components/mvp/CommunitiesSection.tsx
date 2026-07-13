@@ -34,16 +34,38 @@ export function CommunitiesSection() {
           <p className="mt-4 text-sm leading-relaxed text-gris-doux sm:text-base">{c.communitiesSection.text}</p>
         </motion.div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {COMMUNITIES.slice(0, 8).map((com) => (
+        {(() => {
+          const items = COMMUNITIES.slice(0, 8);
+          const card = (com: Community) => (
             <CommunityCard
               key={com.id}
               community={com}
               onOpen={circles ? () => setSelected(com) : undefined}
               joined={circles && joined.includes(com.id)}
             />
-          ))}
-        </div>
+          );
+          return (
+            <>
+              {/* Mobile : carrousel scroll-snap (CSS pur, aucun JS) */}
+              <div
+                className="-mx-5 mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-5 px-5 pb-3 sm:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                aria-label="Communautés — faire défiler horizontalement"
+              >
+                {items.map((com) => (
+                  <div key={com.id} className="w-[78%] shrink-0 snap-start">
+                    {card(com)}
+                  </div>
+                ))}
+              </div>
+              <p className="-mt-1 text-center text-[11px] text-gris-doux/70 sm:hidden">Glisse pour explorer →</p>
+
+              {/* Tablette / desktop : grille */}
+              <div className="mt-10 hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+                {items.map((com) => card(com))}
+              </div>
+            </>
+          );
+        })()}
         {circles && <CommunityPreviewSheet community={selected} onClose={() => setSelected(null)} />}
 
         <div className="mt-8 text-center">
