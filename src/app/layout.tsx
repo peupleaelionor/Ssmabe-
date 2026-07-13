@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { ToasterLazy } from "@/components/ds/ToasterLazy";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ResourceHints } from "@/components/seo/ResourceHints";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -90,6 +91,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${inter.variable} ${poppins.variable} dark`}>
+      <head>
+        <ResourceHints />
+      </head>
       <body className="bg-noir text-blanc-chaud antialiased">
         {children}
         <ToasterLazy />

@@ -9,7 +9,7 @@ export function WorldBand() {
   return (
     <section
       aria-label="Une communauté née à Kinshasa, ouverte au monde"
-      className="relative isolate overflow-hidden"
+      className="cv-section relative isolate overflow-hidden"
     >
       {/* Desktop / large */}
       <div className="relative hidden h-[420px] w-full sm:block lg:h-[480px]">

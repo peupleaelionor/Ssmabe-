@@ -9,7 +9,7 @@ import { AvatarPicker } from "./AvatarPicker";
  */
 export function ChoosePresence() {
   return (
-    <section id="presences" className="scroll-mt-20 px-5 py-16 sm:py-24">
+    <section id="presences" className="cv-section scroll-mt-20 px-5 py-16 sm:py-24">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 14 }}

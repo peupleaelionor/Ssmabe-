@@ -96,6 +96,14 @@ select {
     text-wrap: balance;
   }
 
+  /* Saute le rendu des sections hors écran jusqu'à leur approche (gain TBT).
+     contain-intrinsic-size réserve la hauteur pour éviter les sauts de scroll.
+     Progressif : ignoré par les navigateurs sans support. */
+  .cv-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 520px;
+  }
+
   .gradient-text {
     background: linear-gradient(135deg, #C76A2D, #F8F3EA);
     -webkit-background-clip: text;
