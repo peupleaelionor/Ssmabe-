@@ -40,7 +40,7 @@ export function Hero() {
       {/* Un seul halo, très doux et immobile — sobriété premium. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[-12%] h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-vert-aura/8 blur-[150px]"
+        className="ds-blur pointer-events-none absolute left-1/2 top-[-12%] h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-vert-aura/8 blur-[150px]"
       />
 
       <div className="relative mx-auto flex max-w-5xl items-center justify-center gap-12">

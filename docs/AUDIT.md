@@ -44,13 +44,15 @@ Supabase branché (projet `songi-songi-mabe`), marque `ssm`, site public.
 
 ## PLAN
 
-### P0 — intégrité & fondation (en cours)
+### P0 — intégrité & fondation ✅ TERMINÉ
 1. ✅ **Faux compteur waitlist (1284)** → chiffre réel via `waitlist_count()` RPC
    + copy honnête (point 55).
-2. Repositionnement copy : retirer « application de rencontre » comme promesse
-   principale → « réseau social vocal » (point 1). *(léger, contenu)*
-3. `(app)/demo` + simulations Math.random : garantir dev-only / flaggé en prod.
-4. `/admin` : garde serveur réelle au lieu d'un booléen client.
+2. ✅ **Repositionnement** : constat — la copy est déjà « conversation +
+   communautés » (rencontre = 1 mode parmi famille/diaspora/business/créateurs),
+   pas une appli de rencontre. Mots-clés SEO élargis (« réseau social vocal »,
+   « salons vocaux »). Titre hero conservé (validé). Point 1 aligné.
+3. ✅ **`(app)` mocké** (demo + Math.random) → 404 en prod via `FLAGS.appEnabled`.
+4. ✅ **`/admin`** (aucune garde) → fermé par le même gate (point 41).
 
 ### P1 — cœur produit
 - i18n runtime (locale provider) ; brancher `/communities` `/events` sur Supabase ;

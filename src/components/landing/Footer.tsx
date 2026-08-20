@@ -2,6 +2,7 @@ import { getContent } from "@/content";
 import { FOOTER_ROUTES } from "@/config/routes";
 import { Logo } from "@/components/brand/Logo";
 import { CONTACT, isCallReady } from "@/config/contact";
+import { DataSaverToggle } from "@/components/mvp/DataSaverToggle";
 
 const c = getContent("fr");
 
@@ -31,6 +32,8 @@ export function Footer() {
           </a>
           <span aria-label="Pays ciblés">{c.footer.countries}</span>
         </div>
+
+        <DataSaverToggle className="mt-1" />
 
         <p className="text-[11px] text-gris-doux/60">{c.footer.legal}</p>
         <p className="text-[10px] text-gris-doux/60">

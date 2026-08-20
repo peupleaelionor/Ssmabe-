@@ -19,7 +19,7 @@ export function WorldBand() {
           fill
           sizes="100vw"
           loading="lazy"
-          className="object-cover object-center"
+          className="ds-heavy object-cover object-center"
         />
       </div>
       {/* Mobile */}
@@ -30,7 +30,7 @@ export function WorldBand() {
           fill
           sizes="100vw"
           loading="lazy"
-          className="object-cover object-center"
+          className="ds-heavy object-cover object-center"
         />
       </div>
 

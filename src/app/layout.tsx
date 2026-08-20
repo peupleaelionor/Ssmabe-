@@ -33,7 +33,11 @@ export const metadata: Metadata = {
     apple: [{ url: "/brand/app-icon-192.png", sizes: "192x192" }],
   },
   keywords: [
+    "réseau social vocal",
+    "salons vocaux",
     "téléchat moderne",
+    "conversation vocale",
+    "communauté congolaise",
     "rencontre vocale",
     "Congo",
     "lingala",
@@ -92,6 +96,14 @@ export default function RootLayout({
     <html lang="fr" className={`${inter.variable} ${poppins.variable} dark`}>
       <head>
         <ResourceHints />
+        {/* Mode économie de données — appliqué avant peinture (no-flash) :
+            préférence enregistrée, sinon auto si saveData / réseau 2G. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var s=localStorage.getItem('ssmabe.datasaver');if(s!=='on'&&s!=='off'){var c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;s=(c&&(c.saveData||/(^|-)2g$/.test(c.effectiveType||'')))?'on':'off';}document.documentElement.dataset.saver=s;}catch(e){}})();",
+          }}
+        />
       </head>
       <body className="bg-noir text-blanc-chaud antialiased">
         {children}

@@ -266,6 +266,22 @@ a {
   }
 }
 
+/* ── Mode économie de données (point 13) : coupe animations, halos et
+   visuels lourds. Activé par toggle utilisateur ou auto (saveData / 2G). ── */
+html[data-saver="on"] *,
+html[data-saver="on"] *::before,
+html[data-saver="on"] *::after {
+  animation: none !important;
+  transition-duration: 0.01ms !important;
+}
+html[data-saver="on"] .ds-heavy {
+  display: none !important;
+}
+html[data-saver="on"] .ds-blur {
+  filter: none !important;
+  opacity: 0.5 !important;
+}
+
 @media (max-width: 360px) {
   html {
     font-size: 15px;
