@@ -1,4 +1,4 @@
-import { BrandMark } from "./BrandMark";
+import { SsmMark } from "./SsmMark";
 import { cn } from "@/lib/utils";
 
 /**
@@ -29,13 +29,13 @@ export function Logo({
   const sloganColor = theme === "dark" ? "text-gris-doux" : "text-noir-abysse/60";
 
   if (variant === "mark") {
-    return <BrandMark size={markSize ?? 40} className={className} title="Songi Songi Mabé" />;
+    return <SsmMark tile size={markSize ?? 40} className={className} title="Songi Songi Mabé" />;
   }
 
   if (variant === "stacked") {
     return (
       <span className={cn("inline-flex flex-col items-center gap-3 text-center", className)}>
-        <BrandMark size={markSize ?? 72} />
+        <SsmMark tile size={markSize ?? 72} />
         <span className={cn("font-display text-xl font-extrabold tracking-tight", nameColor)}>
           Songi Songi Mabé
         </span>
@@ -48,7 +48,7 @@ export function Logo({
 
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <BrandMark size={markSize ?? 36} />
+      <SsmMark tile size={markSize ?? 36} />
       <span className="flex flex-col leading-tight">
         <span className={cn("font-display text-base font-extrabold tracking-tight sm:text-lg", nameColor)}>
           Songi Songi Mabé

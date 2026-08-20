@@ -12,8 +12,8 @@ export interface RequiredAsset {
 
 /** Assets attendus pour un lancement bêta propre. */
 export const REQUIRED_ASSETS: RequiredAsset[] = [
-  { key: "favicon", path: "/favicon.svg", critical: true },
-  { key: "faviconIco", path: "/brand/favicon.ico", critical: true },
+  { key: "favicon", path: "/brand/favicon.png", critical: true },
+  { key: "appIcon", path: "/brand/app-icon-512.png", critical: true },
   { key: "appIcon192", path: "/brand/app-icon-192.png", critical: true },
   { key: "appIcon512", path: "/brand/app-icon-512.png", critical: true },
   { key: "ogBrand", path: "/brand/og-ssmabe-brand.png", critical: true },

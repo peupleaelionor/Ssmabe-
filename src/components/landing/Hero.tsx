@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { getContent } from "@/content";
-import { BrandMark } from "@/components/brand/BrandMark";
+import { SsmMark } from "@/components/brand/SsmMark";
 import { OrbitalGlobe, SoundWave } from "@/components/brand/TelechatAssets";
 import { CallButton, CreateCircleButton, EnterSiteButton, WhatsAppButton } from "@/components/mvp/ContactOptions";
 
@@ -20,7 +20,7 @@ function PhonePreview() {
         <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-terra">Téléchat moderne</p>
         <div className="my-5 flex flex-col items-center gap-2">
           <span className="flex h-14 w-14 items-center justify-center rounded-full border border-olive/25 bg-vert-aura/25">
-            <BrandMark size={38} />
+            <SsmMark tile size={38} />
           </span>
           <p className="text-sm font-semibold text-ivoire">Voix protégée</p>
           <p className="text-[11px] text-gris-doux">Numéro masqué · consentement</p>

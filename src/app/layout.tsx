@@ -29,10 +29,7 @@ export const metadata: Metadata = {
   description:
     "Parle, rencontre, rejoins. Le téléchat moderne pour l'Afrique, la diaspora et toutes les communautés : appel, WhatsApp, SMS, web et numéro protégé.",
   icons: {
-    icon: [
-      { url: "/brand/favicon.ico", sizes: "32x32" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/brand/favicon.png", sizes: "32x32", type: "image/png" }],
     apple: [{ url: "/brand/app-icon-192.png", sizes: "192x192" }],
   },
   keywords: [

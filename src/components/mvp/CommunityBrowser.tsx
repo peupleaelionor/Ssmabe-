@@ -7,7 +7,7 @@ import { CommunityPreviewSheet } from "@/components/social/CommunityPreviewSheet
 import { flag } from "@/config/flags";
 import { useJoinedCircles } from "@/lib/social/circles";
 import { cn } from "@/lib/utils";
-import { BrandMark } from "@/components/brand/BrandMark";
+import { SsmMark } from "@/components/brand/SsmMark";
 
 const CATEGORIES = ["Toutes", ...Array.from(new Set(COMMUNITIES.map((c) => c.category)))];
 const COUNTRIES = ["Tous", ...Array.from(new Set(COMMUNITIES.map((c) => c.country)))];
@@ -74,7 +74,7 @@ export function CommunityBrowser() {
         <div className="mx-auto mt-10 flex max-w-sm flex-col items-center gap-4 rounded-[2rem] border border-olive/20 bg-white/[0.03] px-6 py-10 text-center">
           <span className="relative" aria-hidden>
             <span className="absolute -inset-3 rounded-full bg-terra/10 blur-xl" />
-            <span className="relative inline-flex opacity-80"><BrandMark size={60} /></span>
+            <span className="relative inline-flex opacity-80"><SsmMark tile size={56} /></span>
           </span>
           <p className="font-display text-base font-semibold text-ivoire">Ton premier cercle t'attend</p>
           <p className="text-sm leading-relaxed text-gris-doux">
@@ -91,7 +91,7 @@ export function CommunityBrowser() {
       )}
       {list.length === 0 && !mine && (
         <div className="mx-auto mt-10 flex max-w-sm flex-col items-center gap-4 rounded-[2rem] border border-olive/20 bg-white/[0.03] px-6 py-10 text-center">
-          <span className="opacity-60"><BrandMark size={56} /></span>
+          <span className="opacity-60"><SsmMark tile size={56} /></span>
           <p className="text-sm leading-relaxed text-gris-doux">
             Aucune communauté pour ce filtre — elle arrive peut-être bientôt.
           </p>

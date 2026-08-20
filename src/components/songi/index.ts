@@ -2,7 +2,6 @@
  * Songi UI — composants premium réutilisables (design system produit).
  * Tous typés, mobile-first, palette vert/noir/crème, sans donnée sensible.
  */
-export { BrandLogo } from "./BrandLogo";
 export { VoiceWave } from "./VoiceWave";
 export { PrimaryCTA } from "./PrimaryCTA";
 export { SecondaryCTA } from "./SecondaryCTA";
@@ -18,7 +17,6 @@ export { DoubleConsentCard } from "./DoubleConsentCard";
 export { SocialProofBar } from "./SocialProofBar";
 export { AdminMetricCard } from "./AdminMetricCard";
 
-export type { BrandLogoProps } from "./BrandLogo";
 export type { VoiceWaveProps } from "./VoiceWave";
 export type { PrimaryCTAProps } from "./PrimaryCTA";
 export type { SecondaryCTAProps } from "./SecondaryCTA";
