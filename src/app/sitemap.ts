@@ -22,11 +22,9 @@ const PAGES: Entry[] = [
   { path: "/a-propos", priority: 0.6, freq: "monthly" },
   { path: "/blog", priority: 0.6, freq: "weekly" },
   { path: "/contact", priority: 0.6, freq: "monthly" },
-  { path: "/safety", priority: 0.6, freq: "monthly" },
   { path: "/discussions", priority: 0.5, freq: "weekly" },
   { path: "/applications", priority: 0.5, freq: "monthly" },
   { path: "/lite", priority: 0.5, freq: "monthly" },
-  { path: "/demo", priority: 0.5, freq: "monthly" },
   { path: "/privacy", priority: 0.3, freq: "yearly" },
   { path: "/terms", priority: 0.3, freq: "yearly" },
 ];

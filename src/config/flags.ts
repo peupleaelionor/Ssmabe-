@@ -21,6 +21,9 @@ export const FLAGS = {
   pwaEnabled: bool(process.env.NEXT_PUBLIC_FLAG_PWA, true),
   circlesEnabled: bool(process.env.NEXT_PUBLIC_FLAG_CIRCLES, true),
   avatarsEnabled: bool(process.env.NEXT_PUBLIC_FLAG_AVATARS, true),
+  // Écrans applicatifs (home/call/wallet/admin/onboarding/demo) — mockés,
+  // OFF par défaut : non exposés en prod tant que le vrai produit n'est pas prêt.
+  appEnabled: bool(process.env.NEXT_PUBLIC_FLAG_APP, false),
   betaMode: bool(process.env.NEXT_PUBLIC_FLAG_BETA, true),
   maintenanceMode: bool(process.env.NEXT_PUBLIC_FLAG_MAINTENANCE, false),
 } as const;
