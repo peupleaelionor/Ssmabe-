@@ -1,13 +1,16 @@
-import { getContent } from "@/content";
+"use client";
+
+import { useContent } from "@/content/provider";
 import { FOOTER_ROUTES } from "@/config/routes";
 import { Logo } from "@/components/brand/Logo";
 import { CONTACT, isCallReady } from "@/config/contact";
 import { DataSaverToggle } from "@/components/mvp/DataSaverToggle";
+import { LocaleSwitcher } from "@/components/mvp/LocaleSwitcher";
 
-const c = getContent("fr");
 
 /** Footer sérieux : statut bêta, contact, pays, version de build. */
 export function Footer() {
+  const c = useContent();
   const sha = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? "dev";
 
   return (
@@ -33,7 +36,10 @@ export function Footer() {
           <span aria-label="Pays ciblés">{c.footer.countries}</span>
         </div>
 
-        <DataSaverToggle className="mt-1" />
+        <div className="mt-1 flex flex-wrap items-center justify-center gap-3">
+          <LocaleSwitcher />
+          <DataSaverToggle />
+        </div>
 
         <p className="text-[11px] text-gris-doux/60">{c.footer.legal}</p>
         <p className="text-[10px] text-gris-doux/60">

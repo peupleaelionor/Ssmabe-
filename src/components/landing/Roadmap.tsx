@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 
-const c = getContent("fr");
 
 /** Roadmap verticale sobre — la phase active en or. */
 export function Roadmap() {
+  const c = useContent();
   return (
     <section id="roadmap" className="scroll-mt-20 px-5 py-16 sm:py-24">
       <div className="mx-auto max-w-2xl">

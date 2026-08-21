@@ -1,10 +1,12 @@
-import { getContent } from "@/content";
+"use client";
+
+import { useContent } from "@/content/provider";
 import { OrbitalGlobe, PremiumDivider, TelechatIcon } from "@/components/brand/TelechatAssets";
 
-const c = getContent("fr");
 
 /** Ambiances — la couche simple qui garde l'ADN téléchat. */
 export function Vibes() {
+  const c = useContent();
   return (
     <section id="ambiances" className="px-4 py-14 sm:px-5 sm:py-20">
       <div className="mx-auto max-w-5xl">

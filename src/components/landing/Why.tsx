@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 
-const c = getContent("fr");
 
 /** Pourquoi ça existe : problème / réponse, deux cartes face à face. */
 export function Why() {
+  const c = useContent();
   const blocks = [
     { ...c.why.problem, accent: "border-cuivre/30", chip: "text-cuivre" },
     { ...c.why.solution, accent: "border-olive/30", chip: "text-terra" },

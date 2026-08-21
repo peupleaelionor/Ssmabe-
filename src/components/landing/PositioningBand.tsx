@@ -1,9 +1,11 @@
-import { getContent } from "@/content";
+"use client";
 
-const c = getContent("fr");
+import { useContent } from "@/content/provider";
+
 
 /** Bandeau positionnement — une ligne, discret, bordures or fines. */
 export function PositioningBand() {
+  const c = useContent();
   return (
     <div className="border-y border-olive/10 bg-vert-nuit/60">
       <p className="mx-auto flex max-w-5xl items-center justify-center gap-2.5 px-5 py-4 text-center text-xs tracking-wide text-gris-doux sm:text-sm">

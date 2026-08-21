@@ -6,9 +6,8 @@ import { COUNTRIES_LIST } from "@/lib/country-brain/countries";
 import { LANGUAGES_LIST } from "@/lib/language-brain/languages";
 import { submitBetaSignup } from "@/lib/mabe/beta";
 import { analytics } from "@/lib/analytics";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 
-const c = getContent("fr");
 
 const FIELD =
   "w-full rounded-xl border border-olive/25 bg-white/[0.035] px-4 py-3.5 text-sm text-ivoire placeholder:text-gris-doux/70 focus:outline-none focus:ring-2 focus:ring-terra/50 appearance-none";
@@ -18,6 +17,7 @@ const FIELD =
  * (passe par lib/mabe/beta : API /api/beta puis fallback localStorage).
  */
 export function BetaForm() {
+  const c = useContent();
   const [form, setForm] = React.useState({ pseudo: "", country: "", language: "" });
   const [error, setError] = React.useState("");
   const [loading, setLoading] = React.useState(false);

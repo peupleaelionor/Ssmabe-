@@ -8,12 +8,12 @@ import { CommunityCard } from "./CommunityCard";
 import { CommunityPreviewSheet } from "@/components/social/CommunityPreviewSheet";
 import { flag } from "@/config/flags";
 import { useJoinedCircles } from "@/lib/social/circles";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 
-const c = getContent("fr");
 
 /** Section homepage « Communautés en action » — 8 cartes + CTA vers /communautes. */
 export function CommunitiesSection() {
+  const c = useContent();
   const [selected, setSelected] = React.useState<Community | null>(null);
   const circles = flag("circlesEnabled");
   const joined = useJoinedCircles();

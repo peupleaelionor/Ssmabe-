@@ -11,9 +11,8 @@ import { submitWaitlist } from "@/lib/waitlist";
 import { analytics } from "@/lib/analytics";
 import { haptic } from "@/lib/haptics";
 import { toast } from "@/components/ds/toast-bus";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 
-const c = getContent("fr");
 
 const FIELD =
   "w-full rounded-xl border border-olive/25 bg-white/[0.035] px-4 py-3 text-sm text-ivoire placeholder:text-gris-doux/70 focus:outline-none focus:ring-2 focus:ring-terra/50 appearance-none";
@@ -33,6 +32,7 @@ const COUNTRY_ALIASES: Record<string, string> = {
 const resolveCountry = (raw: string): string => COUNTRY_ALIASES[raw] ?? raw;
 
 export function BetaFormPro() {
+  const c = useContent();
   const params = useSearchParams();
   const preCommunity = getCommunity(params.get("community") ?? "");
 

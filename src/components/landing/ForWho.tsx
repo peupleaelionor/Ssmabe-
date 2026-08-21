@@ -1,12 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 
-const c = getContent("fr");
 
 /** Pour qui : 9 publics en chips, une phrase humaine, rien de plus. */
 export function ForWho() {
+  const c = useContent();
   return (
     <section id="pourqui" className="scroll-mt-20 border-y border-olive/10 bg-vert-nuit/40 px-5 py-14 sm:py-20">
       <div className="mx-auto max-w-3xl text-center">

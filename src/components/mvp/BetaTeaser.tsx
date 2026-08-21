@@ -4,13 +4,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { WaitlistCounter } from "./WaitlistCounter";
 import { ContactOptions } from "./ContactOptions";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 import { analytics } from "@/lib/analytics";
 
-const c = getContent("fr");
 
 /** Section bêta homepage : teaser + compteur + CTA vers /beta + contact rapide. */
 export function BetaTeaser() {
+  const c = useContent();
   return (
     <section id="beta" className="scroll-mt-20 border-t border-olive/15 px-5 py-16 sm:py-24">
       <div className="mx-auto max-w-xl text-center">

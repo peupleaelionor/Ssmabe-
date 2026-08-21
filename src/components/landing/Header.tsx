@@ -1,16 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 import { SsmMark } from "@/components/brand/SsmMark";
 
-const c = getContent("fr");
 
 /**
  * Header sticky compact + menu mobile en overlay plein écran.
  * Le nom est visible dès mobile pour installer la marque.
  */
 export function Header() {
+  const c = useContent();
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {

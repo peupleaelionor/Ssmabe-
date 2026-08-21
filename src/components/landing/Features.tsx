@@ -1,15 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 import { TelechatIcon } from "@/components/brand/TelechatAssets";
 
-const c = getContent("fr");
 
 const iconNames = ["call", "wave", "whatsapp", "web", "circle", "lock", "globe", "language", "shield"] as const;
 
 /** Grille de fonctionnalités — lisible sur 320px, dense seulement quand l'écran le permet. */
 export function Features() {
+  const c = useContent();
   return (
     <section id="features" className="scroll-mt-20 border-y border-olive/10 bg-vert-nuit/40 px-4 py-16 sm:px-5 sm:py-24">
       <div className="mx-auto max-w-5xl">

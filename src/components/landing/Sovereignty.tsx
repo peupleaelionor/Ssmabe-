@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 import { TelechatIcon } from "@/components/brand/TelechatAssets";
 
-const c = getContent("fr");
 
 /** Souveraineté & confiance : données, numéro, langue, argent — 6 points. */
 export function Sovereignty() {
+  const c = useContent();
   return (
     <section id="souverainete" className="scroll-mt-20 px-5 py-16 sm:py-24">
       <div className="mx-auto max-w-5xl">

@@ -1,12 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 import { SsmMark } from "@/components/brand/SsmMark";
 import { OrbitalGlobe, SoundWave } from "@/components/brand/TelechatAssets";
 import { CallButton, CreateCircleButton, EnterSiteButton, WhatsAppButton } from "@/components/mvp/ContactOptions";
 
-const c = getContent("fr");
 
 /** Aperçu app compact — desktop uniquement, calme (sans flottement). */
 function PhonePreview() {
@@ -35,6 +34,7 @@ function PhonePreview() {
 }
 
 export function Hero() {
+  const c = useContent();
   return (
     <section id="top" className="hero-vignette relative overflow-hidden px-4 pb-16 pt-24 sm:px-5 sm:pb-24 sm:pt-32">
       {/* Un seul halo, très doux et immobile — sobriété premium. */}

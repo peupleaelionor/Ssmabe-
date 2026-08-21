@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { getContent } from "@/content";
+import { useContent } from "@/content/provider";
 
-const c = getContent("fr");
 
 export function HowItWorks() {
+  const c = useContent();
   return (
     <section id="how" className="scroll-mt-20 border-y border-olive/10 bg-vert-nuit/40 px-5 py-16 sm:py-24">
       <div className="mx-auto max-w-5xl">

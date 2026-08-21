@@ -1,9 +1,11 @@
-import { getContent } from "@/content";
+"use client";
 
-const c = getContent("fr");
+import { useContent } from "@/content/provider";
+
 
 /** FAQ accordéon natif (details/summary — zéro JS). */
 export function FAQ() {
+  const c = useContent();
   return (
     <section className="mx-auto max-w-2xl px-5 py-12">
       <h2 className="text-center font-display text-2xl font-semibold text-ivoire sm:text-3xl">

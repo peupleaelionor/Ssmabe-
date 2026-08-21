@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ResourceHints } from "@/components/seo/ResourceHints";
 import { PwaRegister } from "@/components/pwa/PwaRegister";
 import { InstallPromptLazy } from "@/components/pwa/InstallPromptLazy";
+import { LocaleProvider } from "@/content/provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -106,7 +107,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-noir text-blanc-chaud antialiased">
-        {children}
+        <LocaleProvider>{children}</LocaleProvider>
         <ToasterLazy />
         <InstallPromptLazy />
         <PwaRegister />
