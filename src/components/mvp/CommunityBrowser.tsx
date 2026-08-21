@@ -9,11 +9,8 @@ import { useJoinedCircles } from "@/lib/social/circles";
 import { cn } from "@/lib/utils";
 import { SsmMark } from "@/components/brand/SsmMark";
 
-const CATEGORIES = ["Toutes", ...Array.from(new Set(COMMUNITIES.map((c) => c.category)))];
-const COUNTRIES = ["Tous", ...Array.from(new Set(COMMUNITIES.map((c) => c.country)))];
-
 /** Liste des communautés avec filtres catégorie / pays + vue « Mes cercles ». */
-export function CommunityBrowser() {
+export function CommunityBrowser({ communities = COMMUNITIES }: { communities?: Community[] }) {
   const [cat, setCat] = React.useState("Toutes");
   const [country, setCountry] = React.useState("Tous");
   const [mine, setMine] = React.useState(false);
@@ -21,7 +18,16 @@ export function CommunityBrowser() {
   const circles = flag("circlesEnabled");
   const joined = useJoinedCircles();
 
-  const filtered = COMMUNITIES.filter(
+  const CATEGORIES = React.useMemo(
+    () => ["Toutes", ...Array.from(new Set(communities.map((c) => c.category)))],
+    [communities]
+  );
+  const COUNTRIES = React.useMemo(
+    () => ["Tous", ...Array.from(new Set(communities.map((c) => c.country)))],
+    [communities]
+  );
+
+  const filtered = communities.filter(
     (c) => (cat === "Toutes" || c.category === cat) && (country === "Tous" || c.country === country)
   );
   // Mes cercles d'abord — puis, en vue « Mes cercles », seulement eux.

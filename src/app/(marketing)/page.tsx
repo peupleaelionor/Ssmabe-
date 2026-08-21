@@ -7,6 +7,7 @@ import { Why } from "@/components/landing/Why";
 import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { CommunitiesSection } from "@/components/mvp/CommunitiesSection";
+import { getCommunities } from "@/lib/communities";
 import { ChoosePresence } from "@/components/social/ChoosePresence";
 import { ForWho } from "@/components/landing/ForWho";
 import { Sovereignty } from "@/components/landing/Sovereignty";
@@ -22,7 +23,8 @@ import { FLAGS } from "@/config/flags";
  * Simple en façade : appel, WhatsApp, SMS, web, cercles.
  * Puissant derrière : voix, sécurité, low-data, diaspora, paiement futur.
  */
-export default function LandingPage() {
+export default async function LandingPage() {
+  const communities = await getCommunities();
   return (
     <main className="min-h-screen overflow-x-hidden bg-gradient-to-b from-noir-abysse via-vert-nuit to-noir-abysse font-sans text-ivoire antialiased">
       <Header />
@@ -33,7 +35,7 @@ export default function LandingPage() {
       <Why />
       <Features />
       <HowItWorks />
-      <CommunitiesSection />
+      <CommunitiesSection communities={communities} />
       {FLAGS.avatarsEnabled && <ChoosePresence />}
       <ForWho />
       <Sovereignty />

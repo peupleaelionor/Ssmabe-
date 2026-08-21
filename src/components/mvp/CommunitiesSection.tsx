@@ -12,7 +12,7 @@ import { useContent } from "@/content/provider";
 
 
 /** Section homepage « Communautés en action » — 8 cartes + CTA vers /communautes. */
-export function CommunitiesSection() {
+export function CommunitiesSection({ communities = COMMUNITIES }: { communities?: Community[] }) {
   const c = useContent();
   const [selected, setSelected] = React.useState<Community | null>(null);
   const circles = flag("circlesEnabled");
@@ -35,7 +35,7 @@ export function CommunitiesSection() {
         </motion.div>
 
         {(() => {
-          const items = COMMUNITIES.slice(0, 8);
+          const items = communities.slice(0, 8);
           const card = (com: Community) => (
             <CommunityCard
               key={com.id}
