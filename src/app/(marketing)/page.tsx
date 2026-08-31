@@ -16,6 +16,7 @@ import { Roadmap } from "@/components/landing/Roadmap";
 import { JoinAnyway } from "@/components/mvp/JoinAnyway";
 import { BetaTeaser } from "@/components/mvp/BetaTeaser";
 import { Footer } from "@/components/landing/Footer";
+import { StickyEnter } from "@/components/mvp/StickyEnter";
 import { FLAGS } from "@/config/flags";
 
 /**
@@ -44,6 +45,7 @@ export default async function LandingPage() {
       <JoinAnyway />
       <BetaTeaser />
       <Footer />
+      {FLAGS.stickyCtaEnabled && <StickyEnter />}
     </main>
   );
 }
