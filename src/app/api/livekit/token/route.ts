@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createLiveKitToken, type LiveKitTokenRequest } from "@/lib/voice/livekit";
+import { rateLimit, clientKey } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
+  const rl = rateLimit(`livekit-token:${clientKey(request.headers)}`, { limit: 20, windowMs: 60_000 });
+  if (!rl.ok) {
+    return NextResponse.json(
+      { ok: false, error: "RATE_LIMITED", hint: "Trop de demandes de connexion. Réessaie dans une minute." },
+      { status: 429 },
+    );
+  }
   try {
     const body = (await request.json().catch(() => ({}))) as LiveKitTokenRequest;
     const token = createLiveKitToken(body);
