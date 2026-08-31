@@ -19,7 +19,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true, ...token });
   } catch (error) {
     const message = error instanceof Error ? error.message : "UNKNOWN_ERROR";
-    const status = message === "LIVEKIT_NOT_CONFIGURED" ? 503 : 400;
+    const status =
+      message === "LIVEKIT_NOT_CONFIGURED" ? 503 : message === "UNAUTHORIZED_ROLE" ? 403 : 400;
 
     return NextResponse.json(
       {

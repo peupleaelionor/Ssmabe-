@@ -25,8 +25,21 @@ export type LiveKitTokenRequest = {
   identity?: string | null;
   displayName?: string | null;
   role?: VoiceRole | null;
+  /** Clef de room requise pour obtenir un rôle speaker (détenue par l'hôte). */
+  key?: string | null;
   metadata?: Record<string, unknown> | null;
 };
+
+/**
+ * Clef de room dérivée serveur (HMAC du slug) — autorise la parole.
+ * Pas de DB : la clef est déterministe mais impossible à calculer côté client
+ * (le secret reste serveur). L'hôte la reçoit en démarrant la room et la
+ * présente pour promouvoir un auditeur en speaker.
+ */
+export function roomHostKey(roomName: string): string {
+  const { apiSecret } = voiceEnv.livekit;
+  return base64Url(createHmac("sha256", apiSecret || "dev-secret").update(`host:${roomName}`).digest());
+}
 
 /**
  * Permissions MINIMALES par rôle (core loop) :
@@ -59,6 +72,12 @@ export function createLiveKitToken(input: LiveKitTokenRequest) {
   const identity = normalizeIdentity(input.identity);
   const role = resolveRole(input.role);
 
+  // Sécurité réelle : parler exige la clef de room (détenue par l'hôte).
+  // Écouter (listener) est libre. Host = modèle room ouverte (qui démarre).
+  if (role === "speaker" && input.key !== roomHostKey(roomName)) {
+    throw new Error("UNAUTHORIZED_ROLE");
+  }
+
   const payload = {
     iss: apiKey,
     sub: identity,
@@ -84,6 +103,8 @@ export function createLiveKitToken(input: LiveKitTokenRequest) {
     roomName,
     identity,
     role,
+    // L'hôte reçoit la clef pour promouvoir ensuite des auditeurs en speakers.
+    key: role === "host" ? roomHostKey(roomName) : undefined,
     token: signJwt(payload, apiSecret),
     expiresAt: new Date((now + expiresIn) * 1000).toISOString(),
   };
