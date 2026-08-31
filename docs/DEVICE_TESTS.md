@@ -29,28 +29,56 @@ modèle + la version OS. Chaque test dure < 1 min.
 2. Message de succès ? ✅/❌  (Si Supabase branché : la ligne apparaît dans
    Table Editor → `waitlist_entries`.)
 
-## À exécuter dès que le MVP vocal existe (prochain chantier)
+## MVP VOCAL — TEST 2 TÉLÉPHONES (~5 min) — le jalon décisif
 
-### TEST IPHONE 01 — Rejoindre une room par lien
-1. B (autre téléphone) ouvre une room et parle.
-2. A reçoit le **lien WhatsApp**, l'ouvre sur iPhone (Safari).
-3. A comprend immédiatement qu'une conversation a lieu ? ✅/❌
-4. A choisit un pseudo (si demandé).
-5. A **autorise le micro** quand c'est demandé (au moment de parler, pas avant).
-6. A **entend B** parler ? ✅/❌  → note le **temps jusqu'à la 1re voix** (s).
-7. A lève la main (demander la parole) → le host voit la demande ? ✅/❌
-8. Le host accepte → A peut **parler** ? ✅/❌
-9. A **mute/unmute** fonctionne ? ✅/❌
-10. A **quitte** proprement ? ✅/❌
-11. A **partage** le même lien ? ✅/❌
+**Prérequis** : les variables LiveKit doivent être sur Vercel + redéploiement
+(voir la liste plus bas). Sinon la room affiche honnêtement « Le direct n'est
+pas encore ouvert ».
 
-### TEST ANDROID 01 — idem sur Android (Chrome)
-Répéter TEST IPHONE 01 sur un Android d'entrée/milieu de gamme, en 4G.
+**Rôles** :
+- **Téléphone A = HÔTE** → ouvre `https://ssmabe.vercel.app/r/kin-la-nuit?host=1`
+- **Téléphone B = AUDITEUR** → ouvre `https://ssmabe.vercel.app/r/kin-la-nuit`
+  (le lien SANS `?host=1` — c'est celui qu'on partage)
 
-### TEST RÉSEAU 01 — connexion faible
-1. Brider le réseau (3G/edge, ou « Slow 3G » dev tools).
-2. Rejoindre une room : l'app affiche « Connexion faible » et **ne coupe pas
-   brutalement** ? ✅/❌
+Chaque étape : note **PASS / FAIL**.
+
+| # | Action | PASS attendu |
+|---|---|---|
+| 1 | A ouvre la room (host) + met un pseudo | A voit la room « Kin la nuit » |
+| 2 | A ouvre le micro (bouton MICRO), autorise le micro | Bouton = « MICRO OUVERT » |
+| 3 | B ouvre le lien partagé | Sheet « Comment on t'appelle ? » |
+| 4 | B entre un pseudo | B entre **sans** demande de micro |
+| 5 | B **entend A** parler | Son de A audible + « A parle » |
+| — | *(noter le temps entre l'ouverture de B et la 1re voix)* | quelques secondes |
+| 6 | B appuie **✋ Lever la main** | « Demande envoyée » |
+| 7 | A voit la demande | « Demandes de parole : B » |
+| 8 | A appuie **Accepter** | (côté A : la demande disparaît) |
+| 9 | B voit qu'il peut parler | Bouton micro apparaît chez B |
+| 10 | B ouvre son micro, **autorise le micro** | « MICRO OUVERT » |
+| 11 | B parle | A **entend B** |
+| 12 | B appuie pour **couper** | « MICRO COUPÉ » |
+| 13 | A n'entend plus B | silence de B |
+| 14 | B rouvre le micro | A entend B de nouveau |
+| 15 | B **Quitter** | B revient à « Tu as quitté » |
+| 16 | A voit B partir | (participant en moins) |
+
+Puis **inverser** les appareils (A devient auditeur, B devient hôte).
+
+### TEST RÉSEAU — connexion faible
+1. Sur B, activer un réseau lent (3G) ou couper/rallumer le Wi-Fi.
+2. L'app affiche « Reconnexion… » puis « Connexion au direct… » et **reprend
+   sans tout recommencer** ? ✅/❌
+
+### iOS Safari — points d'attention
+- Le son démarre bien après le 1er geste (le bouton d'entrée compte comme geste) ?
+- Après mise en arrière-plan puis retour, le son reprend ? ✅/❌
+
+### Android Chrome
+- Permission micro demandée seulement au moment de parler ? ✅/❌
+- Bascule Wi-Fi ↔ mobile : reconnexion propre ? ✅/❌
+
+> Si les étapes 5 et 11 passent (A entend B, B entend A après acceptation),
+> **le vrai cœur de Songi Songi fonctionne.**
 
 ## Ce que je garantis côté code (vérifié automatiquement)
 - Tokens LiveKit **serveur uniquement**, secret jamais exposé, exp 1h, GET→405.
