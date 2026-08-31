@@ -27,7 +27,18 @@ export type AnalyticsEvent =
   | "country_selected"
   | "mode_selected"
   | "demo_started"
-  | "demo_completed";
+  | "demo_completed"
+  // ── Core loop (link → room → voice) ──
+  | "landing_view"
+  | "room_view"
+  | "onboarding_started"
+  | "onboarding_completed"
+  | "room_joined"
+  | "first_audio_received"
+  | "speaker_requested"
+  | "speaker_started"
+  | "room_left"
+  | "share_clicked";
 
 export type AnalyticsProps = Record<string, string | number | boolean>;
 
@@ -95,6 +106,16 @@ export function track(event: AnalyticsEvent, props: AnalyticsProps = {}): void {
   }
 }
 
+// ── TIME TO FIRST VOICE ────────────────────────────────────
+// Horodate l'entrée (landing_view / room_view) ; first_audio_received calcule
+// le délai jusqu'à la première voix entendue (métrique nord de l'expérience).
+let entryAt: number | null = null;
+
+/** Marque le point de départ (t0) pour TTFV. */
+export function markEntry(): void {
+  entryAt = Date.now();
+}
+
 // ── Helpers typés (funnel produit) ─────────────────────────
 
 export const analytics = {
@@ -119,4 +140,22 @@ export const analytics = {
   creatorJoin: () => track("creator_join_click"),
   diasporaJoin: (country: string) => track("diaspora_join_click", { country }),
   contactClick: (channel: string) => track("contact_click", { channel }),
+
+  // ── Core loop ──
+  landingView: () => { markEntry(); track("landing_view"); },
+  roomView: (room: string) => { markEntry(); track("room_view", { room }); },
+  onboardingStarted: () => track("onboarding_started"),
+  onboardingCompleted: () => track("onboarding_completed"),
+  roomJoined: (props: { room: string; role: string }) => track("room_joined", { room: props.room, role: props.role }),
+  /** Première voix entendue — inclut TTFV (ms depuis landing_view / room_view). */
+  firstAudioReceived: (props: { room?: string } = {}) =>
+    track("first_audio_received", {
+      room: props.room ?? "",
+      ttfv_ms: entryAt ? Date.now() - entryAt : -1,
+    }),
+  speakerRequested: () => track("speaker_requested"),
+  speakerStarted: () => track("speaker_started"),
+  roomLeft: (props: { room?: string; seconds?: number } = {}) =>
+    track("room_left", { room: props.room ?? "", seconds: props.seconds ?? 0 }),
+  shareClicked: (props: { where: string } = { where: "unknown" }) => track("share_clicked", { where: props.where }),
 };

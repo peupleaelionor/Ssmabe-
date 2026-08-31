@@ -17,6 +17,7 @@ import { JoinAnyway } from "@/components/mvp/JoinAnyway";
 import { BetaTeaser } from "@/components/mvp/BetaTeaser";
 import { Footer } from "@/components/landing/Footer";
 import { StickyEnter } from "@/components/mvp/StickyEnter";
+import { TrackLanding } from "@/components/mvp/TrackLanding";
 import { FLAGS } from "@/config/flags";
 
 /**
@@ -46,6 +47,7 @@ export default async function LandingPage() {
       <BetaTeaser />
       <Footer />
       {FLAGS.stickyCtaEnabled && <StickyEnter />}
+      <TrackLanding />
     </main>
   );
 }
