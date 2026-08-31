@@ -20,13 +20,13 @@ export const fr = {
 
   hero: {
     badges: ["Téléchat moderne", "Appel · WhatsApp · Web"],
-    title1: "Parle.",
-    title2: "Rencontre. Rejoins.",
+    title1: "Entre. Écoute.",
+    title2: "Parle.",
     subtitle:
-      "Le téléchat moderne pour l’Afrique, la diaspora et toutes les communautés. Entre par appel, WhatsApp, SMS ou web. Ton numéro reste protégé.",
+      "Ton numéro reste privé. Né à Kinshasa, ouvert au monde.",
     ctaCall: "Appeler maintenant",
     ctaWhatsApp: "WhatsApp",
-    ctaEnter: "Entrer sur le site",
+    ctaEnter: "Entrer",
     ctaCreate: "Créer mon cercle",
     trust: "18+ uniquement · Numéro masqué · Contact après consentement",
     trustChips: ["Sans app obligatoire", "Faible connexion", "Voix protégée", "Cercles ouverts au monde"],

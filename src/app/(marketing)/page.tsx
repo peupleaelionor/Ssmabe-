@@ -1,19 +1,11 @@
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
 import { WorldBand } from "@/components/landing/WorldBand";
-import { PositioningBand } from "@/components/landing/PositioningBand";
 import { Vibes } from "@/components/landing/Vibes";
-import { Why } from "@/components/landing/Why";
-import { Features } from "@/components/landing/Features";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { CommunitiesSection } from "@/components/mvp/CommunitiesSection";
 import { getCommunities } from "@/lib/communities";
-import { ChoosePresence } from "@/components/social/ChoosePresence";
-import { ForWho } from "@/components/landing/ForWho";
 import { Sovereignty } from "@/components/landing/Sovereignty";
-import { Difference } from "@/components/landing/Difference";
-import { Roadmap } from "@/components/landing/Roadmap";
-import { JoinAnyway } from "@/components/mvp/JoinAnyway";
 import { BetaTeaser } from "@/components/mvp/BetaTeaser";
 import { Footer } from "@/components/landing/Footer";
 import { StickyEnter } from "@/components/mvp/StickyEnter";
@@ -21,9 +13,10 @@ import { TrackLanding } from "@/components/mvp/TrackLanding";
 import { FLAGS } from "@/config/flags";
 
 /**
- * Landing Songi Songi Mabé — téléchat moderne.
- * Simple en façade : appel, WhatsApp, SMS, web, cercles.
- * Puissant derrière : voix, sécurité, low-data, diaspora, paiement futur.
+ * Landing Songi Songi Mabé — simplifiée (une intention : entrer et parler).
+ * Répond à 3 questions : c'est quoi (Hero + Vibes), comment j'entre (HowItWorks
+ * + Entrer), à qui faire confiance (Sovereignty). Le reste a été retiré pour
+ * ne pas noyer l'action principale (sections conservées comme composants).
  */
 export default async function LandingPage() {
   const communities = await getCommunities();
@@ -32,18 +25,10 @@ export default async function LandingPage() {
       <Header />
       <Hero />
       {FLAGS.avatarsEnabled && <WorldBand />}
-      <PositioningBand />
       <Vibes />
-      <Why />
-      <Features />
       <HowItWorks />
       <CommunitiesSection communities={communities} />
-      {FLAGS.avatarsEnabled && <ChoosePresence />}
-      <ForWho />
       <Sovereignty />
-      <Difference />
-      <Roadmap />
-      <JoinAnyway />
       <BetaTeaser />
       <Footer />
       {FLAGS.stickyCtaEnabled && <StickyEnter />}

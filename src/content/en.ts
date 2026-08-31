@@ -20,13 +20,13 @@ export const en: Content = {
   navCta: "Enter",
   hero: {
     badges: ["Modern telechat", "Call · WhatsApp · Web"],
-    title1: "Talk.",
-    title2: "Meet. Join.",
+    title1: "Enter. Listen.",
+    title2: "Speak.",
     subtitle:
-      "The modern telechat for Africa, the diaspora and every community. Enter by call, WhatsApp, SMS or web. Your number stays protected.",
+      "Your number stays private. Born in Kinshasa, open to the world.",
     ctaCall: "Call now",
     ctaWhatsApp: "WhatsApp",
-    ctaEnter: "Enter the site",
+    ctaEnter: "Enter",
     ctaCreate: "Create my circle",
     trust: "18+ only · Number hidden · Contact after consent",
     trustChips: ["No app required", "Low-data ready", "Protected voice", "World-ready circles"],
